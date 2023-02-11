@@ -8,7 +8,7 @@ import { v1 as uuid } from 'uuid';
 
 
 import { connect } from "react-redux";
-import { updateLead } from '../../actions/leadActions'
+import { assignLead } from '../../actions/leadActions'
 import { getAgents } from '../../actions/agentActions';
 import PropTypes from 'prop-types';
 import MenuItem from '@mui/material/MenuItem';
@@ -53,7 +53,7 @@ class AssignLead extends Component {
         }
 
         const id = this.props.leadid;
-        this.props.updateLead( id ,updatedLead);
+        this.props.assignLead( id ,updatedLead);
         this.handleClose();
     }
 
@@ -162,4 +162,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { updateLead, getAgents })(AssignLead);
+export default connect(mapStateToProps, { assignLead, getAgents })(AssignLead);

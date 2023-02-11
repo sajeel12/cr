@@ -24,6 +24,7 @@ import SendMail from '../client/SendMail';
 import moment from 'moment';
 import DeleteLead from './DeleteLead';
 import AssignLead from './AssignLead';
+import UpdateLead from './UpdateLead';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -91,14 +92,14 @@ class LeadAdmin extends Component {
                         <TableBody>
                             {leads.map((row) => (
 
-                                <StyledTableRow key={row.fullname}  sx={row.isassigned ?{backgroundColor: '#8EE2B8' } :{backgroundColor: ''}} >
+                                <StyledTableRow key={row.fullname} sx={row.isassigned ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }} >
 
                                     {row.isleades ?
                                         <>
 
                                             <StyledTableCell component="th" scope="row">
                                                 {row.fullname}
-                                                
+
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
@@ -117,7 +118,7 @@ class LeadAdmin extends Component {
                                                         <>
 
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
-                                                            <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Update</Button>
+                                                            <UpdateLead {...row}  />
                                                             <DeleteLead id={row._id} name={row.fullname} />
                                                             <AssignLead leadid={row._id} isassigned={row.isassigned} />
                                                         </>

@@ -37,7 +37,7 @@ export const addLead = (lead) => (dispatch, getState) => {
 };
 
 
-export const updateLead = ( id, lead) => (dispatch, getState) => {
+export const assignLead = ( id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/${id}`, lead, tokenConfig(getState))
         .then(res => dispatch({
             type: UPDATE_LEAD,
@@ -46,6 +46,20 @@ export const updateLead = ( id, lead) => (dispatch, getState) => {
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+
+export const updateLead = ( id, lead) => (dispatch, getState) => {
+    axios.put(`/api/leads/update/${id}`, lead, tokenConfig(getState))
+        .then(res => dispatch({
+            type: UPDATE_LEAD,
+            payload: res.data
+        }))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+
+
 
 
 export const setLeadLoading = () => {
