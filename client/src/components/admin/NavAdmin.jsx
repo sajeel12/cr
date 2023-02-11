@@ -147,9 +147,9 @@ function NavAdmin({ username, isadmin }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Digital Solution Hub      {isadmin? 'Admin' : ''}  
+            Digital Solution Hub      {isadmin ? 'Admin' : ''}
           </Typography>
-          <Typography variant="h6" sx={{ marginLeft: 50, color:'white',  }} >
+          <Typography variant="h6" sx={{ marginLeft: 50, color: 'white', }} >
             {username}
           </Typography>
         </Toolbar>
@@ -165,318 +165,332 @@ function NavAdmin({ username, isadmin }) {
         {/*=======================List=====================  */}
         <List >
 
-          {isadmin ? 
-          <>
-
-          <Link to='/' >
-            <ListItem disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                  <LeaderboardIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-
-
-          <Link to='agents' >
-            <ListItem disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                  <SupportAgentIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Agents"} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-
-
-
-
-          <ListItem disablePadding sx={{ display: 'block' }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            // onClick={}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <LogoutIcon />
-              </ListItemIcon>
-              {/* <Logout/> */}
-              <ListItemText primary={<Logout />} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-          </>
-
-
-:
-                             
+          {isadmin ?
             <>
-            
-          <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <LeaderboardIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
 
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <FollowTheSignsIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Follow Up"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <FormatQuoteIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Quotes"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-            <BookOnlineIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Orders"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
+              <Link to='/' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <LeaderboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
 
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <LocalShippingIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Dispatched"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <ArchiveIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Archived"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <CloudIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Potential"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <NoteAltIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Shipper's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <NoteAltIcon/>
-            </ListItemIcon>
-            <ListItemText primary={"Carrier's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? 'initial' : 'center',
-              px: 2.5,
-            }}
-            // onClick={}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              <LogoutIcon/>
-            </ListItemIcon>
-            {/* <Logout/> */}
-            <ListItemText primary={ <Logout/> } sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
+              <Link to='agents' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <SupportAgentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Agents"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
 
-            
-        </>
-            }
+
+
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                  }}
+                // onClick={}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  {/* <Logout/> */}
+                  <ListItemText primary={<Logout />} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </>
+
+
+            :
+
+            <>
+
+              <Link to='/' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <LeaderboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to='followup' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <FollowTheSignsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Follow Up"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              
+              <Link to='quotes' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <FormatQuoteIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Quotes"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to='orders' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <BookOnlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Orders"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to='dispatched' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <LocalShippingIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Dispatched"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to='archived' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <ArchiveIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Archived"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to='potential' >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <CloudIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Potential"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                    <NoteAltIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={"Shipper's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                    <NoteAltIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={"Carrier's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                  }}
+                // onClick={}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  {/* <Logout/> */}
+                  <ListItemText primary={<Logout />} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+
+
+
+            </>
+          }
 
 
 

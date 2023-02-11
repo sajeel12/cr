@@ -8,6 +8,12 @@ import NavAdmin from './NavAdmin';
 import BodyAdmin from './BodyAdmin';
 import BodyAgent from './BodyAgent';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Archived from '../client/Archived';
+import Dispatched from '../client/Dispatched';
+import FollowUp from '../client/FollowUp';
+import Orders from '../client/Orders';
+import Potential from '../client/Potential';
+import Quotes from '../client/Quotes';
 
 class MainAdmin extends Component {
     DrawerHeader = styled('div')(({ theme }) => ({
@@ -46,21 +52,34 @@ class MainAdmin extends Component {
                                 {/*    routes ================================= */}
                                 <Routes>
                                     <Route path='/' element={
-
-
-                                        
                                             <BodyAdmin />
-                                            
-
                                     } />
                                     <Route path='agents' element={
-
                                         user.isadmin ?
                                             <BodyAgent />
                                             :
                                             ''
-
                                     } />
+                                    <Route path='archived' element={
+                                            <Archived/>
+                                    } />
+                                    <Route path='dispatched' element={
+                                            <Dispatched/>
+                                    } />
+                                    <Route path='followup' element={
+                                            <FollowUp/>
+                                    } />
+                                    <Route path='orders' element={
+                                            <Orders/>
+                                    } />
+                                    <Route path='potential' element={
+                                            <Potential/>
+                                    } />
+                                    <Route path='quotes' element={
+                                            <Quotes/>
+                                    } />
+
+
                                 </Routes>
 
 
