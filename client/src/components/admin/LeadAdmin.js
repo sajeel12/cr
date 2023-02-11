@@ -92,7 +92,7 @@ class LeadAdmin extends Component {
                         <TableBody>
                             {leads.map((row) => (
 
-                                <StyledTableRow key={row.fullname} sx={row.isassigned ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }} >
+                                <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }:''} >
 
                                     {row.isleades ?
                                         <>
@@ -103,7 +103,7 @@ class LeadAdmin extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.owner.username}</StyledTableCell>
+                                            <StyledTableCell align="center">{ row.isassigned? row.owner.username: 'N/A'}</StyledTableCell>
 
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
