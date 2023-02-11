@@ -23,6 +23,7 @@ import SendMail from '../client/SendMail';
 
 import moment from 'moment';
 import DeleteLead from './DeleteLead';
+import AssignLead from './AssignLead';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -39,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        // backgroundColor: 'green',
 
 
     },
@@ -76,6 +77,7 @@ class LeadAdmin extends Component {
                                 <StyledTableCell>FullName </StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
+                                <StyledTableCell align="center">Assigned To&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
@@ -89,7 +91,7 @@ class LeadAdmin extends Component {
                         <TableBody>
                             {leads.map((row) => (
 
-                                <StyledTableRow key={row.fullname}>
+                                <StyledTableRow key={row.fullname}  sx={row.isassigned ?{backgroundColor: '#8EE2B8' } :{backgroundColor: ''}} >
 
                                     {row.isleades ?
                                         <>
@@ -100,15 +102,16 @@ class LeadAdmin extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.owner.username}</StyledTableCell>
 
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
                                             <StyledTableCell align="center">{row.model}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.year}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
                                             <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
                                             <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
                                             <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
-                                            <StyledTableCell align="center">
+                                            <StyledTableCell align="center"  >
                                                 <Stack spacing={2} direction="row">
                                                     {user.isadmin ?
                                                         <>
@@ -116,7 +119,7 @@ class LeadAdmin extends Component {
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Update</Button>
                                                             <DeleteLead id={row._id} name={row.fullname} />
-                                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>Assign Lead</Button>
+                                                            <AssignLead leadid={row._id} isassigned={row.isassigned} />
                                                         </>
                                                         :
 

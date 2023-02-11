@@ -42,17 +42,17 @@ class SendMail extends Component {
 
         open: false,
         company: '',
-        template: '',
-        subject: 'Thank you for your inquiry - here is your quote for your vehicle transportation'
+        template: '', 
+        subject: ''
 
 
 
     }
 
-    static propTypes = { 
-        auth: PropTypes.object.isRequired, 
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
         clearErrors: PropTypes.func.isRequired,
-        sendMail: PropTypes.func.isRequired 
+        sendMail: PropTypes.func.isRequired
     }
 
 
@@ -60,6 +60,8 @@ class SendMail extends Component {
         this.setState({
             template: e.target.value
         });
+        console.log(this.state.template);
+        console.log(this.state.template);
         if (this.state.template === "New Qoute Email") {
             this.setState({
                 subject: "Thank you for your inquiry - here is your quote for your vehicle transportation"
@@ -76,6 +78,7 @@ class SendMail extends Component {
             company: e.target.value
         });
     };
+
     toggle = () => {
         // clear errors
         this.props.clearErrors();
@@ -91,21 +94,24 @@ class SendMail extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { subject} = this.state;
         const { user } = this.props.auth;
         const to = this.props.email;
         const from = user.email;
+    
 
-       const mail = {
+
+        const { subject } = this.state;
+
+        const mail = {
             from,
             to,
             subject
-            
+
         }
-        
+
         sendMail(mail);
 
-    
+
 
 
 
@@ -146,6 +152,7 @@ class SendMail extends Component {
                             <form  >
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
                                     <InputLabel id="demo-simple-select-standard-label">Company</InputLabel>
+                                    
                                     <Select
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"
@@ -153,14 +160,15 @@ class SendMail extends Component {
                                         onChange={this.handleChange}
                                         label="Company"
                                     >
-                                        <MenuItem value='SM Transports'>SM Transports</MenuItem>
-                                        <MenuItem value='HS Logistics'>HS Logistics</MenuItem>
+                                        <MenuItem value="SM Transports" >SM Transports</MenuItem>
+                                        <MenuItem value="HS Logistics" >HS Logistics</MenuItem>
                                     </Select>
                                 </FormControl>
 
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
                                     <InputLabel id="demo-simple-select-standard-label">Template Name</InputLabel>
                                     <Select
+                                        name='company'
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"
                                         value={this.state.template}
@@ -185,7 +193,7 @@ class SendMail extends Component {
                                 />
                                 <TextField
 
-                                    name='subject'
+
                                     id="standard-read-only-input"
                                     label="Subject"
                                     type="text"
@@ -245,4 +253,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { clearErrors, sendMail  })(SendMail);
+export default connect(mapStateToProps, { clearErrors, sendMail })(SendMail);

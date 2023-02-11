@@ -3,10 +3,10 @@ import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
-export const getAgents = () => dispatch => {
+export const getAgents = () => (dispatch,getState) => {
     dispatch(setAgentLoading());
 
-    axios.get('/api/agents').then(res =>
+    axios.get('/api/agents', tokenConfig(getState)).then(res =>
         dispatch({
             type: GET_AGENTS,
             payload: res.data

@@ -48,13 +48,17 @@ class MainAdmin extends Component {
                                     <Route path='/' element={
 
 
-                                        <BodyAdmin />
                                         
+                                            <BodyAdmin />
+                                            
+
                                     } />
                                     <Route path='agents' element={
 
-
-                                        <BodyAgent />
+                                        user.isadmin ?
+                                            <BodyAgent />
+                                            :
+                                            ''
 
                                     } />
                                 </Routes>

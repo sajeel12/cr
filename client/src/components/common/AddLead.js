@@ -45,6 +45,7 @@ class AddLead extends Component {
         destinationstate: '',
         destinationzipcode: '',
         model: '',
+        modelyear: '',
         make: '',
         vehicletype: ''
 
@@ -53,10 +54,10 @@ class AddLead extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         if (this.state.fullname !== '' && this.state.destinationcity !== '') {
-            const {user} = this.props.auth;
+            const { user } = this.props.auth;
             const newLead = {
                 id: uuid(),
-                owner: user.username,
+                // owner: user.username,
                 fullname: this.state.fullname,
                 email: this.state.email,
                 phoneno: this.state.phoneno,
@@ -69,6 +70,7 @@ class AddLead extends Component {
                 destinationstate: this.state.destinationstate,
                 destinationzipcode: this.state.destinationzipcode,
                 model: this.state.model,
+                modelyear: this.state.modelyear,
                 make: this.state.make,
                 vehicletype: this.state.vehicletype,
 
@@ -224,6 +226,14 @@ class AddLead extends Component {
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
+                                    name='modelyear'
+                                    label="Model Year"
+                                    type="required"
+                                    variant="standard"
+                                />
+                                <TextField
+                                    onChange={this.onChange}
+                                    id="standard-required"
                                     name='make'
                                     label="Make "
                                     type="required"
@@ -238,13 +248,14 @@ class AddLead extends Component {
                                     variant="standard"
                                 />
 
-
-                                <Button variant='contained'
-                                    sx={{ marginBottom: 5 }}
-                                    onClick={this.onSubmit}
-                                >
-                                    Add
-                                </Button>
+                                <div>
+                                    <Button variant='contained'
+                                        sx={{ marginBottom: 5 }}
+                                        onClick={this.onSubmit}
+                                    >
+                                        Add
+                                    </Button>
+                                </div>
 
                             </form>
 
