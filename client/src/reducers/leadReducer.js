@@ -27,8 +27,7 @@ export default function (state = initialState, action) {
         case UPDATE_LEAD:
             return {
                 ...state,
-                leads: state.leads.filter(lead => lead._id !== action.payload._id),
-                leads: [action.payload, ...state.leads]
+                leads: action.payload
                 
 
             };

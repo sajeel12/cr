@@ -21,7 +21,7 @@ import InputLabel from '@mui/material/InputLabel';
 class AssignLead extends Component {
 
     componentDidMount = () => {
-        getAgents();
+        this.props.getAgents();
     }
  
 

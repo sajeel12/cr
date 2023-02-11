@@ -74,7 +74,24 @@ router.put('/:id', auth, (req, res) => {
             if (err)
                 res.status(404).json({ success: false });
             else
-                res.status(200).json(lead);
+            User.findById(req.user.id).then(user => {
+                if (user.isadmin) {
+                    Lead.find({})
+                        .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
+                        .exec((err, lead) => {
+                            if (err) throw (err);
+        
+                            res.json(lead);
+                        });
+                } else {
+                    Lead.find({ owner: user._id })
+                        .sort({ recieveddate: -1 })
+                        .then(leads => res.json(leads))
+                }
+        
+            }
+        
+            );
         })
 
 
