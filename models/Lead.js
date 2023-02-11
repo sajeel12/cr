@@ -6,8 +6,9 @@ const User = require('./User');
 
 const LeadSchema = new Schema({
     owner: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+
     },
     fullname: {
         type: String,
@@ -71,7 +72,7 @@ const LeadSchema = new Schema({
     },
     modelyear: {
         type: String,
-        required: false
+        required: true
     },
     vehiclecondition: {
         type: String,
