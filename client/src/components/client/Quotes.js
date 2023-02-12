@@ -22,6 +22,7 @@ import { Component } from 'react';
 import SendMail from '../client/SendMail';
 
 import moment from 'moment';
+import UpdateStatus from './UpdateStatus';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -91,7 +92,7 @@ class Quotes extends Component {
 
                                 <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }:''} >
 
-                                    {row.isquotes ?
+                                    {row.status === 'quote' ?
                                         <>
 
                                             <StyledTableCell component="th" scope="row">
@@ -117,7 +118,7 @@ class Quotes extends Component {
 
                                                             <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }} >Send Message</Button>
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
-                                                            <Button variant="contained" sx={{ width: 160, backgroundColor: 'black', borderRadius: 50 }}>update Status</Button>
+                                                            <UpdateStatus  leadid={row._id} />
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>update</Button>
 
                                                    

@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-
-import { connect } from "react-redux";
+import React, { Component } from 'react'
 import {
     Typography, Box, Modal, Button,
     TextField
@@ -10,11 +8,20 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import PropTypes from 'prop-types';
-import { clearErrors } from "../../actions/errorActions";
-import { sendMail } from "../../actions/mailActions";
 
-class SendMail extends Component {
+
+
+export class SendMsg extends Component {
+
+
+
+     msg1 = `Hello,
+     ... here from SM Transports.
+     Just wanted to double-check if your vehicle is ready for pick-up? The quote for your vehicle's move is $450 which is all- inclusive. Please can text or call me with your questions from 9 AM-7 PM EST. We are fully insured, bonded, and offer door-to-door services. You can contact me for further assistance at (714)-902-6330
+     Waiting for your response! Thank you`;
+
+
+
     style = {
         position: 'absolute',
         top: '50%',
@@ -30,19 +37,12 @@ class SendMail extends Component {
 
         open: false,
         company: '',
-        template: '', 
+        template: '',
         subject: ''
 
 
 
     }
-
-    static propTypes = {
-        auth: PropTypes.object.isRequired,
-        clearErrors: PropTypes.func.isRequired,
-        sendMail: PropTypes.func.isRequired
-    }
-
 
     onTemplate = (e) => {
         this.setState({
@@ -80,34 +80,11 @@ class SendMail extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        const { user } = this.props.auth;
-        const to = this.props.email;
-        const from = user.email;
-    
 
-
-        const { subject } = this.state;
-
-        const mail = {
-            from,
-            to,
-            subject
-
-        }
-
-        sendMail(mail);
-
-
-
-
-
-    }
 
     render() {
-        const { user } = this.props.auth;
         return (
+
             <div>
                 <Button onClick={this.toggle} variant='contained'
                     sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
@@ -139,46 +116,35 @@ class SendMail extends Component {
                             <hr />
                             <form  >
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
-                                    <InputLabel id="demo-simple-select-standard-label">Company</InputLabel>
-                                    
+
+                                    <InputLabel id="demo-simple-select-standard-label">Assign to</InputLabel>
+                                    <h1> {this.state.selected} </h1>
                                     <Select
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"
-                                        value={this.state.company}
+                                        value={this.state.selected}
                                         onChange={this.handleChange}
-                                        label="Company"
+                                        label="Move To ..."
                                     >
-                                        <MenuItem value="SM Transports" >SM Transports</MenuItem>
-                                        <MenuItem value="HS Logistics" >HS Logistics</MenuItem>
+
+
+                                        <MenuItem value='followup' >Follow Up</MenuItem>
+                                        <MenuItem value='quotes' >Qoutes</MenuItem>
+                                        <MenuItem value='orders' >Orders</MenuItem>
+                                        <MenuItem value='dispatched' >Dispatched</MenuItem>
+                                        <MenuItem value='archived' >Archived</MenuItem>
+                                        <MenuItem value='potential' >Potential</MenuItem>
+                                        {/* <MenuItem value={true} ></MenuItem> */}
+
+
                                     </Select>
+
+
                                 </FormControl>
 
-                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
-                                    <InputLabel id="demo-simple-select-standard-label">Template Name</InputLabel>
-                                    <Select
-                                        name='company'
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard"
-                                        value={this.state.template}
-                                        onChange={this.onTemplate}
-                                        label="Template"
+                               
 
-                                    >
-                                        <MenuItem value='New Qoute Email'>New Qoute Email</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                                <TextField
-
-                                    onChange={this.onChange}
-                                    name='from'
-                                    id="standard-read-only-input"
-                                    label="From"
-                                    type="text"
-                                    variant="standard"
-                                    value={user.email}
-
-                                />
+                               
                                 <TextField
 
 
@@ -228,17 +194,11 @@ class SendMail extends Component {
                 </Modal>
             </div>
 
+
+
+
         )
-    };
+    }
 }
 
-SendMail.propTypes = {
-    sendMail: PropTypes.func.isRequired,
-}
-
-
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(mapStateToProps, { clearErrors, sendMail })(SendMail);
+export default SendMsg

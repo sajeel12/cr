@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
         case UPDATE_LEAD:
             return {
                 ...state,
-                leads: action.payload
+                leads: [ ...state.leads]
                 
 
             };

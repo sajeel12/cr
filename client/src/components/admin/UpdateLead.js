@@ -51,7 +51,8 @@ class UpdateLead extends Component {
         model: this.props.model,
         modelyear: this.props.modelyear,
         make: this.props.make,
-        vehicletype: this.props.vehicletype
+        vehicletype: this.props.vehicletype,
+        price:this.props.price
 
     }
 
@@ -76,7 +77,8 @@ class UpdateLead extends Component {
             model: this.state.model,
             modelyear: this.state.modelyear,
             make: this.state.make,
-            vehicletype: this.state.vehicletype
+            vehicletype: this.state.vehicletype,
+            price:this.state.price
         }
 
         const id = this.props._id;
@@ -284,6 +286,17 @@ class UpdateLead extends Component {
                                     type="required"
                                     variant="standard"
                                     value={this.state.vehicletype}
+
+                                />
+                                <TextField
+                                    onChange={this.onChange}
+                                    id="standard-required"
+                                    name='price'
+                                    label="Price"
+                                    type="required"
+                                    variant="standard"
+                                    placeholder='$'
+                                    value={this.state.price}
 
                                 />
 

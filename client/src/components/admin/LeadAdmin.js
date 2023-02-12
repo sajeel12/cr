@@ -25,7 +25,8 @@ import moment from 'moment';
 import DeleteLead from './DeleteLead';
 import AssignLead from './AssignLead';
 import UpdateLead from './UpdateLead';
-
+import UpdateStatus from '../client/UpdateStatus';
+import SendMsg from '../client/SendMsg';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -57,20 +58,38 @@ function createData(fullName, email, phoneNo, leadId, make, model, year, vehicle
 
 class LeadAdmin extends Component {
     static propTypes = {
-        auth: PropTypes.object.isRequired
+        auth: PropTypes.object.isRequired,
+        lead: PropTypes.object.isRequired
     }
 
     componentDidMount() {
+
+      
+
         this.props.getLeads();
+        this.interval = setInterval(() => { this.props.getLeads() }, 1000);
     }
+
+ 
+      componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+      
+
+
+
+    // componentDidUpdate() {
+    //     this.props.getLeads();
+    // }
 
 
     render() {
-        const { leads } = this.props.lead;
+        const { leads, loading } = this.props.lead;
         const { user } = this.props.auth;
 
         return (
             <Container sx={{ width: 1400 }}  >
+                
                 <TableContainer component={Paper} sx={{ maxHeight: 500, maxWidth: 1600, overflowY: 'scroll' }}  >
                     <Table sx={{ minWidth: 1600 }} aria-label="customized table">
                         <TableHead>
@@ -92,9 +111,9 @@ class LeadAdmin extends Component {
                         <TableBody>
                             {leads.map((row) => (
 
-                                <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }:''} >
+                                <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' } : ''} >
 
-                                    {row.isleades ?
+                                    {row.status == 'lead' ?
                                         <>
 
                                             <StyledTableCell component="th" scope="row">
@@ -103,7 +122,7 @@ class LeadAdmin extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{ row.isassigned? row.owner.username: 'N/A'}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
 
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
@@ -118,7 +137,7 @@ class LeadAdmin extends Component {
                                                         <>
 
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
-                                                            <UpdateLead {...row}  />
+                                                            <UpdateLead {...row} />
                                                             <DeleteLead id={row._id} name={row.fullname} />
                                                             <AssignLead leadid={row._id} isassigned={row.isassigned} />
                                                         </>
@@ -127,12 +146,10 @@ class LeadAdmin extends Component {
                                                         <>
 
                                                             <SendMail email={row.email} />
-
-                                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }} >Send Message</Button>
+                                                            <SendMsg  {...row} />
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
-                                                            <Button variant="contained" sx={{ width: 160, backgroundColor: 'black', borderRadius: 50 }}>update Status</Button>
-                                                            <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>update</Button>
-
+                                                            <UpdateStatus leadid={row._id} />
+                                                            <UpdateLead {...row} />
                                                         </>
 
                                                     }
@@ -163,7 +180,8 @@ LeadAdmin.propTypes = {
 
 const mapStateToProps = (state) => ({
     lead: state.lead,
-    auth: state.auth
+    auth: state.auth,
+
 })
 
 

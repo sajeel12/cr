@@ -22,6 +22,7 @@ import { Component } from 'react';
 import SendMail from '../client/SendMail';
 
 import moment from 'moment';
+import UpdateStatus from './UpdateStatus';
 // import DeleteLead from './DeleteLead';
 // import AssignLead from './AssignLead';
 // import UpdateLead from './UpdateLead';
@@ -80,6 +81,7 @@ class Archived extends Component {
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Assigned To&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
+                                <StyledTableCell align="center">Lead Status&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Year&nbsp;</StyledTableCell>
@@ -94,7 +96,7 @@ class Archived extends Component {
 
                                 <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }:''} >
 
-                                    {row.isarchived ?
+                                    {row.status === 'archived' ?
                                         <>
 
                                             <StyledTableCell component="th" scope="row">
@@ -106,6 +108,7 @@ class Archived extends Component {
                                             <StyledTableCell align="center">{ row.isassigned? row.owner.username: 'N/A'}</StyledTableCell>
 
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.status}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
                                             <StyledTableCell align="center">{row.model}</StyledTableCell>
                                             <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
@@ -120,7 +123,7 @@ class Archived extends Component {
 
                                                             <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }} >Send Message</Button>
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
-                                                            <Button variant="contained" sx={{ width: 160, backgroundColor: 'black', borderRadius: 50 }}>update Status</Button>
+                                                            <UpdateStatus leadid={row._id}  />
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>update</Button>
 
                                                         

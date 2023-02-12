@@ -47,6 +47,16 @@ export const assignLead = ( id, lead) => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
+export const updateStatus = ( id, lead) => (dispatch, getState) => {
+    axios.put(`/api/leads/status/${id}`, lead, tokenConfig(getState))
+        .then(res => dispatch({
+            type: UPDATE_LEAD,
+            payload: res.data
+        }))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
 
 export const updateLead = ( id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/update/${id}`, lead, tokenConfig(getState))

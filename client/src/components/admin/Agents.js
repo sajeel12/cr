@@ -22,6 +22,7 @@ import { Component } from 'react';
 import { getAgents } from '../../actions/agentActions';
 import moment from 'moment';
 import DeleteLead from './DeleteLead';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -62,9 +63,10 @@ class Agents extends Component {
 
     render() {
         const {agents} = this.props.agent;
-
+        const{ loading } = this.props.lead;
         return (
             <Container sx={{ width: 1400 }}  >
+                <div>   {loading ?  <Spinner animation="grow" /> : ''} </div>
                 <TableContainer component={Paper} sx={{maxHeight:500, maxWidth:1600 , overflowY:'scroll' }}  >
                     <Table sx={{ minWidth: 1000, minHeight:200 }} aria-label="customized table">
                         <TableHead>
@@ -115,11 +117,13 @@ class Agents extends Component {
 
 Agents.propTypes = {
     getAgents: PropTypes.func.isRequired,
-    agent: PropTypes.object.isRequired
+    agent: PropTypes.object.isRequired,
+    lead: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    agent: state.agent
+    agent: state.agent,
+    lead: state.lead
 });
 
 

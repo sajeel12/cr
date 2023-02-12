@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LoginModal from './auth/LoginModal';
 import MainAdmin from './admin/MainAdmin';
+import RegisterModel from './auth/RegisterModel';
 
 class Main extends Component {
 
@@ -37,7 +38,8 @@ class Main extends Component {
         const { isAuthenticated, user } = this.props.auth;
 
         return (
-            <div>
+            <div> 
+                <RegisterModel />
                 {!isAuthenticated ?
                     <LoginModal /> :
                     // user.isadmin ?

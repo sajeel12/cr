@@ -144,10 +144,11 @@ function NavAdmin({ username, isadmin }) {
               ...(open && { display: 'none' }),
             }}
           >
+            
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Digital Solution Hub      {isadmin ? 'Admin' : ''}
+            Digital Solution Hub      {isadmin ? '--------- Admin' : ''}
           </Typography>
           <Typography variant="h6" sx={{ marginLeft: 50, color: 'white', }} >
             {username}
