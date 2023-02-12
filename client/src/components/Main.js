@@ -39,7 +39,7 @@ class Main extends Component {
 
         return (
             <div> 
-                <RegisterModel />
+
                 {!isAuthenticated ?
                     <LoginModal /> :
                     // user.isadmin ?
