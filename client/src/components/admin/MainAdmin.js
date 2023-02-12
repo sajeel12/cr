@@ -52,10 +52,10 @@ class MainAdmin extends Component {
 
 
 
-                    {/*    routes ================================= */}
+                                {/*    routes ================================= */}
                                 <Routes>
                                     <Route path='/' element={
-                                            <BodyAdmin />
+                                        <BodyAdmin />
                                     } />
                                     <Route path='agents' element={
                                         user.isadmin ?
@@ -64,22 +64,22 @@ class MainAdmin extends Component {
                                             ''
                                     } />
                                     <Route path='archived' element={
-                                            <Archived/>
+                                        <Archived />
                                     } />
                                     <Route path='dispatched' element={
-                                            <Dispatched/>
+                                        <Dispatched />
                                     } />
                                     <Route path='followup' element={
-                                            <FollowUp/>
+                                        <FollowUp />
                                     } />
                                     <Route path='orders' element={
-                                            <Orders/>
+                                        <Orders />
                                     } />
                                     <Route path='potential' element={
-                                            <Potential/>
+                                        <Potential />
                                     } />
                                     <Route path='quotes' element={
-                                            <Quotes/>
+                                        <Quotes />
                                     } />
 
 
