@@ -24,7 +24,8 @@ router.put('/:id', auth, (req, res) => {
         model: req.body.model,
         modelyear: req.body.modelyear,
         make: req.body.make,
-        vehicletype: req.body.vehicletype
+        vehicletype: req.body.vehicletype,
+        price:req.body.price
 
     }, { new: true })
         .exec((err, lead) => {

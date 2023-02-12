@@ -29,6 +29,7 @@ app.use('/api/agents', require('./routes/api/agents'));
 
 app.use('/api/leads', require('./routes/api/leads'));
 app.use('/api/leads/update', require('./routes/api/leads/updateLead'));
+app.use('/api/leads/status', require('./routes/api/leads/updateStatus'));
 
 app.use('/api/mail', require('./routes/api/mail'));
 

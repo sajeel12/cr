@@ -111,41 +111,11 @@ const LeadSchema = new Schema({
         type: String,
         required: false
     },
-    isleades: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    isfollowup: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    isquotes: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    isorders: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    isarchived: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    isdispatched: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    ispotential: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
+    status:{
+    type: String,
+    required: false,
+    default: 'lead'        
+    }
 
 
 

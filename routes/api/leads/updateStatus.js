@@ -8,9 +8,11 @@ const Lead = require('../../../models/Lead');
 
 router.put('/:id', auth, (req, res) => {
 
+    console.log(`Masoom ${req.body.status} `)
+    
     Lead.findByIdAndUpdate(req.params.id, {
-        fullname: req.body.fullname,
-        
+        status: req.body.status
+
 
     }, { new: true })
         .exec((err, lead) => {

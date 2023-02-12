@@ -2,3 +2,5 @@
     "mongoURI": "mongodb+srv://sajeel:sajeel@cluster0.wvfrllq.mongodb.net/?retryWrites=true&w=majority",
     "jwtSecret": "sl_jwtshop"
 }
+
+// 45.132.242.130
