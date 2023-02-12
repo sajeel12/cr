@@ -23,6 +23,8 @@ import SendMail from '../client/SendMail';
 
 import moment from 'moment';
 import UpdateStatus from './UpdateStatus';
+import SendMsg from './SendMsg';
+import UpdateLead from '../admin/UpdateLead';
 // import DeleteLead from './DeleteLead';
 // import AssignLead from './AssignLead';
 // import UpdateLead from './UpdateLead';
@@ -63,6 +65,11 @@ class Archived extends Component {
 
     componentDidMount() {
         this.props.getLeads();
+        this.interval = setInterval(() => { this.props.getLeads() }, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
 
@@ -120,12 +127,10 @@ class Archived extends Component {
                                                     
 
                                                             <SendMail email={row.email} />
-
-                                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }} >Send Message</Button>
+                                                            <SendMsg {...row} />
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                             <UpdateStatus leadid={row._id}  />
-                                                            <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>update</Button>
-
+                                                            <UpdateLead  {...row} />
                                                         
 
                                                     

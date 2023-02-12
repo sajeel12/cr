@@ -63,18 +63,14 @@ class LeadAdmin extends Component {
     }
 
     componentDidMount() {
-
-      
-
         this.props.getLeads();
         this.interval = setInterval(() => { this.props.getLeads() }, 1000);
     }
 
- 
-      componentWillUnmount() {
+    componentWillUnmount() {
         clearInterval(this.interval);
-      }
-      
+    }
+
 
 
 
@@ -89,7 +85,7 @@ class LeadAdmin extends Component {
 
         return (
             <Container sx={{ width: 1400 }}  >
-                
+
                 <TableContainer component={Paper} sx={{ maxHeight: 500, maxWidth: 1600, overflowY: 'scroll' }}  >
                     <Table sx={{ minWidth: 1600 }} aria-label="customized table">
                         <TableHead>

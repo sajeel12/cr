@@ -23,6 +23,8 @@ import SendMail from '../client/SendMail';
 
 import moment from 'moment';
 import UpdateStatus from './UpdateStatus';
+import SendMsg from './SendMsg';
+import UpdateLead from '../admin/UpdateLead';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -60,6 +62,11 @@ class Orders extends Component {
 
     componentDidMount() {
         this.props.getLeads();
+        this.interval = setInterval(() => { this.props.getLeads() }, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
 
@@ -90,7 +97,7 @@ class Orders extends Component {
                         <TableBody>
                             {leads.map((row) => (
 
-                                <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }:''} >
+                                <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' } : ''} >
 
                                     {row.status === 'orders' ?
                                         <>
@@ -101,7 +108,7 @@ class Orders extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{ row.isassigned? row.owner.username: 'N/A'}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
 
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
@@ -112,16 +119,15 @@ class Orders extends Component {
                                             <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
                                             <StyledTableCell align="center"  >
                                                 <Stack spacing={2} direction="row">
-                                                    
 
-                                                            <SendMail email={row.email} />
 
-                                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }} >Send Message</Button>
-                                                            <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
-                                                            <UpdateStatus leadid={row._id}  />
-                                                            <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>update</Button>
+                                                    <SendMail email={row.email} />
 
-                                              
+                                                    <SendMsg {...row} />
+                                                    <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
+                                                    <UpdateStatus leadid={row._id} />
+                                                    <UpdateLead {...row} />
+
 
                                                 </Stack>
                                             </StyledTableCell>

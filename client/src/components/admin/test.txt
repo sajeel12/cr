@@ -1,31 +1,14 @@
-   <TableBody>
-                            {agents.map((row) => (
-
-                                <StyledTableRow key={row.fullname}>
-                                    
-                                    {row.isleades ?  
-                                        <>
-                                        
-                                            <StyledTableCell component="th" scope="row">
-                                                {row.fullname}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="center">{row.username}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.email}</StyledTableCell>
-
-                                            <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{String(row.isadmin)}</StyledTableCell>
-                                           
-                                            <StyledTableCell align="center">
-                                                <Stack spacing={2} direction="row">
-                                                    <Button variant="contained" sx={{ width: 80, backgroundColor:'black', borderRadius:50  }}>edit Profile</Button>
-                                               </Stack>
-                                            </StyledTableCell>
-                                        </>
-                                         : '' }
-
-
-
-                                </StyledTableRow>
-
-                            ))}
-                        </TableBody>
+Hey kj, great to hear from you.
+     So here is your requested quote, $undefined,
+     for j kj jk from 
+     Origin: Farmington, MI 48334 
+     Destination: kj, GA, k
+     Your quote number is 63e91b7ad2da2ebce595e4a8.
+     The services include:
+     1- Door-To-Door Shipment, 
+     2- Bumper to bumper insurance (includes up to $250,000 Carrier's insurance),
+     3- Including all the Tolls and Taxes.
+     4- You can put 100lbs of personal belongings.
+     undefined 
+     (714) 786-6661 
+     HS LOGISTICS

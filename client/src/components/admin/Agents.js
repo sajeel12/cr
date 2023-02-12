@@ -23,6 +23,7 @@ import { getAgents } from '../../actions/agentActions';
 import moment from 'moment';
 import DeleteLead from './DeleteLead';
 import Spinner from 'react-bootstrap/Spinner';
+import DeleteAgent from './DeleteAgent';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -97,6 +98,7 @@ class Agents extends Component {
                                             <StyledTableCell align="center">
                                                 <Stack spacing={2} direction="row">
                                                     <Button variant="contained" sx={{ width: 150, backgroundColor:'black', borderRadius:50  }}>edit Profile</Button>
+                                                    <DeleteAgent id={row._id} username={row.username}  />
                                                </Stack>
                                             </StyledTableCell>
                                         

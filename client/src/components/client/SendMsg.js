@@ -4,21 +4,29 @@ import {
     TextField
 
 } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
+import Textarea from '@mui/joy/Textarea';
 
 
 export class SendMsg extends Component {
 
 
 
-     msg1 = `Hello,
-     ... here from SM Transports.
-     Just wanted to double-check if your vehicle is ready for pick-up? The quote for your vehicle's move is $450 which is all- inclusive. Please can text or call me with your questions from 9 AM-7 PM EST. We are fully insured, bonded, and offer door-to-door services. You can contact me for further assistance at (714)-902-6330
-     Waiting for your response! Thank you`;
+    msg1 = `
+     Hey ${this.props.fullname}, great to hear from you.
+     So here is your requested quote, $${this.props.price},
+     for ${this.props.modelyear} ${this.props.make} ${this.props.model} from 
+     Origin: Farmington, MI 48334 
+     Destination: ${this.props.destinationcity}, GA, ${this.props.destinationzipcode}
+     Your quote number is ${this.props._id}.
+     The services include:
+     1- Door-To-Door Shipment, 
+     2- Bumper to bumper insurance (includes up to $250,000 Carrier's insurance),
+     3- Including all the Tolls and Taxes.
+     4- You can put 100lbs of personal belongings.
+     ${this.props.owner.fullname} 
+     (714) 786-6661 
+     HS LOGISTICS`;
 
 
 
@@ -36,9 +44,8 @@ export class SendMsg extends Component {
     state = {
 
         open: false,
-        company: '',
-        template: '',
-        subject: ''
+        msg: this.msg1,
+        copy: false
 
 
 
@@ -67,9 +74,17 @@ export class SendMsg extends Component {
         });
     };
 
+    onClick = (e) => {
+        e.preventDefault();
+
+        navigator.clipboard.writeText(this.state.msg);
+        this.setState({
+            copy: !this.setState.copy
+        });
+    }
+
     toggle = () => {
         // clear errors
-        this.props.clearErrors();
 
         this.setState({
             open: !this.state.open
@@ -89,7 +104,7 @@ export class SendMsg extends Component {
                 <Button onClick={this.toggle} variant='contained'
                     sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
                 >
-                    Send Email
+                    Send MSG
 
                 </Button>
                 <Modal
@@ -110,63 +125,16 @@ export class SendMsg extends Component {
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2">
-                                Send Email
+                                Send Message
                             </Typography>
 
                             <hr />
                             <form  >
-                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
-
-                                    <InputLabel id="demo-simple-select-standard-label">Assign to</InputLabel>
-                                    <h1> {this.state.selected} </h1>
-                                    <Select
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard"
-                                        value={this.state.selected}
-                                        onChange={this.handleChange}
-                                        label="Move To ..."
-                                    >
 
 
-                                        <MenuItem value='followup' >Follow Up</MenuItem>
-                                        <MenuItem value='quotes' >Qoutes</MenuItem>
-                                        <MenuItem value='orders' >Orders</MenuItem>
-                                        <MenuItem value='dispatched' >Dispatched</MenuItem>
-                                        <MenuItem value='archived' >Archived</MenuItem>
-                                        <MenuItem value='potential' >Potential</MenuItem>
-                                        {/* <MenuItem value={true} ></MenuItem> */}
 
-
-                                    </Select>
-
-
-                                </FormControl>
-
-                               
-
-                               
-                                <TextField
-
-
-                                    id="standard-read-only-input"
-                                    label="Subject"
-                                    type="text"
-                                    variant="standard"
-                                    value={this.state.subject}
-
-                                />
-
-
-                                <TextField
-
-                                    onChange={this.onChange}
-                                    name='to'
-                                    id="standard-read-only-input"
-                                    label="To"
-                                    type="text"
-                                    variant="standard"
-                                    value={this.props.email}
-
+                                <Textarea minRows={8} readOnly
+                                    value={this.state.msg}
                                 />
 
 
@@ -177,22 +145,33 @@ export class SendMsg extends Component {
 
 
                             </form>
-
                             <Button variant='contained'
-                                sx={{ marginBottom: 5 }}
-                                onClick={this.onSubmit}
+                                sx={{
+                                    marginBottom: 1, marginLeft: 40, marginTop: 5, width: 200, borderRadius: 50, backgroundColor:
+                                        this.state.copy ? 'green' : 'black',
+                                        "&:hover": {
+                                            backgroundColor: this.state.copy ? 'green' : 'black'
+                                              }
+                                }
+                                
+                            }
+                            onClick={this.onClick}
                             >
-                                Send
-                            </Button>
+                            {this.state.copy ? 'Copied' : 'Copy To Clipboard'}
 
 
-                        </Box>
+                        </Button>
+
 
 
 
                     </Box>
-                </Modal>
-            </div>
+
+
+
+                </Box>
+            </Modal>
+            </div >
 
 
 
