@@ -30,9 +30,7 @@ class DeleteAgent extends Component {
         this.handleClose();
     }
 
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
+ 
 
     handleClose = () => {
         this.setState({
