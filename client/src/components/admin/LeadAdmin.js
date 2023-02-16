@@ -171,14 +171,12 @@ class LeadAdmin extends Component {
 
 LeadAdmin.propTypes = {
     getLeads: PropTypes.func.isRequired,
-    lead: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
+    lead: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
     lead: state.lead,
     auth: state.auth,
-    
 
 })
 
