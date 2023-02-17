@@ -57,7 +57,7 @@ class AddLead extends Component {
             const { user } = this.props.auth;
             const newLead = {
                 id: uuid(),
-                // owner: user.username,
+                owner: user._id,
                 fullname: this.state.fullname,
                 email: this.state.email,
                 phoneno: this.state.phoneno,

@@ -3,17 +3,18 @@ import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
-export const getAgents = () => (dispatch,getState) => {
+export const getAgents = () => (dispatch, getState) => {
     dispatch(setAgentLoading());
 
-    axios.get('/api/agents', tokenConfig(getState)).then(res =>
-        dispatch({
-            type: GET_AGENTS,
-            payload: res.data
-        })
+    axios.get('/api/agents', tokenConfig(getState))
+        .then(res =>
+            dispatch({
+                type: GET_AGENTS,
+                payload: res.data
+            })
+            )
             .catch(err =>
-                dispatch(returnErrors(console.log(err.response.data), err.response.status)))
-    );
+                dispatch(returnErrors(console.log(err.response.data), err.response.status)));
 };
 
 export const deleteAgent = (id) => (dispatch, getState) => {

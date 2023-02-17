@@ -5,7 +5,8 @@ const auth = require('../../middleware/auth')
 
 // lead Model 
 const User = require('../../models/User')
-const Lead = require('../../models/Lead')
+const Lead = require('../../models/Lead');
+const { json } = require('express');
 
 // get request 
 router.get('/', auth, (req, res) => {
@@ -16,7 +17,7 @@ router.get('/', auth, (req, res) => {
                 .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
                 .exec((err, lead) => {
                     if (err) throw (err);
-
+                    // console.log(lead)
                     res.json(lead);
                 });
         } else {

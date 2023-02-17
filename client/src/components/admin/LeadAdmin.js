@@ -93,7 +93,12 @@ class LeadAdmin extends Component {
                                 <StyledTableCell>FullName </StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Assigned To&nbsp;</StyledTableCell>
+                                {user.isadmin ?
+                                    <>
+                                        <StyledTableCell align="center">Assigned To&nbsp;</StyledTableCell>
+                                        <StyledTableCell align="center">Lead By&nbsp;</StyledTableCell>
+                                    </>
+                                    : ''}
                                 <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
@@ -118,8 +123,12 @@ class LeadAdmin extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
-
+                                            {user.isadmin ?
+                                                <>
+                                                    <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
+                                                    <StyledTableCell align="center">{row.owner.username === user.username? "You": row.owner.username}</StyledTableCell>
+                                                </>
+                                                : ''}
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
                                             <StyledTableCell align="center">{row.model}</StyledTableCell>

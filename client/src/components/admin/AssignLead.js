@@ -45,8 +45,8 @@ class AssignLead extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.owner);
-        console.log(this.props.leadid);
+        // console.log(this.state.owner);
+        // console.log(this.props.leadid);
 
         const updatedLead = {
             owner: this.state.owner,

@@ -1,4 +1,4 @@
-import { GET_LEADS, ADD_LEAD, UPDATE_LEAD , DELETE_LEAD, LEAD_LOADING } from '../actions/types';
+import { GET_LEADS, ADD_LEAD, UPDATE_LEAD, DELETE_LEAD, LEAD_LOADING } from '../actions/types';
 import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
@@ -6,14 +6,16 @@ import { returnErrors } from './errorActions';
 export const getLeads = () => (dispatch, getState) => {
     dispatch(setLeadLoading());
 
-    axios.get('/api/leads', tokenConfig(getState)).then(res =>
-        dispatch({
-            type: GET_LEADS,
-            payload: res.data
+    axios.get('/api/leads', tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: GET_LEADS,
+                payload: res.data
+            })
+            // console.log(res.data);
         })
-            .catch(err =>
-                dispatch(returnErrors(err.response.data, err.response.status)))
-    );
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 export const deleteLead = (id) => (dispatch, getState) => {
@@ -37,7 +39,7 @@ export const addLead = (lead) => (dispatch, getState) => {
 };
 
 
-export const assignLead = ( id, lead) => (dispatch, getState) => {
+export const assignLead = (id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/${id}`, lead, tokenConfig(getState))
         .then(res => dispatch({
             type: UPDATE_LEAD,
@@ -47,7 +49,7 @@ export const assignLead = ( id, lead) => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const updateStatus = ( id, lead) => (dispatch, getState) => {
+export const updateStatus = (id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/status/${id}`, lead, tokenConfig(getState))
         .then(res => dispatch({
             type: UPDATE_LEAD,
@@ -58,7 +60,7 @@ export const updateStatus = ( id, lead) => (dispatch, getState) => {
 };
 
 
-export const updateLead = ( id, lead) => (dispatch, getState) => {
+export const updateLead = (id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/update/${id}`, lead, tokenConfig(getState))
         .then(res => dispatch({
             type: UPDATE_LEAD,
