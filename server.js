@@ -28,8 +28,13 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/agents', require('./routes/api/agents'));
 
 app.use('/api/leads', require('./routes/api/leads'));
+
+app.use('/api/leads/md', require('./routes/api/leads/leadM'));
+app.use('/api/leads/agent', require('./routes/api/leads/leadAgent'));
+
 app.use('/api/leads/update', require('./routes/api/leads/updateLead'));
 app.use('/api/leads/status', require('./routes/api/leads/updateStatus'));
+app.use('/api/leads/status/ms', require('./routes/api/leads/updateStatusM'));
 
 app.use('/api/mail', require('./routes/api/mail'));
 

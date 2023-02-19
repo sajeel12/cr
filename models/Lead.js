@@ -90,6 +90,10 @@ const LeadSchema = new Schema({
         type: String,
         required: false
     },
+    shipdate: {
+        type: String,
+        required: false
+    },
     isassigned: {
         type: Boolean,
         required: false,

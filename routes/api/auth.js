@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
                                     fullname: user.fullname,
                                     username: user.username,
                                     phoneno: user.phoneno,
-                                    email: user.name,
+                                    email: user.email,
                                     password: user.password
                                 }
                             })

@@ -25,6 +25,7 @@ router.put('/:id', auth, (req, res) => {
         modelyear: req.body.modelyear,
         make: req.body.make,
         vehicletype: req.body.vehicletype,
+        shipdate: req.body.shipdate,
         price:req.body.price
 
     }, { new: true })

@@ -55,7 +55,8 @@ router.post('/', auth, (req, res) => {
             model: req.body.model,
             make: req.body.make,
             modelyear: req.body.modelyear,
-            vehicletype: req.body.vehicletype
+            vehicletype: req.body.vehicletype,
+            shipdate: req.body.shipdate
         });
         newLead.save()
             .then(lead => res.json(lead));
@@ -70,29 +71,29 @@ router.post('/', auth, (req, res) => {
 
 router.put('/:id', auth, (req, res) => {
 
-    Lead.findByIdAndUpdate(req.params.id, { "owner": req.body.owner, "isassigned":true }, { new: true })
+    Lead.findByIdAndUpdate(req.params.id, { "owner": req.body.owner, "isassigned": true }, { new: true })
         .exec((err, lead) => {
             if (err)
                 res.status(404).json({ success: false });
             else
-            User.findById(req.user.id).then(user => {
-                if (user.isadmin) {
-                    Lead.find({})
-                        .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
-                        .exec((err, lead) => {
-                            if (err) throw (err);
-        
-                            res.json(lead);
-                        });
-                } else {
-                    Lead.find({ owner: user._id })
-                        .sort({ recieveddate: -1 })
-                        .then(leads => res.json(leads))
+                User.findById(req.user.id).then(user => {
+                    if (user.isadmin) {
+                        Lead.find({})
+                            .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
+                            .exec((err, lead) => {
+                                if (err) throw (err);
+
+                                res.json(lead);
+                            });
+                    } else {
+                        Lead.find({ owner: user._id })
+                            .sort({ recieveddate: -1 })
+                            .then(leads => res.json(leads))
+                    }
+
                 }
-        
-            }
-        
-            );
+
+                );
         })
 
 
@@ -105,13 +106,25 @@ router.put('/:id', auth, (req, res) => {
 // delete request  
 router.delete('/:id', auth, (req, res) => {
 
+    if(req.body.ids){ 
+        User.findById(req.user.id).then(user => {
+            if (user.isadmin) {
+                Lead.deleteMany({_id:{$in: req.body}})
+                    .then(() => res.json({ success: true }))
+                    .catch(err => res.status(404).json({ success: false }));
+            } else {
+                res.status(404).json({ success: false });
+            }
+    
+        });
+    }
+
+
     User.findById(req.user.id).then(user => {
         if (user.isadmin) {
             Lead.findById(req.params.id)
                 .then(lead => lead.remove().then(() => res.json({ success: true })))
                 .catch(err => res.status(404).json({ success: false }));
-
-
         } else {
             res.status(404).json({ success: false });
         }
