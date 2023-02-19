@@ -25,10 +25,12 @@ class AddLead extends Component {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 640,
+        height:600,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
+        overflowY:'scroll'
     };
     state = {
         open: false,
@@ -37,7 +39,6 @@ class AddLead extends Component {
         phoneno: '',
         origincity: '',
         originaddress: '',
-        origincity: '',
         originstate: '',
         originzipcode: '',
         destinationaddress: '',
@@ -73,6 +74,7 @@ class AddLead extends Component {
                 modelyear: this.state.modelyear,
                 make: this.state.make,
                 vehicletype: this.state.vehicletype,
+                shipdate:this.state.shipdate
 
             };
 
@@ -108,7 +110,7 @@ class AddLead extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
-                    sx={{ overflowX: 'scroll' }}
+                    sx={{ overflowY: 'scroll', height:700 }}
                 >
                     <Box sx={this.style}>
 
@@ -151,6 +153,10 @@ class AddLead extends Component {
                                     variant="standard"
                                     required
                                 />
+                            <hr/>
+                            <Typography variant="h6" component="h2">
+                                Origin
+                            </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -183,6 +189,10 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
+                                <hr/>
+                            <Typography variant="h6" component="h2">
+                                Destination
+                            </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -215,6 +225,10 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
+                                <hr/>
+                            <Typography variant="h6" component="h2">
+                                Others
+                            </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -247,10 +261,19 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
+                                <TextField
+                                    onChange={this.onChange}
+                                    id="standard-required"
+                                    name='shipdate'
+                                    label="Ship Date"
+                                    type="required"
+                                    variant="standard"
+                                />
 
                                 <div>
                                     <Button variant='contained'
-                                        sx={{ marginBottom: 5 }}
+                                        sx={{ marginTop: 5, backgroundColor:'black',width:100,
+                                         borderRadius:50, marginLeft:28 }}
                                         onClick={this.onSubmit}
                                     >
                                         Add

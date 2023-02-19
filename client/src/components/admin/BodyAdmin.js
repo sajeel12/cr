@@ -3,6 +3,9 @@ import LeadAdmin from './LeadAdmin';
 import AddLead from '../common/AddLead';
 
 class BodyAdmin extends Component {
+
+
+    
     render() {
         return (
             <div  >

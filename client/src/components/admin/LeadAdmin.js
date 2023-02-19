@@ -28,6 +28,13 @@ import UpdateLead from './UpdateLead';
 import UpdateStatus from '../client/UpdateStatus';
 import SendMsg from '../client/SendMsg';
 
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import DeleteLeadM from './DeleteLeadM';
+import UpdateStatusM from '../client/UpdateStatusM';
+import SendMailM from '../client/SendMailM';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -52,9 +59,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(fullName, email, phoneNo, leadId, make, model, year, vehicleType, recievedDate, actions) {
-    return { fullName, email, phoneNo, leadId, make, model, year, vehicleType, recievedDate, actions };
-}
+
 
 class LeadAdmin extends Component {
     static propTypes = {
@@ -62,15 +67,60 @@ class LeadAdmin extends Component {
         lead: PropTypes.object.isRequired
     }
 
+    state = {
+        leads: [],
+        checkedvalue: [],
+        checkedinputs: [],
+        checkedids: [],
+        checkedemail: [],
+
+        realtime: true
+    }
+
     componentDidMount() {
         this.props.getLeads();
-        this.interval = setInterval(() => { this.props.getLeads() }, 1000);
+
+        this.interval = setInterval(() => {
+            if (this.state.realtime) {
+                this.props.getLeads();
+                this.setState({ leads: this.props.lead.leads });
+                console.log(this.state.leads);
+            }
+        }, 1000);
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
+    handleSwitch = (e) => {
+        this.setState({ realtime: !this.state.realtime });
+        console.log(this.state.realtime);
+    }
+
+    handleCheck = (e) => {
+
+        const { name, checked } = e.target;
+        const leads = this.state.leads
+        const checkedvalue = leads.map((lead) => (
+            lead.fullname === name ? { ...lead, ischecked: checked } : lead
+        ));
+        console.log(checkedvalue);
+        this.setState({ leads: checkedvalue })
+
+        const checkedinputs = checkedvalue.filter(lead => lead.ischecked === true);
+        this.setState({ checkedinputs: checkedinputs });
+
+        const checkedids = checkedinputs.map((lead) => (lead._id));
+        this.setState({ checkedids: checkedids });
+
+        const checkedemail = checkedinputs.map((lead) => (lead.email));
+        this.setState({ checkedemail: checkedemail });
+
+
+        console.log(JSON.stringify(checkedids));
+
+    }
 
 
 
@@ -85,11 +135,29 @@ class LeadAdmin extends Component {
 
         return (
             <Container sx={{ width: 1400 }}  >
-
-                <TableContainer component={Paper} sx={{ maxHeight: 500, maxWidth: 1600, overflowY: 'scroll' }}  >
-                    <Table sx={{ minWidth: 1600 }} aria-label="customized table">
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }} >
+                    <div>
+                        {this.state.realtime ? '' :
+                            user.isadmin ?
+                                <DeleteLeadM checkedids={this.state.checkedids} />
+                                :
+                                <div style={{display: 'flex'}} >
+                                    <SendMailM checkedemail={this.state.checkedemail}  fromemail={user.email} />
+                                    <UpdateStatusM checkedids={this.state.checkedids} />
+                                </div>
+                        }
+                    </div>
+                    <FormGroup>
+                        <FormControlLabel control={<Switch color='warning' checked={this.state.realtime} onChange={this.handleSwitch} />} label="Real Time" />
+                    </FormGroup>
+                </div>
+                <TableContainer component={Paper} sx={{ maxHeight: 450, maxWidth: 1600, overflowY: 'scroll' }}  >
+                    <Table sx={{ minWidth: 1600 }} aria-label="customized table"  >
                         <TableHead>
-                            <TableRow>
+                            <TableRow  >
+                                {!this.state.realtime &&
+                                    <StyledTableCell> </StyledTableCell>
+                                }
                                 <StyledTableCell>FullName </StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
@@ -103,6 +171,7 @@ class LeadAdmin extends Component {
                                 <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Year&nbsp;</StyledTableCell>
+                                <StyledTableCell align="center">Ship Date&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Recieved Date&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Time&nbsp;</StyledTableCell>
@@ -110,13 +179,17 @@ class LeadAdmin extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {leads.map((row) => (
+                            {this.state.leads.map((row) => (
 
                                 <StyledTableRow key={row.fullname} sx={row.isassigned ? user.isadmin ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' } : ''} >
 
-                                    {row.status == 'lead' ?
+                                    {user.isadmin ?
                                         <>
-
+                                            {!this.state.realtime &&
+                                                <StyledTableCell component="th" scope="row">
+                                                    <input type="checkbox" name={row.fullname} checked={row?.ischecked || false} onChange={this.handleCheck} />
+                                                </StyledTableCell>
+                                            }
                                             <StyledTableCell component="th" scope="row">
                                                 {row.fullname}
 
@@ -126,13 +199,14 @@ class LeadAdmin extends Component {
                                             {user.isadmin ?
                                                 <>
                                                     <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.owner.username === user.username? "You": row.owner.username}</StyledTableCell>
+                                                    <StyledTableCell align="center">{row.owner? row.owner.username === user.username ? "You" : row.owner.username :"N/A"}</StyledTableCell>
                                                 </>
                                                 : ''}
                                             <StyledTableCell align="center">{row._id}</StyledTableCell>
                                             <StyledTableCell align="center">{row.make}</StyledTableCell>
                                             <StyledTableCell align="center">{row.model}</StyledTableCell>
                                             <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
                                             <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
                                             <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
                                             <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
@@ -150,7 +224,7 @@ class LeadAdmin extends Component {
 
                                                         <>
 
-                                                            <SendMail email={row.email} />
+                                                            <SendMail toemail={row.email} fromemail={user.email} />
                                                             <SendMsg  {...row} />
                                                             <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                             <UpdateStatus leadid={row._id} />
@@ -162,7 +236,61 @@ class LeadAdmin extends Component {
                                                 </Stack>
                                             </StyledTableCell>
                                         </>
-                                        : ''}
+                                        :
+                                        row.status == 'lead' ?
+                                            <>
+                                                {!this.state.realtime &&
+                                                    <StyledTableCell component="th" scope="row">
+                                                        <input type="checkbox" name={row.fullname} checked={row?.ischecked || false} onChange={this.handleCheck} />
+                                                    </StyledTableCell>
+                                                }
+                                                <StyledTableCell component="th" scope="row">
+                                                    {row.fullname}
+
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">{row.email}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
+                                                {user.isadmin ?
+                                                    <>
+                                                        <StyledTableCell align="center">{row.isassigned ? row.owner.username : 'N/A'}</StyledTableCell>
+                                                        <StyledTableCell align="center">{row.owner.username === user.username ? "You" : row.owner.username}</StyledTableCell>
+                                                    </>
+                                                    : ''}
+                                                <StyledTableCell align="center">{row._id}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.make}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.model}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
+                                                <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
+                                                <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
+                                                <StyledTableCell align="center"  >
+                                                    <Stack spacing={2} direction="row">
+                                                        {user.isadmin ?
+                                                            <>
+
+                                                                <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
+                                                                <UpdateLead {...row} />
+                                                                <DeleteLead id={row._id} name={row.fullname} />
+                                                                <AssignLead leadid={row._id} isassigned={row.isassigned} />
+                                                            </>
+                                                            :
+
+                                                            <>
+
+                                                                <SendMail toemail={row.email} fromemail={user.email} name={row.fullname} />
+                                                                <SendMsg  {...row} />
+                                                                <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
+                                                                <UpdateStatus leadid={row._id} />
+                                                                <UpdateLead {...row} />
+                                                            </>
+
+                                                        }
+
+                                                    </Stack>
+                                                </StyledTableCell>
+                                            </>
+                                            : ''}
 
 
 

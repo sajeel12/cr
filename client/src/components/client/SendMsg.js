@@ -62,7 +62,7 @@ export class SendMsg extends Component {
                 subject: "Thank you for your inquiry - here is your quote for your vehicle transportation"
             });
         }
-        console.log(this.state);
+
 
     }
 

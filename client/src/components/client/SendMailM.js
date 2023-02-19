@@ -14,9 +14,9 @@ import PropTypes from 'prop-types';
 import { clearErrors } from "../../actions/errorActions";
 import { sendMail } from "../../actions/mailActions";
 import emailjs from '@emailjs/browser';
+import Alert from '@mui/material/Alert';
 
-
-class SendMail extends Component {
+class SendMailM extends Component {
     style = {
         position: 'absolute',
         top: '50%',
@@ -33,7 +33,8 @@ class SendMail extends Component {
         open: false,
         company: '',
         template: '',
-        subject: ''
+        subject: '',
+        success: false,
 
 
 
@@ -55,14 +56,12 @@ class SendMail extends Component {
         this.setState({
             template: e.target.value
         });
-        console.log(this.state.template);
-        console.log(this.state.template);
+       
         if (this.state.template === "New Qoute Email") {
             this.setState({
                 subject: "Thank you for your inquiry - here is your quote for your vehicle transportation"
             });
         }
-        console.log(this.state);
 
     }
 
@@ -89,41 +88,34 @@ class SendMail extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // const { user } = this.props.auth;
-        // const to = this.props.email;
-        // const from = user.email;
+        const checkedemail = this.props.checkedemail;
 
 
-        // emailjs.init("YOUR_PUBLIC_KEY");
-        // const { subject } = this.state;
 
-        // const mail = {
-        //     from,
-        //     to,
-        //     subject
+        checkedemail.forEach(toemail => {
 
-        // }
+            var templateParams = {
+                from_name: this.state.company,
+                to_name: this.props.name,
+                from_email: this.props.fromemail,
+                to_email: toemail,
+                message: ' Assalam-o-Alaikum Amir You are hired at MasoomNetwork  congratulation '
+            };
 
+            const servicei = this.props.fromemail;
+            const serviceid = servicei.split("@");
 
-        var templateParams = {
-            from_name: this.state.company,
-            to_name: this.props.name,
-            from_email: this.props.fromemail,
-            to_email: this.props.toemail,
-            message: ' Assalam-o-Alaikum Amir You are hired at MasoomNetwork  congratulation '
-        };
-
-        const servicei = this.props.fromemail;
-        const serviceid = servicei.split("@");
-
-        emailjs.send(serviceid[0], 'template_f9jakzq', templateParams)
-            .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-            }, function (error) {
-                console.log('FAILED...', error);
+            emailjs.send(serviceid[0], 'template_f9jakzq', templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function (error) {
+                    console.log('FAILED...', error);
+                });
+                
+              
             });
-
-
+            
+         this.toggle();
         // sendMail(mail);
 
 
@@ -149,7 +141,8 @@ class SendMail extends Component {
                     sx={{ overflowX: 'scroll' }}
                 >
                     <Box sx={this.style}>
-
+                        {this.state.success ? (<Alert severity="success">This is a success alert — check it out!</Alert>)
+                        : null}
                         <Box
                             component="form"
                             sx={{
@@ -202,23 +195,23 @@ class SendMail extends Component {
                                     label="from"
                                     type="text"
                                     variant="standard"
-                                    value={this.props.fromemail}
-
+                                    value={user.email}
                                 />
 
+                                <Typography variant="h7" component="h2">
+                                    To
+                                </Typography>
 
+                                <div>
+                                    {this.props.checkedemail.map((mail) => (
+                                        <div>
+                                            <span style={{ fontSize: 14 }}  > {mail} </span>
+                                        </div>
 
-                                <TextField
+                                    ))
+                                    }
+                                </div>
 
-                                    onChange={this.onChange}
-                                    name='to'
-                                    id="standard-read-only-input"
-                                    label="To"
-                                    type="text"
-                                    variant="standard"
-                                    value={this.props.toemail}
-
-                                />
 
                             </form>
 
@@ -242,13 +235,13 @@ class SendMail extends Component {
     };
 }
 
-SendMail.propTypes = {
-    sendMail: PropTypes.func.isRequired,
-}
+// SendMail.propTypes = {
+//     sendMail: PropTypes.func.isRequired,
+// }
 
 
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { clearErrors, sendMail })(SendMail);
+export default connect(mapStateToProps, { clearErrors })(SendMailM);

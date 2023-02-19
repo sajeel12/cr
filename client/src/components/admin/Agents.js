@@ -24,6 +24,8 @@ import moment from 'moment';
 import DeleteLead from './DeleteLead';
 import Spinner from 'react-bootstrap/Spinner';
 import DeleteAgent from './DeleteAgent';
+import AgentAdmin from './AgentAdmin';
+import AgentAdmin2 from './AgentAdmin2';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,58 +52,66 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(fullName, email, phoneNo, username, isadmin) {
-    return { fullName, email, phoneNo, username, isadmin };
-}
+
 
 class Agents extends Component {
 
 
     componentDidMount() {
         this.props.getAgents();
+
+        this.interval = setInterval(() => {
+
+            this.props.getAgents();
+
+        }, 1000);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
-        const {agents} = this.props.agent;
-        const{ loading } = this.props.lead;
+        const { agents } = this.props.agent;
+        const { loading } = this.props.lead;
         return (
             <Container sx={{ width: 1400 }}  >
-                <div>   {loading ?  <Spinner animation="grow" /> : ''} </div>
-                <TableContainer component={Paper} sx={{maxHeight:500, maxWidth:1600 , overflowY:'scroll' }}  >
-                    <Table sx={{ minWidth: 1000, minHeight:200 }} aria-label="customized table">
+
+                <TableContainer component={Paper} sx={{ maxHeight: 500, maxWidth: 1600, overflowY: 'scroll' }}  >
+                    <Table sx={{ minWidth: 1000, minHeight: 200 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                
+
                                 <StyledTableCell align="center">Username</StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">isAdmin&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Actions&nbsp;</StyledTableCell>
-                         
+
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {agents.map((row) => (
 
-                                <StyledTableRow key={row.fullname}>
-                              
-                                        
-                                        
-                                          
-                                            <StyledTableCell align="center">{row.username}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.email}</StyledTableCell>
+                                <StyledTableRow key={row._id}>
 
-                                            <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                            <StyledTableCell align="center">{String(row.isadmin)}</StyledTableCell>
-                                           
-                                            <StyledTableCell align="center">
-                                                <Stack spacing={2} direction="row">
-                                                    <Button variant="contained" sx={{ width: 150, backgroundColor:'black', borderRadius:50  }}>edit Profile</Button>
-                                                    <DeleteAgent id={row._id} username={row.username}  />
-                                               </Stack>
-                                            </StyledTableCell>
-                                        
+
+
+
+                                    <StyledTableCell align="center">{row.username}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.email}</StyledTableCell>
+
+                                    <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
+                                    <StyledTableCell align="center">{String(row.isadmin)}</StyledTableCell>
+
+                                    <StyledTableCell align="right">
+                                        <Stack spacing={2} direction="row">
+                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button>
+                                            <DeleteAgent id={row._id} username={row.username} />
+                                            <AgentAdmin2 idt={row._id} />
+                                        </Stack>
+                                    </StyledTableCell>
+
 
 
 
