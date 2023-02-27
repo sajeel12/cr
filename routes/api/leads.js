@@ -12,7 +12,7 @@ const { json } = require('express');
 router.get('/', auth, (req, res) => {
 
     User.findById(req.user.id).then(user => {
-        if (user) {
+
             if (user.isadmin) {
                 Lead.find({})
                     .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
@@ -21,13 +21,13 @@ router.get('/', auth, (req, res) => {
                         // console.log(lead)
                         res.json(lead);
                     });
-            }
+            
         } else {
-            if (user) {
+            
                 Lead.find({ owner: user._id })
                     .sort({ recieveddate: -1 })
                     .then(leads => res.json(leads))
-            }
+            
         }
 
     }
