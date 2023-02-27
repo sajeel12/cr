@@ -226,7 +226,11 @@ class AgentAdmin extends Component {
                                                 {leads.map((row) => (
                                                     row.status === this.state.navval &&
 
-                                                            <StyledTableRow key={row._id}  >
+                                                            <StyledTableRow key={row._id} 
+                                                               sx={
+                                                                row.mailsent && { backgroundColor: '#F7E771' } 
+                                                               }
+                                                            >
 
 
 

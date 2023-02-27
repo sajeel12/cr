@@ -29,10 +29,14 @@ class UpdateLead extends Component {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 640,
+        height: 600,
+
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
+        overflowY: 'scroll'
+
     };
     state = {
         open: false,
@@ -52,10 +56,10 @@ class UpdateLead extends Component {
         modelyear: this.props.modelyear,
         make: this.props.make,
         vehicletype: this.props.vehicletype,
-        price:this.props.price
+        price: this.props.price
 
     }
-
+    
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -78,7 +82,7 @@ class UpdateLead extends Component {
             modelyear: this.state.modelyear,
             make: this.state.make,
             vehicletype: this.state.vehicletype,
-            price:this.state.price
+            price: this.state.price
         }
 
         const id = this.props._id;
@@ -86,7 +90,7 @@ class UpdateLead extends Component {
         this.handleClose();
     }
 
-    onChange = (e) =>{
+    onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -119,7 +123,7 @@ class UpdateLead extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
-                    sx={{ overflowX: 'scroll' }}
+                    sx={{ overflowY: 'scroll', height: 700 }}
                 >
                     <Box sx={this.style}>
 
@@ -137,6 +141,7 @@ class UpdateLead extends Component {
 
                             <hr />
                             <form  >
+
 
                                 <TextField
                                     onChange={this.onChange}
@@ -168,6 +173,11 @@ class UpdateLead extends Component {
                                     value={this.state.phoneno}
 
                                 />
+
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Origin
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -208,6 +218,10 @@ class UpdateLead extends Component {
                                     value={this.state.originzipcode}
 
                                 />
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Destination
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -248,6 +262,10 @@ class UpdateLead extends Component {
                                     value={this.state.destinationzipcode}
 
                                 />
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Vehicle Type
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"

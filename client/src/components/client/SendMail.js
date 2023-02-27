@@ -89,46 +89,35 @@ class SendMail extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // const { user } = this.props.auth;
-        // const to = this.props.email;
-        // const from = user.email;
 
+        if (this.props.many) {
+            const checkedemail = this.props.checkedemail;
+            const checkedids = this.props.checkedids;
+            console.log("emails ->", checkedemail)
+            console.log("ids ->", checkedids)
 
-        // emailjs.init("YOUR_PUBLIC_KEY");
-        // const { subject } = this.state;
+            // checkedids.forEach(id => {
+            //     checkedemail.forEach(to => {
+            //         const mail = {
+            //             to,
+            //             id,
+            //             many: false
+            //         }
+            //         this.props.sendMail(mail);
+            //     })
+            // })
 
-        // const mail = {
-        //     from,
-        //     to,
-        //     subject
+        } else {
+            const to = this.props.toemail;
+            const id = this.props.leadid;
 
-        // }
-
-
-        var templateParams = {
-            from_name: this.state.company,
-            to_name: this.props.name,
-            from_email: this.props.fromemail,
-            to_email: this.props.toemail,
-            message: ' Assalam-o-Alaikum Amir You are hired at MasoomNetwork  congratulation '
-        };
-
-        const servicei = this.props.fromemail;
-        const serviceid = servicei.split("@");
-
-        emailjs.send(serviceid[0], 'template_f9jakzq', templateParams)
-            .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-            }, function (error) {
-                console.log('FAILED...', error);
-            });
-
-
-        // sendMail(mail);
-
-
-
-
+            const mail = {
+                to,
+                id,
+                many: false
+            }
+            this.props.sendMail(mail);
+        }
 
     }
 

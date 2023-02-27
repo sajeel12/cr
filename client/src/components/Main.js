@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import LoginModal from './auth/LoginModal';
 import MainAdmin from './admin/MainAdmin';
 import RegisterModel from './auth/RegisterModel';
-
+import { BrowserRouter, Navigate } from 'react-router-dom';
 class Main extends Component {
 
 
@@ -38,20 +38,22 @@ class Main extends Component {
         const { isAuthenticated, user } = this.props.auth;
 
         return (
-            <div> 
+            <div>
+                
+                    {/* {!isAuthenticated ?
+                        <Navigate to='common/login' /> :
+                        // user.isadmin ?
 
-                {!isAuthenticated ?
-                    <LoginModal /> :
-                    // user.isadmin ?
+                        <> */}
+                            <MainAdmin />
 
-                        <>
-                        <MainAdmin /> 
-                        
-                        </>
+                        {/* </>
                         // <MainClient />
 
 
-                }
+                    } */}
+                
+
             </div>
         )
     }

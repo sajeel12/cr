@@ -12,18 +12,22 @@ const { json } = require('express');
 router.get('/', auth, (req, res) => {
 
     User.findById(req.user.id).then(user => {
-        if (user.isadmin) {
-            Lead.find({})
-                .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
-                .exec((err, lead) => {
-                    if (err) throw (err);
-                    // console.log(lead)
-                    res.json(lead);
-                });
+        if (user) {
+            if (user.isadmin) {
+                Lead.find({})
+                    .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
+                    .exec((err, lead) => {
+                        if (err) throw (err);
+                        // console.log(lead)
+                        res.json(lead);
+                    });
+            }
         } else {
-            Lead.find({ owner: user._id })
-                .sort({ recieveddate: -1 })
-                .then(leads => res.json(leads))
+            if (user) {
+                Lead.find({ owner: user._id })
+                    .sort({ recieveddate: -1 })
+                    .then(leads => res.json(leads))
+            }
         }
 
     }
@@ -106,16 +110,16 @@ router.put('/:id', auth, (req, res) => {
 // delete request  
 router.delete('/:id', auth, (req, res) => {
 
-    if(req.body.ids){ 
+    if (req.body.ids) {
         User.findById(req.user.id).then(user => {
             if (user.isadmin) {
-                Lead.deleteMany({_id:{$in: req.body}})
+                Lead.deleteMany({ _id: { $in: req.body } })
                     .then(() => res.json({ success: true }))
                     .catch(err => res.status(404).json({ success: false }));
             } else {
                 res.status(404).json({ success: false });
             }
-    
+
         });
     }
 

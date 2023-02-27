@@ -144,7 +144,7 @@ function NavAdmin({ username, isadmin }) {
               ...(open && { display: 'none' }),
             }}
           >
-            
+
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
@@ -194,7 +194,7 @@ function NavAdmin({ username, isadmin }) {
               </Link>
 
 
-              <Link to='agents' >
+              <Link to='/agents' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -275,7 +275,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='followup' >
+              <Link to='/followup' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -298,8 +298,8 @@ function NavAdmin({ username, isadmin }) {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              
-              <Link to='quotes' >
+
+              <Link to='/quotes' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -323,7 +323,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='orders' >
+              <Link to='/orders' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -347,7 +347,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='dispatched' >
+              <Link to='/dispatched' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -371,7 +371,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='archived' >
+              <Link to='/archived' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -395,7 +395,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='potential' >
+              <Link to='/potential' >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -419,50 +419,29 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-
-              <ListItem disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
+              <Link to="/customer_agreement" >
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
                     }}
                   >
-                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                    <NoteAltIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Shipper's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-
-              <ListItem disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                    <NoteAltIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Carrier's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <NoteAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Customer's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
               <ListItem disablePadding sx={{ display: 'block' }}>
                 <ListItemButton

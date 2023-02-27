@@ -16,12 +16,12 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-
+import { Navigate } from "react-router-dom";
 
 class LoginModel extends Component {
     state = {
         modal: false,
-
+        submitted: false,
         username: '',
         password: '',
         msg: null
@@ -46,6 +46,7 @@ class LoginModel extends Component {
             }
         }
 
+
         if (this.state.modal) {
             if (isAuthenticated) {
                 this.toggle();
@@ -66,6 +67,7 @@ class LoginModel extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -82,8 +84,11 @@ class LoginModel extends Component {
         // attemp to login
         this.props.login(newUser);
 
-        
+        // this.setState({ submitted: true })
 
+        // if(isAuthenticated){
+
+        // }
     }
 
 
@@ -135,6 +140,11 @@ class LoginModel extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+
+                {
+                    this.state.submitted && <Navigate to='/crm' />
+                }
+
             </div>
 
         )

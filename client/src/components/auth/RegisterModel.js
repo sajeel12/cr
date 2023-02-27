@@ -5,7 +5,6 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
     NavLink,
     Alert
 } from 'reactstrap';
@@ -20,8 +19,14 @@ import PropTypes from 'prop-types';
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 class RegisterModel extends Component {
     style = {
@@ -36,17 +41,27 @@ class RegisterModel extends Component {
         p: 4,
     };
     state = {
-        agent:'Agent',
+        agent: 'Agent',
         open: false,
         isadmin: false,
         username: '',
         fullname: '',
         email: '',
+        emailpass: '',
         phoneno: '',
         password: '',
-
-
+        show:false
     }
+
+    handleClickShowPassword = () =>  {
+        this.setState({
+            show:!this.state.show
+        });
+    }
+
+    handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
@@ -78,7 +93,7 @@ class RegisterModel extends Component {
         this.setState({
             isadmin: !this.state.isadmin
         });
-        
+
     }
 
     toggle = () => {
@@ -97,15 +112,16 @@ class RegisterModel extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { isadmin, username, fullname, email, phoneno, password } = this.state;
+        const { isadmin, username, fullname, email,phoneno, password } = this.state;
 
         // create user object 
-      
+
         const newUser = {
             isadmin,
             username,
             fullname,
             email,
+
             phoneno,
             password
         };
@@ -113,7 +129,7 @@ class RegisterModel extends Component {
         // attemp to register
         this.props.register(newUser);
 
-
+        // console.log(newUser);
         this.toggle();
     }
 
@@ -176,6 +192,14 @@ class RegisterModel extends Component {
                                 />
                                 <TextField
                                     onChange={this.onChange}
+                                    name='emailpass'
+                                    id="standard-required"
+                                    label="Email Password"
+                                    type="text"
+                                    variant="standard"
+                                />
+                                <TextField
+                                    onChange={this.onChange}
                                     name='phoneno'
                                     id="standard-required"
                                     label="Phone No"
@@ -183,21 +207,35 @@ class RegisterModel extends Component {
                                     variant="standard"
                                 />
                                 <div style={{ display: 'flex' }} >
-                                    <TextField
+                                    
+
+                                    <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+                                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                                        <Input
+                                        name="password"
                                         onChange={this.onChange}
-                                        name='password'
-                                        id="standard-required"
-                                        label="Password"
-                                        type="password"
-                                        variant="standard"
-                                    />
+                                            id="standard-adornment-password"
+                                            type={this.state.show ? 'text' : 'password'}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={this.handleClickShowPassword}
+                                                        onMouseDown={this.handleMouseDownPassword}
+                                                    >
+                                                        {this.state.show ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
 
 
                                     <Button variant='contained'
                                         sx={{ marginBottom: 5 }}
                                         onClick={this.toggleAdmin}
                                     >
-                                        {this.state.isadmin? 'Admin' : 'Agent'}
+                                        {this.state.isadmin ? 'Admin' : 'Agent'}
                                     </Button>
                                 </div>
                             </form>

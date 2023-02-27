@@ -31,6 +31,9 @@ export const  GET_AGENTS = 'GET_AGENTS';
 export const  AGENTS_LOADING = 'AGENTS_LOADING';
 
 
+export const  ADD_AGREEMENT = 'ADD_AGREEMENT';
+export const  GET_AGREEMENT = 'GET_AGREEMENT';
+export const  AGREEMENT_LOADING = 'AGREEMENT_LOADING';
 
 export const  MAIL_SUCCESS = 'MAIL_SUCCESS';
 export const  MAIL_FAIL = 'MAIL_FAIL';

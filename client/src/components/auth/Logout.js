@@ -6,19 +6,25 @@ import { NavLink } from 'reactstrap';
 import {Navigate} from 'react-router-dom';
 
 
-
 export class Logout extends Component {
 
     static propTypes = {
-        logout: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired,
+        auth: PropTypes.object.isRequired
+    }
+   
+
+    state ={
+        logout: false
     }
 
     onClick = (e) => {
         this.props.logout();
-        return <Navigate to='/' />;
+        this.setState({logout: true})
     }
 
     render() {
+        const {isAuthenticated} = this.props.auth;
         return (
 
             <Fragment>
@@ -26,10 +32,16 @@ export class Logout extends Component {
                     Logout
                 </NavLink>
                 {/* <Navigate  to='/' /> */}
+                {this.state.logout && 
+                    <Navigate to='/' />
+                }
             </Fragment>
         )
     }
 }
 
+const mapStateToProps = state => ({
+    auth: state.auth
+});
 
-export default connect(logout, { logout })(Logout);
+export default connect(mapStateToProps, { logout })(Logout);

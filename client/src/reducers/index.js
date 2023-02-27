@@ -5,6 +5,7 @@ import errorReducer from './errorReducer';
 import authReducer from './authReducer';
 import agentReducer from "./agentReducer";
 import mailReducer from "./mailReducer";
+import agreementReducer from "./agreementReducer";
 
 
 export default combineReducers({
@@ -13,6 +14,7 @@ export default combineReducers({
     error: errorReducer,
     auth: authReducer,
     agent: agentReducer,
-    mail: mailReducer
+    mail: mailReducer,
+    agreement: agreementReducer
 
 })

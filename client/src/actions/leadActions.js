@@ -7,7 +7,7 @@ import { listSubheaderClasses } from '@mui/material';
 export const getLeads = () => (dispatch, getState) => {
     dispatch(setLeadLoading());
 
-    axios.get('/api/leads', tokenConfig(getState))
+    axios.get('/api/leads',   tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: GET_LEADS,
@@ -74,6 +74,18 @@ export const assignLead = (id, lead) => (dispatch, getState) => {
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+export const assignLeadM = (lead) => (dispatch, getState) => {
+    axios.post('/api/leads/m', lead, tokenConfig(getState))
+        .then(res => dispatch({
+            type: UPDATE_LEAD,
+            payload: res.data
+        }))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+
 
 export const updateStatus = (id, lead) => (dispatch, getState) => {
     axios.put(`/api/leads/status/${id}`, lead, tokenConfig(getState))

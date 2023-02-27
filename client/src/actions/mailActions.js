@@ -5,7 +5,7 @@ import { returnErrors } from './errorActions';
 
 
 
-export const sendMail = ({   from, to, subject}) => dispatch => {
+export const sendMail = ({    to, id}) => dispatch => {
     //Headers
     const config = {
         headers: {
@@ -15,7 +15,7 @@ export const sendMail = ({   from, to, subject}) => dispatch => {
 
     // request body 
 
-    const body = JSON.stringify({  from, to, subject });
+    const body = JSON.stringify({   to, id });
 
     axios.post('/api/mail', body, config)
         .then(res => dispatch({

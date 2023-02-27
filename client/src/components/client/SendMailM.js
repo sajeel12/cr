@@ -35,10 +35,8 @@ class SendMailM extends Component {
         template: '',
         subject: '',
         success: false,
-
-
-
     }
+    
 
     componentDidMount = () => {
 

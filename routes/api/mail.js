@@ -4,34 +4,77 @@ const router = express.Router();
 
 const nodemailer = require('nodemailer');
 
+const Lead = require('../../models/Lead')
+
+
+
 
 router.post('/', (req, res) => {
 
+    console.log("in mailjs")
 
 
+    // let mailTransporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //         user: 'msajeelahmad2001@gmail.com',
+    //         pass: 'jyjzbttlmkiwnwrr'
+    //     }
+    // });
 
     let mailTransporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.titan.email",
+        port: 465,
+        secure: true, // true for 465, false for other ports
         auth: {
-            user: 'xyz@gmail.com',
-            pass: '*************'
-        }
+            user: "kevin@smtransports.us", // generated ethereal user
+            pass: "kevintest", // generated ethereal password
+        },
     });
 
+
+
     let mailDetails = {
-        from: req.body.from,
+        from: 'kevin@smtransports.us',
         to: req.body.to,
-        subject: req.body.subject,
-        text: req.body.subject
+        subject: "love you Masoom",
+        text: 'Masoom network hired you',
+        html: " <h1>   Salam from masoom network   you are hired </h1> <br/>  <h2 style='color:red' >Love you  Amir </h2> "
     };
 
     mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
-            return res.status(400).json({ msg: 'Mail Not Sent' })
+            console.log('Fail bhai', err)
         } else {
-            return res.status(200).json({ msg: 'Mail Sent Successfully' })
+            console.log('success')
+            console.log(req.body.id)
+            if (req.body.many) {
+                Lead.updateMany({ _id: { $in: req.body.id } }, {
+                    mailsent: true
+                }, { new: true })
+                    .exec((err, lead) => {
+                        if (err)
+                            res.status(404).json({ success: false });
+                        else
+                            res.status(200).json(lead);
+                    })
+            } else {
+                Lead.findByIdAndUpdate(req.body.id, {
+                    "mailsent": true
+                }, { new: true })
+                    .exec((err, lead) => {
+                        if (err)
+                            res.status(404).json({ success: false });
+                        else
+                            res.status(200).json(lead);
+                    })
+            }
         }
     });
+
+    // =========================
+
+
 
 
 

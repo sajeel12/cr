@@ -26,7 +26,6 @@ class DeleteLeadM extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log(this.props.checkedids);
 
         const leadtodelete = {
             ids: this.props.checkedids
@@ -51,7 +50,7 @@ class DeleteLeadM extends Component {
         return (
             <>
                 <Button variant="contained"
-                    sx={{ width: 170, marginBottom:1, marginRight:5, backgroundColor: 'black', 
+                    sx={{ width: 170, marginBottom:1, marginRight:1, backgroundColor: 'black', 
                     borderRadius: 50,
                     "&:hover": {
                         backgroundColor:'red'

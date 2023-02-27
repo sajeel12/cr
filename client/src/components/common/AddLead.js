@@ -227,7 +227,7 @@ class AddLead extends Component {
                                 />
                                 <hr/>
                             <Typography variant="h6" component="h2">
-                                Others
+                                Vehicle Detail
                             </Typography>
                                 <TextField
                                     onChange={this.onChange}

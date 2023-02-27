@@ -27,7 +27,10 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/agents', require('./routes/api/agents'));
 
+app.use('/api/agreement', require('./routes/api/agreement'));
+
 app.use('/api/leads', require('./routes/api/leads'));
+app.use('/api/leads/m', require('./routes/api/leads/assignM'));
 
 app.use('/api/leads/md', require('./routes/api/leads/leadM'));
 app.use('/api/leads/agent', require('./routes/api/leads/leadAgent'));

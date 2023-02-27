@@ -11,24 +11,31 @@ import { loadUser } from './actions/authActions';
 import { Component } from 'react';
 
 import Main from './components/Main';
+import AgreementForm from './components/client/AgreementForm';
+
+import { BrowserRouter, Router, Route } from 'react-router-dom';
 
 class App extends Component {
 
   componentDidMount() {
-    store.dispatch(loadUser()); 
+    store.dispatch(loadUser());
   }
-  
+
   render() {
     return (
       <Provider store={store} >
-        
+        <BrowserRouter>
           {/* <AppNavbar /> */}
           {/* <Container> */}
-            
-            <Main/>
-            {/* <ShoppingList /> */}
+
+          <Main />
+          {/* <AgreementForm/> */}
+
+          {/* <ShoppingList /> */}
           {/* </Container> */}
-        
+    
+
+        </BrowserRouter>
       </Provider>
 
     );

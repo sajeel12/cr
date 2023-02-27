@@ -115,13 +115,35 @@ const LeadSchema = new Schema({
         type: String,
         required: false
     },
-    status:{
-    type: String,
-    required: false,
-    default: 'lead'        
-    }
+    status: {
+        type: String,
+        required: false,
+        default: 'lead'
+    },
+    mailsent: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
 
+    ip: {
+        type: String,
+        required: false
+    },
+    signature: {
+        type: String,
+        required: false,
+    },
+    isagreed: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    agreementurl: {
+        type: String,
+        required: false
 
+    },
 
 
 });
