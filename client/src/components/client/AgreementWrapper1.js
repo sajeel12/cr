@@ -48,7 +48,7 @@ export class AgreementWrapper1 extends Component {
             {agr?.isagreed? 
                 <Agreement params={this.props.params} />
             :
-            <AgreementForm params={this.props.params} loading={loading}fullname={agr.fullname} />
+            <AgreementForm params={this.props.params} loading={loading} />
             }
             {/* <h4>{agr.fullname}</h4>/ */}
             </>
