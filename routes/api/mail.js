@@ -37,9 +37,10 @@ router.post('/', (req, res) => {
     let mailDetails = {
         from: 'kevin@smtransports.us',
         to: req.body.to,
-        subject: "love you Masoom",
-        text: 'Masoom network hired you',
-        html: `  <h1>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${req.body.leadid}" >Click here</a>  </h1> <br/>  <h2 style='color:red' > HS Logistics </h2> `
+        subject: "Agreement",
+        text: 'Agreement for Shipment',
+        html: `  <h4>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${req.body.id}" >Click here</a>  </h4> 
+        <br/> <hr/>  <h2 style='color:red' > HS Logistics </h2> `
     };
 
     mailTransporter.sendMail(mailDetails, function (err, data) {

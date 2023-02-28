@@ -45,7 +45,7 @@ export class AgreementWrapper1 extends Component {
         const agr = agreements
         return (
             <>
-            {agr.isagreed? 
+            {agr?.isagreed? 
                 <Agreement params={this.props.params} />
             :
             <AgreementForm params={this.props.params} loading={loading}fullname={agr.fullname} />
