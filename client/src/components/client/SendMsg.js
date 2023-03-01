@@ -211,7 +211,7 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
 
                                     <InputLabel id="demo-simple-select-standard-label">Select Template</InputLabel>
-                                    <h1> {this.state.selected} </h1>
+                                    
                                     <Select
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"
