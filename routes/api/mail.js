@@ -11,7 +11,7 @@ const Lead = require('../../models/Lead')
 
 router.post('/', (req, res) => {
 
-    console.log("in mailjs")
+    console.log(req.body)
 
 
     // let mailTransporter = nodemailer.createTransport({
@@ -27,15 +27,15 @@ router.post('/', (req, res) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: "kevin@smtransports.us", // generated ethereal user
-            pass: "kevintest", // generated ethereal password
+            user: req.body.email  , // generated ethereal user  kevin@smtransports.us
+            pass:  req.body.emailpass , // generated ethereal password          kevintest
         },
     });
 
 
 
     let mailDetails = {
-        from: 'kevin@smtransports.us',
+        from: req.body.email,
         to: req.body.to,
         subject: "Agreement",
         text: 'Agreement for Shipment',

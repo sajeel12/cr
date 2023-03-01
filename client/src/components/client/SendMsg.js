@@ -7,6 +7,8 @@ import {
 
 import Textarea from '@mui/joy/Textarea';
 
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 export class SendMsg extends Component {
 
@@ -74,8 +76,8 @@ export class SendMsg extends Component {
         });
     };
 
-    onClick = (e) => {
-        e.preventDefault();
+    onClick = () => {
+        // e.preventDefault();
 
         navigator.clipboard.writeText(this.state.msg);
         this.setState({
@@ -145,32 +147,39 @@ export class SendMsg extends Component {
 
 
                             </form>
-                            <Button variant='contained'
-                                sx={{
-                                    marginBottom: 1, marginLeft: 40, marginTop: 5, width: 200, borderRadius: 50, backgroundColor:
-                                        this.state.copy ? 'green' : 'black',
+
+                            <CopyToClipboard text={this.state.msg}
+                                onCopy={() => this.setState({ copy: !this.setState.copy })}>
+
+                                <Button variant='contained'
+                                    sx={{
+                                        marginBottom: 1, marginLeft: 40, marginTop: 5, width: 200, borderRadius: 50, backgroundColor:
+                                            this.state.copy ? 'green' : 'black',
                                         "&:hover": {
                                             backgroundColor: this.state.copy ? 'green' : 'black'
-                                              }
-                                }
-                                
-                            }
-                            onClick={this.onClick}
-                            >
-                            {this.state.copy ? 'Copied' : 'Copy To Clipboard'}
+                                        }
+                                    }
+
+                                    }
+                                    onClick={this.onClick}
+                                >
+                                    {this.state.copy ? 'Copied' : 'Copy To Clipboard'}
 
 
-                        </Button>
+                                </Button>
 
+                            </CopyToClipboard>
+
+
+
+
+
+                        </Box>
 
 
 
                     </Box>
-
-
-
-                </Box>
-            </Modal>
+                </Modal>
             </div >
 
 

@@ -33,8 +33,6 @@ export class AgreementWrapper1 extends Component {
     componentDidMount = () => {
         const lead_id = this.props.params.get("hash_id");
         this.props.getAgreement(lead_id);
-
-       
     }
     
   

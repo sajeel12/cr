@@ -1,11 +1,11 @@
-import { MAIL_SUCCESS, MAIL_FAIL} from '../actions/types';
+import { MAIL_SUCCESS, MAIL_FAIL } from '../actions/types';
 import axios from 'axios';
 import { returnErrors } from './errorActions';
 
 
 
 
-export const sendMail = ({    to, id}) => dispatch => {
+export const sendMail = ({ email, emailpass, many, to, id }) => dispatch => {
     //Headers
     const config = {
         headers: {
@@ -15,7 +15,7 @@ export const sendMail = ({    to, id}) => dispatch => {
 
     // request body 
 
-    const body = JSON.stringify({   to, id });
+    const body = JSON.stringify({ email, emailpass, many, to, id });
 
     axios.post('/api/mail', body, config)
         .then(res => dispatch({

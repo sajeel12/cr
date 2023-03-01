@@ -110,8 +110,11 @@ class SendMail extends Component {
         } else {
             const to = this.props.toemail;
             const id = this.props.leadid;
-
+            const {user} = this.props.auth;
+            const {email, emailpass}  = user;
             const mail = {
+                email,
+                emailpass,
                 to,
                 id,
                 many: false

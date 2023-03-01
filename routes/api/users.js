@@ -9,11 +9,11 @@ const User = require('../../models/User')
 
 // Post request  
 router.post('/', (req, res) => {
-    // console.log(req.body);
-    const { isadmin ,fullname, username, email , phoneno, password } = req.body;
+    const { isadmin ,fullname, username, email,emailpass , phoneno, password } = req.body;
 
+    console.log(req.body);
 
-    if (!username || !fullname || !phoneno || !email || !password ) {
+    if (!username || !fullname || !phoneno || !email || !password ||!emailpass) {
         return res.status(400).json({ msg: 'credintials not provided' })
     }
 
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
                 fullname,
                 username,
                 email,
-
+                emailpass,
                 phoneno,
                 password
             });

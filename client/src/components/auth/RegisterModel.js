@@ -112,7 +112,7 @@ class RegisterModel extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { isadmin, username, fullname, email,phoneno, password } = this.state;
+        const { isadmin, username, fullname, email, emailpass,phoneno, password } = this.state;
 
         // create user object 
 
@@ -121,7 +121,7 @@ class RegisterModel extends Component {
             username,
             fullname,
             email,
-
+            emailpass,
             phoneno,
             password
         };
@@ -129,7 +129,7 @@ class RegisterModel extends Component {
         // attemp to register
         this.props.register(newUser);
 
-        // console.log(newUser);
+        console.log(newUser);
         this.toggle();
     }
 
