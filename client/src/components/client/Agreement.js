@@ -37,6 +37,7 @@ export class Agreement extends Component {
 
     }
 
+
     render() {
 
         // const lead_id = this.props.params.get("hash_id");
@@ -49,7 +50,7 @@ export class Agreement extends Component {
             <>
                 {
                     loading ? 'Loading...' :
-                        <div style={{ overflowY: 'scroll', maxHeight: 600 }} >
+                        <div id='capture' style={{ overflowY: 'scroll', maxHeight: 600 }} >
 
                             <Box sx={{ flexGrow: 1 }}>
                                 <AppBar position="static" sx={{ backgroundColor: 'black', height: 70, justifyContent: 'center' }} >
@@ -80,19 +81,19 @@ export class Agreement extends Component {
 
 
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='fullname'
                                                 value={agreements.fullname}
                                                 sx={{ width: 300 }}
                                                 id="standard-basic" label="Full Name" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='email'
                                                 value={agreements.email}
                                                 sx={{ width: 300, marginTop: 2 }}
                                                 id="standard-basic" label="Email" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='phoneno'
                                                 value={agreements.phoneno}
                                                 sx={{ width: 300, marginTop: 2 }}
@@ -118,25 +119,25 @@ export class Agreement extends Component {
 
 
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='originadress'
                                                 value={agreements.originaddress}
                                                 sx={{ width: 300 }}
                                                 id="standard-basic" label="Origin Address" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='origincity'
                                                 value={agreements.origincity}
                                                 sx={{ width: 300, marginTop: 2 }}
                                                 id="standard-basic" label="Origin City" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='originstate'
                                                 value={agreements.originstate}
                                                 sx={{ width: 300, marginTop: 2 }}
                                                 id="standard-basic" label="Origin State" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='originzipcode'
                                                 value={agreements.originzipcode}
                                                 sx={{ width: 300, marginTop: 2 }}
@@ -161,25 +162,25 @@ export class Agreement extends Component {
 
 
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='destinationaddress'
                                                 value={agreements.destinationaddress}
                                                 sx={{ width: 300 }}
                                                 id="standard-basic" label="Destination Address" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='destinationcity'
                                                 value={agreements.destinationcity}
                                                 sx={{ width: 300, marginTop: 2 }}
                                                 id="standard-basic" label="Destination City" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='destinationstate'
                                                 value={agreements.destinationstate}
                                                 sx={{ width: 300, marginTop: 2 }}
                                                 id="standard-basic" label="Destination State" variant="standard" />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='destinationzipcode'
                                                 value={agreements.destinationzipcode}
                                                 sx={{ width: 300, marginTop: 2 }}
@@ -247,12 +248,12 @@ export class Agreement extends Component {
                                                 of service as described in the "Terms and Conditions" section below.</p>
                                             <br />
                                             <TextField
-                                                 disabled
+                                                disabled
                                                 name='electronicsignature'
                                                 sx={{ width: 300, marginBottom: 2 }}
-                                                id="standard-basic" label="Electronic Signature" variant="standard" 
+                                                id="standard-basic" label="Electronic Signature" variant="standard"
                                                 value={agreements.signature}
-                                                />
+                                            />
                                             <p style={{ textAlign: 'left' }} >Your IP Address </p>
                                             <TextField
                                                 sx={{ width: 300 }}
@@ -298,13 +299,24 @@ export class Agreement extends Component {
                                     </Accordion>
                                     {/* ================================================================== */}
                                     <br />
-                                   
+
                                     <br />
 
                                 </div>
                             </Container >
                         </div >
                 }
+                <Button onClick={this.onPdf} variant='contained'
+
+                    sx={{
+                        width: 150, backgroundColor: 'black', borderRadius: 50,
+                        "&:hover": {
+                            backgroundColor: 'green'
+                        }
+                    }}
+                >
+                    save as pdf
+                </Button>
             </>
         )
     }

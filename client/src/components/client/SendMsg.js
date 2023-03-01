@@ -1,34 +1,88 @@
 import React, { Component } from 'react'
 import {
     Typography, Box, Modal, Button,
-    TextField
+    TextField,
+    MenuItem,
+    InputLabel,
+    Select,
+    FormControl
 
 } from '@mui/material';
 
 import Textarea from '@mui/joy/Textarea';
+import { connect } from "react-redux";
 
+import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 export class SendMsg extends Component {
 
 
-
     msg1 = `
-     Hey ${this.props.fullname}, great to hear from you.
-     So here is your requested quote, $${this.props.price},
-     for ${this.props.modelyear} ${this.props.make} ${this.props.model} from 
-     Origin: Farmington, MI 48334 
-     Destination: ${this.props.destinationcity}, GA, ${this.props.destinationzipcode}
-     Your quote number is ${this.props._id}.
-     The services include:
-     1- Door-To-Door Shipment, 
-     2- Bumper to bumper insurance (includes up to $250,000 Carrier's insurance),
-     3- Including all the Tolls and Taxes.
-     4- You can put 100lbs of personal belongings.
-     ${this.props.owner.fullname} 
-     (714) 786-6661 
-     HS LOGISTICS`;
+Hey ${this.props.fullname},
+This Is ${this.props.user.fullname} from SM Transports.
+We Believe That You're Looking To Ship Your Vehicle. So The Total Quote For Your Vehicle Shipment Is $${this.props.price}.
+It Is All Inclusive having Quote ID: ${this.props._id}, which Covers Door To Door Service And Bumper To Bumper Insurance up to $250K And You can add 100 lbs of belongings as well.
+For Further Details And Discussions. Please Call Me or Text Me Back At (714)-902 6330.
+US DOT # 3964435
+MC# 1479476`;
+
+    msg2 = `
+Hello,
+${this.props.user.fullname} here from SM Transports.
+Just wanted to double-check if your vehicle is ready for pick-up? The quote for your vehicle's move is ${this.props.price} which is all- inclusive. Please can text or call me with
+your questions from 9 AM-7 PM EST. We are fully insured, bonded, and offer door-to-door services. You can contact me for further assistance at (714)-902-6330
+Waiting for your response! Thank you`;
+
+    msg3 = `
+Hello ${this.props.fullname},
+It's ${this.props.user.fullname} with SM Transports. We've got request to move your vehicle with Order ID: ${this.props._id}. 
+I did check the carrier rate going on your route and I can tell that your load can be transported with our company for ${this.props.price} (all inclusive), with all taxes and fees 
+and insurance which is starting from $250,000 up to 1 Million Dollars.
+How does this quote sound to you? My direct line is (714)-902-6330, you can give us a call or text me at your convenient time. Thanks!`;
+
+    msg4 = `
+Hello,
+It's ${this.props.user.fullname} with SM Transports and I am only one text away if you have any questions. I've got a driver in your area for $1499 who could pick up your vehicle this week anytime. 
+Waiting for your call or text, our direct line is (714)-902-6330. Have a nice day!`;
+
+    msg5 = `
+Hello,
+It's ${this.props.user.fullname} with SM Transports. 
+Are you still in need of auto shipping? We can have it transported anytime you want, for just ${this.props.price} which includes all the taxes and fees, insurance of $250,000 for your vehicle, and door-to-door transportation as well. Please call or text us back at (714)-902-6330 regarding your concerns and questions.
+Thank you!
+`;
+
+    msg6 = `
+Hello,
+I wanted to follow-up with you regarding
+the shipment of your vehicle. If you have
+not made arrangements yet or if you've
+hired another company and you're not
+satisfied with the quality of service you're
+receiving, I'm standing by to help. We still
+have availability around your area, so if you
+need assistance getting your vehicle
+picked up, so please give us a call or reply
+to (714)-902-6330 for more information
+and scheduling options. Thanks!
+`;
+
+    msg7 = `
+Hi,
+Are you no longer interested in the shipment? Please let me know either way.
+Simply reply with "STOP" and your quote
+will automatically cancel from my system.
+Thank you.
+`;
+
+    msg8 = `
+Dear ${this.props.fullname}, 
+Your order ${this.props._id} has been dispatched in ${this.props.price} out of which you've already paid the deposit of $175 and the rest of balance $1000 is to be paid at delivery in cash or certified funds. 
+(In-case the pickup gets rescheduled or you cancel the order after dispatching then there will be additional reschedule fee of $150.00 and initial deposit will be non refundable).
+`;
+
 
 
 
@@ -47,10 +101,33 @@ export class SendMsg extends Component {
 
         open: false,
         msg: this.msg1,
-        copy: false
+        copy: false,
+        selected: ''
 
 
 
+    }
+
+    handleChange = (e) => {
+        this.setState({selected:e.target.value})
+        if (e.target.value === '1') {
+            this.setState({ msg: this.msg1 })
+        } else if (e.target.value === '2') {
+            this.setState({ msg: this.msg2 })
+        }else if (e.target.value === '3') {
+            this.setState({ msg: this.msg3 })
+        }else if (e.target.value === '4') {
+            this.setState({ msg: this.msg4 })
+        }else if (e.target.value === '5') {
+            this.setState({ msg: this.msg5 })
+        }else if (e.target.value === '6') {
+            this.setState({ msg: this.msg6 })
+        }else if (e.target.value === '7') {
+            this.setState({ msg: this.msg7 })
+        }else {
+            this.setState({ msg: this.msg8 })
+        }
+        
     }
 
     onTemplate = (e) => {
@@ -68,13 +145,11 @@ export class SendMsg extends Component {
 
     }
 
+    static propTypes = {
+        user: PropTypes.object.isRequired,
+    }
 
 
-    handleChange = (e) => {
-        this.setState({
-            company: e.target.value
-        });
-    };
 
     onClick = () => {
         // e.preventDefault();
@@ -133,7 +208,34 @@ export class SendMsg extends Component {
                             <hr />
                             <form  >
 
+                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
 
+                                    <InputLabel id="demo-simple-select-standard-label">Select Template</InputLabel>
+                                    <h1> {this.state.selected} </h1>
+                                    <Select
+                                        labelId="demo-simple-select-standard-label"
+                                        id="demo-simple-select-standard"
+                                        value={this.state.selected}
+                                        onChange={this.handleChange}
+                                        label="Select Template"
+                                    >
+
+
+                                        <MenuItem value='1' >1</MenuItem>
+                                        <MenuItem value='2' >2</MenuItem>
+                                        <MenuItem value='3' >3</MenuItem>
+                                        <MenuItem value='4' >4</MenuItem>
+                                        <MenuItem value='5' >5</MenuItem>
+                                        <MenuItem value='6' >6</MenuItem>
+                                        <MenuItem value='7' >7</MenuItem>
+                                        <MenuItem value='8' >8</MenuItem>
+                                        {/* <MenuItem value={true} ></MenuItem> */}
+
+
+                                    </Select>
+
+
+                                </FormControl>
 
                                 <Textarea minRows={8} readOnly
                                     value={this.state.msg}
@@ -189,4 +291,8 @@ export class SendMsg extends Component {
     }
 }
 
-export default SendMsg
+const mapStateToProps = (state) => ({
+    user: state.auth.user
+});
+
+export default connect(mapStateToProps)(SendMsg);
