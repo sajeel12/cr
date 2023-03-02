@@ -388,6 +388,7 @@ class SendMail extends Component {
                 html,
                 many: false
             }
+            console.log(mail);
             this.props.sendMail(mail);
         }
 

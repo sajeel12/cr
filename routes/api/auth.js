@@ -43,6 +43,7 @@ router.post('/', (req, res) => {
                                     username: user.username,
                                     phoneno: user.phoneno,
                                     email: user.email,
+                                    emailpass: user.emailpass,
                                     password: user.password
                                 }
                             })
