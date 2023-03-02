@@ -247,7 +247,7 @@ class LeadAdmin extends Component {
                                                         {user.isadmin ?
                                                             <>
 
-                                                                <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
+                                                                {/* <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button> */}
                                                                 <UpdateLead {...row} />
                                                                 <DeleteLead id={row._id} name={row.fullname} />
                                                                 <AssignLead leadid={row._id} isassigned={row.isassigned} />
@@ -301,7 +301,7 @@ class LeadAdmin extends Component {
                                                             {user.isadmin ?
                                                                 <>
 
-                                                                    <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button>
+                                                                    {/* <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}>Cherry</Button> */}
                                                                     <UpdateLead {...row} />
                                                                     <DeleteLead id={row._id} name={row.fullname} />
                                                                     <AssignLead leadid={row._id} isassigned={row.isassigned} />
@@ -310,7 +310,7 @@ class LeadAdmin extends Component {
 
                                                                 <>
 
-                                                                    <SendMail toemail={row.email} many={false} leadid={row._id} fromemail={user.email} name={row.fullname} />
+                                                                    <SendMail {...row} many={false}  fromemail={user.email}  />
                                                                     <SendMsg  {...row} />
                                                                     <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                                     <UpdateStatus leadid={row._id} />

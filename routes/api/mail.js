@@ -14,34 +14,36 @@ router.post('/', (req, res) => {
     console.log(req.body)
 
 
-    // let mailTransporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //         user: 'msajeelahmad2001@gmail.com',
-    //         pass: 'jyjzbttlmkiwnwrr'
-    //     }
-    // });
-
     let mailTransporter = nodemailer.createTransport({
-        host: "smtp.titan.email",
-        port: 465,
-        secure: true, // true for 465, false for other ports
+        service: 'gmail',
         auth: {
-            user: req.body.email  , // generated ethereal user  kevin@smtransports.us
-            pass:  req.body.emailpass , // generated ethereal password          kevintest
-        },
+            user: 'msajeelahmad2001@gmail.com',
+            pass: 'jyjzbttlmkiwnwrr'
+        }
     });
+
+    // let mailTransporter = nodemailer.createTransport({
+    //     host: "smtp.titan.email",
+    //     port: 465,
+    //     secure: true, // true for 465, false for other ports
+    //     auth: {
+    //         user: req.body.email  , // generated ethereal user  kevin@smtransports.us
+    //         pass:  req.body.emailpass , // generated ethereal password          kevintest
+    //     },
+    // });
 
 
 
     let mailDetails = {
         from: req.body.email,
         to: req.body.to,
-        subject: "Agreement",
-        text: 'Agreement for Shipment',
-        html: `  <h4>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${req.body.id}" >Click here</a>  </h4> 
-        <br/> <hr/>  <h2 style='color:red' > HS Logistics </h2> `
+        subject: req.body.subject,
+        text: '',
+        html: req.body.html
     };
+
+    // `  <h4>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${req.body.id}" >Click here</a>  </h4> 
+    // <br/> <hr/>  <h2 style='color:red' > HS Logistics </h2> `
 
     mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
