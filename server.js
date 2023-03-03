@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const config = require('config')
 const app = express();
 const path = require('path');
+var cookieParser = require('cookie-parser');
 
 
 // body Parse midleware
 app.use(express.json());
+app.use(cookieParser());
 
 //database config 
 
@@ -26,6 +28,7 @@ app.use('/api/items', require('./routes/api/items'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/agents', require('./routes/api/agents'));
+app.use('/api/logout', require('./routes/api/logout'));
 
 app.use('/api/agreement', require('./routes/api/agreement'));
 

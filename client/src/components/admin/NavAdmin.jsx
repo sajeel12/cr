@@ -33,7 +33,6 @@ import { Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import BodyClient from './BodyAdmin'
 import { connect } from 'react-redux';
-import { logout } from "../../actions/authActions";
 import PropTypes from 'prop-types';
 import Logout from '../auth/Logout';
 import BodyAgent from './BodyAgent'
@@ -487,4 +486,4 @@ function NavAdmin({ username, isadmin }) {
   );
 }
 
-export default connect(logout, { logout })(NavAdmin);
+export default connect()(NavAdmin);

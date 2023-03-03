@@ -32,6 +32,11 @@ class SendMail extends Component {
     }
 
 
+    agreement = `
+     <h4>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${this.props._id}" >Click here</a>  </h4> 
+    <br/> <hr/>  <h2 style='color:red' > HS Logistics </h2> 
+    `;
+
     newquotehtml = `
     <div style="margin: 0 5%;">
     <div style="  align-items: center;">
@@ -71,6 +76,7 @@ class SendMail extends Component {
     </p>
 </div>
     `
+
 
 
     dispatchedhtml = `
@@ -313,7 +319,10 @@ class SendMail extends Component {
             this.setState({ template: this.orderconfirmationhtml, subject: "Confirm Your Order Please..." })
         } else if (e.target.value === '5') {
             this.setState({ template: this.paymentrecievedhtml , subject: "Payment Recieved"})
-        } else {
+        } else if (e.target.value === '6') {
+            this.setState({ template: this.agreement , subject: "Order Agreement"})
+        } 
+        else {
             this.setState({ template: this.secondfollowuphtml, subject: "Follow UP" })
         }
 
@@ -457,7 +466,8 @@ class SendMail extends Component {
                                         <MenuItem value='3' >FollowUp</MenuItem>
                                         <MenuItem value='4' >Order Confirmation</MenuItem>
                                         <MenuItem value='5' >Payment Recieved</MenuItem>
-                                        <MenuItem value='6' >Second FollowUp</MenuItem>
+                                        <MenuItem value='6' >Agreemnet</MenuItem>
+                                        <MenuItem value='7' >Second FollowUp</MenuItem>
 
                                     </Select>
 
