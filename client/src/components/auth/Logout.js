@@ -4,7 +4,7 @@ import { logout } from "../../actions/authActions";
 import PropTypes from 'prop-types';
 import { NavLink } from 'reactstrap';
 import {Navigate} from 'react-router-dom';
-
+import {Modal, Box, Typography} from '@mui/material'
 
 export class Logout extends Component {
 
@@ -33,7 +33,46 @@ export class Logout extends Component {
                 </NavLink>
                 {/* <Navigate  to='/' /> */}
                 {this.state.logout && 
-                    <Navigate to='/' />
+                <>
+                <Navigate to='/' />
+                <Modal
+                    open={true}
+                    
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    sx={{ overflowX: 'scroll' }}
+                >
+                    <Box sx={this.style}>
+
+                        <Box
+                            component="form"
+                            sx={{
+                                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <Typography variant="h5" component="h2">
+                                Logging Out ....
+                            </Typography>
+
+                            
+                                
+
+                                
+
+                            
+
+
+                        </Box>
+
+
+
+                    </Box>
+                </Modal>
+                
+                </>
+
                 }
             </Fragment>
         )

@@ -11,16 +11,6 @@ const Lead = require('../../models/Lead')
 
 router.post('/', (req, res) => {
 
-    console.log(req.body)
-
-
-    // let mailTransporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //         user: 'msajeelahmad2001@gmail.com',
-    //         pass: 'jyjzbttlmkiwnwrr'
-    //     }
-    // });
 
     let mailTransporter = nodemailer.createTransport({
         host: "smtp.titan.email",
@@ -50,7 +40,6 @@ router.post('/', (req, res) => {
             console.log('Fail bhai', err)
         } else {
             console.log('success')
-            console.log(req.body.id)
             if (req.body.many) {
                 Lead.updateMany({ _id: { $in: req.body.id } }, {
                     mailsent: true

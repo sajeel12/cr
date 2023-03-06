@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
     Typography, Box, Modal, Button,
     TextField
-    
+
 } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,14 +21,14 @@ import emailjs from '@emailjs/browser';
 class SendMail extends Component {
 
     state = {
-    
+
         open: false,
         company: '',
         template: '',
         tempselected: '',
         subject: ''
-    
-    
+
+
     }
 
 
@@ -80,7 +80,7 @@ class SendMail extends Component {
 
 
     dispatchedhtml = `
-<div style="margin: 0 30%;">
+<div style="margin: 0 5%;">
 <div style=" display: flex; flex-direction: column; align-items: center;">
     <h1 style="color: rgba(0, 0, 0, 0.692);">Your Order Has Been Dispatched</h1>
     <br> <br>
@@ -100,7 +100,7 @@ class SendMail extends Component {
 `
 
     followuphtml = `
-<div style="margin: 0 30%;">
+<div style="margin: 0 5%;">
 <div style=" background-color: rgba(0, 0, 0, 0.048);padding: 20px;">
     <h2 style="color: rgba(0, 0, 0, 0.692);">Sorry we missed you!</h2>
     <br>
@@ -162,7 +162,7 @@ class SendMail extends Component {
 `
 
     orderconfirmationhtml = `
-<div style="margin: 0 35%;">
+<div style="margin: 0 5%;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
             <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
             <br>
@@ -211,7 +211,7 @@ class SendMail extends Component {
 `
 
     paymentrecievedhtml = `
-<div style="margin: 0 35%;">
+<div style="margin: 0 5%;">
 <div style=" display: flex; flex-direction: column; align-items: center;">
     <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
     <br> <br>
@@ -232,7 +232,7 @@ class SendMail extends Component {
 `
 
     secondfollowuphtml = `
-<div style="margin: 0 35%;">
+<div style="margin: 0 5%;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
             <h1 style="color: rgba(0, 0, 0, 0.692);">A quick reminder...</h1>
             <br>
@@ -318,10 +318,10 @@ class SendMail extends Component {
         } else if (e.target.value === '4') {
             this.setState({ template: this.orderconfirmationhtml, subject: "Confirm Your Order Please..." })
         } else if (e.target.value === '5') {
-            this.setState({ template: this.paymentrecievedhtml , subject: "Payment Recieved"})
+            this.setState({ template: this.paymentrecievedhtml, subject: "Payment Recieved" })
         } else if (e.target.value === '6') {
-            this.setState({ template: this.agreement , subject: "Order Agreement"})
-        } 
+            this.setState({ template: this.agreement, subject: "Order Agreement" })
+        }
         else {
             this.setState({ template: this.secondfollowuphtml, subject: "Follow UP" })
         }
@@ -361,44 +361,47 @@ class SendMail extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const subject_check = this.state.subject;
+        if (subject_check !== '') {
+            if (this.props.many) {
+                const checkedemail = this.props.checkedemail;
+                const checkedids = this.props.checkedids;
+                console.log("emails ->", checkedemail)
+                console.log("ids ->", checkedids)
 
-        if (this.props.many) {
-            const checkedemail = this.props.checkedemail;
-            const checkedids = this.props.checkedids;
-            console.log("emails ->", checkedemail)
-            console.log("ids ->", checkedids)
+                // checkedids.forEach(id => {
+                //     checkedemail.forEach(to => {
+                //         const mail = {
+                //             to,
+                //             id,
+                //             many: false
+                //         }
+                //         this.props.sendMail(mail);
+                //     })
+                // })
 
-            // checkedids.forEach(id => {
-            //     checkedemail.forEach(to => {
-            //         const mail = {
-            //             to,
-            //             id,
-            //             many: false
-            //         }
-            //         this.props.sendMail(mail);
-            //     })
-            // })
+            } else {
+                const to = this.props.email;
+                const id = this.props._id;
+                const { user } = this.props.auth;
+                const { email, emailpass } = user;
+                const subject = this.state.subject;
+                const html = this.state.template;
 
-        } else {
-            const to = this.props.email;
-            const id = this.props._id;
-            const { user } = this.props.auth;
-            const { email, emailpass } = user;
-            const subject = this.state.subject;
-            const html = this.state.template;
+                const mail = {
+                    email,
+                    emailpass,
+                    to,
+                    id,
 
-            const mail = {
-                email,
-                emailpass,
-                to,
-                id,
-
-                subject,
-                html,
-                many: false
+                    subject,
+                    html,
+                    many: false
+                }
+                console.log(mail);
+                this.props.sendMail(mail);
             }
-            console.log(mail);
-            this.props.sendMail(mail);
+            this.toggle();
         }
 
     }
