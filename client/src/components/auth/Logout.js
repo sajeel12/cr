@@ -57,7 +57,7 @@ export class Logout extends Component {
                                 Logging Out ....
                             </Typography> */}
 
-                            <Spinner animation="grow" variant="danger" />
+                            <Spinner style={{position:'absolute', top:25, left:25}} animation="grow" variant="danger" />
                                 
 
                                 
