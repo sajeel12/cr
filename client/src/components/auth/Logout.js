@@ -37,7 +37,7 @@ export class Logout extends Component {
                 <>
                 <Navigate to='/' />
                 <Modal
-                    open={false}
+                    open={true}
                     
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
