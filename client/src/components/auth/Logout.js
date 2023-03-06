@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { logout } from "../../actions/authActions";
 import PropTypes from 'prop-types';
 import { NavLink } from 'reactstrap';
-import {Navigate} from 'react-router-dom';
-import {Modal, Box, Typography} from '@mui/material'
+import { Navigate } from 'react-router-dom';
+import { Modal, Box, Typography } from '@mui/material'
 import Spinner from 'react-bootstrap/Spinner';
 
 export class Logout extends Component {
@@ -13,19 +13,19 @@ export class Logout extends Component {
         logout: PropTypes.func.isRequired,
         auth: PropTypes.object.isRequired
     }
-   
 
-    state ={
+
+    state = {
         logout: false
     }
 
     onClick = (e) => {
         this.props.logout();
-        this.setState({logout: true})
+        this.setState({ logout: true })
     }
 
     render() {
-        const {isAuthenticated} = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
         return (
 
             <Fragment>
@@ -33,46 +33,47 @@ export class Logout extends Component {
                     Logout
                 </NavLink>
                 {/* <Navigate  to='/' /> */}
-                {this.state.logout && 
-                <>
-                <Navigate to='/' />
-                <Modal
-                    open={true}
-                    
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    sx={{ overflowX: 'scroll' }}
-                >
-                    <Box sx={this.style}>
+                {this.state.logout &&
+                    <>
+                        <Navigate to='/' />
+                        <Modal
+                            open={true}
 
-                        <Box
-                            component="form"
-                            sx={{
-                                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                            }}
-                            noValidate
-                            autoComplete="off"
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                            sx={{ overflowX: 'scroll' }}
                         >
-                            {/* <Typography variant="h5" component="h2">
+                            <Box sx={this.style}>
+
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    {/* <Typography variant="h5" component="h2">
                                 Logging Out ....
                             </Typography> */}
 
-                            <Spinner style={{position:'absolute', top:25, left:25}} animation="grow" variant="danger" />
-                                
-
-                                
-
-                            
-
-
-                        </Box>
+                                    <Spinner style={{ position: 'absolute', top: 200, left: 700 }} animation="grow" variant="warning" />
 
 
 
-                    </Box>
-                </Modal>
-                
-                </>
+
+
+
+
+
+                                </Box>
+
+
+
+                            </Box>
+                        </Modal>
+
+                    </>
 
                 }
             </Fragment>
