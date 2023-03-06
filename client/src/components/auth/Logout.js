@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'reactstrap';
 import {Navigate} from 'react-router-dom';
 import {Modal, Box, Typography} from '@mui/material'
+import Spinner from 'react-bootstrap/Spinner';
 
 export class Logout extends Component {
 
@@ -36,7 +37,7 @@ export class Logout extends Component {
                 <>
                 <Navigate to='/' />
                 <Modal
-                    open={true}
+                    open={false}
                     
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
@@ -52,11 +53,11 @@ export class Logout extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            <Typography variant="h5" component="h2">
+                            {/* <Typography variant="h5" component="h2">
                                 Logging Out ....
-                            </Typography>
+                            </Typography> */}
 
-                            
+                            <Spinner animation="grow" variant="danger" />
                                 
 
                                 
