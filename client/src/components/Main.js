@@ -6,6 +6,7 @@ import LoginModal from './auth/LoginModal';
 import MainAdmin from './admin/MainAdmin';
 import RegisterModel from './auth/RegisterModel';
 import { BrowserRouter, Navigate } from 'react-router-dom';
+import Login from './auth/Login';
 class Main extends Component {
 
 
@@ -46,6 +47,7 @@ class Main extends Component {
 
                         <> */}
                             <MainAdmin />
+                            {/* <Login/> */}
 
                         {/* </>
                         // <MainClient />

@@ -7,7 +7,7 @@ import { clearErrors } from "../../actions/errorActions";
 import { Navigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Alert } from '@mui/material';
+import { Alert } from 'reactstrap';
 
 
 
@@ -96,12 +96,10 @@ class Login extends Component {
                 </div>
                 <div className='log_container' >
                     <div className='log_box' >
-                        <div style={{ height: 60 }} >
-                            {this.state.msg ? (<Alert severity="error"> {this.state.msg}</Alert>)
-                                : null}
-                        </div>
+                        {this.state.msg ? (<Alert color="danger" >{this.state.msg}</Alert>)
+                            : null}
                         <TextField className='textfield'
-                            sx={{ backgroundColor: 'white', width: 300 }}
+                            sx={{ marginTop: 5, backgroundColor: 'white', width: 300 }}
                             name="username"
                             id="outlined-required"
                             label="username"
@@ -113,8 +111,6 @@ class Login extends Component {
                             name="password"
                             id="password"
                             label="Password"
-                            type="password"
-                            autoComplete="current-password"
                             onChange={this.onChange}
 
                         />
