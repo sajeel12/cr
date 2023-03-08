@@ -50,12 +50,12 @@ class RegisterModel extends Component {
         emailpass: '',
         phoneno: '',
         password: '',
-        show:false
+        show: false
     }
 
-    handleClickShowPassword = () =>  {
+    handleClickShowPassword = () => {
         this.setState({
-            show:!this.state.show
+            show: !this.state.show
         });
     }
 
@@ -112,7 +112,7 @@ class RegisterModel extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { isadmin, username, fullname, email, emailpass,phoneno, password } = this.state;
+        const { isadmin, username, fullname, email, emailpass, phoneno, password } = this.state;
 
         // create user object 
 
@@ -190,14 +190,16 @@ class RegisterModel extends Component {
                                     type="email"
                                     variant="standard"
                                 />
-                                <TextField
-                                    onChange={this.onChange}
-                                    name='emailpass'
-                                    id="standard-required"
-                                    label="Email Password"
-                                    type="text"
-                                    variant="standard"
-                                />
+                                { !this.state.isadmin &&
+                                    <TextField
+                                        onChange={this.onChange}
+                                        name='emailpass'
+                                        id="standard-required"
+                                        label="Email Password"
+                                        type="text"
+                                        variant="standard"
+                                    />
+                                }
                                 <TextField
                                     onChange={this.onChange}
                                     name='phoneno'
@@ -207,13 +209,13 @@ class RegisterModel extends Component {
                                     variant="standard"
                                 />
                                 <div style={{ display: 'flex' }} >
-                                    
+
 
                                     <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
                                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                                         <Input
-                                        name="password"
-                                        onChange={this.onChange}
+                                            name="password"
+                                            onChange={this.onChange}
                                             id="standard-adornment-password"
                                             type={this.state.show ? 'text' : 'password'}
                                             endAdornment={
@@ -232,7 +234,7 @@ class RegisterModel extends Component {
 
 
                                     <Button variant='contained'
-                                        sx={{ marginBottom: 5 }}
+                                        sx={{ marginBottom: 5, marginLeft: 10 }}
                                         onClick={this.toggleAdmin}
                                     >
                                         {this.state.isadmin ? 'Admin' : 'Agent'}
@@ -241,7 +243,7 @@ class RegisterModel extends Component {
                             </form>
 
                             <Button variant='contained'
-                                sx={{ marginBottom: 5 }}
+                                sx={{ marginBottom: 5, backgroundColor: 'black', borderRadius: 50 }}
                                 onClick={this.onSubmit}
                             >
                                 Add Agent

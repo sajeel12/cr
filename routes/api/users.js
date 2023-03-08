@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 
     console.log(req.body);
 
-    if (!username || !fullname || !phoneno || !email || !password ||!emailpass) {
+    if (!username || !fullname || !phoneno || !email || !password ) {
         return res.status(400).json({ msg: 'credintials not provided' })
     }
 
