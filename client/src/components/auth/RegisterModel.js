@@ -165,6 +165,12 @@ class RegisterModel extends Component {
                             </Typography>
 
                             <hr />
+                            <Button variant='contained'
+                                        sx={{ marginBottom: 0, marginLeft: 0, backgroundColor:'orange' }}
+                                        onClick={this.toggleAdmin}
+                                    >
+                                        {this.state.isadmin ? 'Admin' : 'Agent'}
+                                    </Button>
                             <form  >
                                 <TextField
                                     onChange={this.onChange}
@@ -233,12 +239,7 @@ class RegisterModel extends Component {
                                     </FormControl>
 
 
-                                    <Button variant='contained'
-                                        sx={{ marginBottom: 5, marginLeft: 10 }}
-                                        onClick={this.toggleAdmin}
-                                    >
-                                        {this.state.isadmin ? 'Admin' : 'Agent'}
-                                    </Button>
+                                  
                                 </div>
                             </form>
 
