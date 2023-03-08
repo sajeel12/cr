@@ -78,7 +78,7 @@ class AssignLeadM extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width:150, backgroundColor: 'black', borderRadius:50, marginRight:1,
+                    sx={{ fontSize:20, width: 200, height:56 , backgroundColor: 'black', borderRadius:50, marginRight:1,
                     "&:hover":{
                         backgroundColor:'#04d82b',
                         color:'black'

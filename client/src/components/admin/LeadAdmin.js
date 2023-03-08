@@ -35,6 +35,8 @@ import DeleteLeadM from './DeleteLeadM';
 import UpdateStatusM from '../client/UpdateStatusM';
 import SendMailM from '../client/SendMailM';
 import AssignLeadM from './AssignLeadM';
+import AddLead from '../common/AddLead';
+import { display } from '@mui/system';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -67,6 +69,19 @@ class LeadAdmin extends Component {
         auth: PropTypes.object.isRequired,
         lead: PropTypes.object.isRequired
     }
+
+
+    searchStyle={
+        border: 'none',
+        borderRadius: 50,
+        width: 200,
+        paddingLeft: 42,
+        backgroundColor: 'black',
+        color: 'white',
+        fontSize: 20
+
+    }
+
 
     state = {
         leads: [],
@@ -136,34 +151,53 @@ class LeadAdmin extends Component {
 
         return (
             <Container sx={{ width: 1400 }}  >
-                <div>
-                    <TextField
-                        sx={{ width: 150 }}
-                        id="outlined-search" label="Search Lead" type="search"
-                        onChange={(e) => this.setState({ searchedval: e.target.value })} />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }} >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+                    <div style={{ display: 'flex', marginTop: 50, marginBottom: 50 }} >
+                        {/* <TextField
+                            sx={{ width: 150 }}
+                            id="standard-password-input"
+                            label="Search Lead"
+                            
+                            // label="Search Lead" 
+                            variant="standard"
+                            onChange={(e) => this.setState({ searchedval: e.target.value })} /> */}
 
-                    <div>
+                        <input  className='searchLead'  type="text"  placeholder='Search Lead'
+                            style={this.searchStyle}
+                            onChange={(e) => this.setState({ searchedval: e.target.value })}
+                        />
+                        
+                        
 
-                        {this.state.realtime ? '' :
-                            user.isadmin ?
-                                <div style={{ display: 'flex' }} >
-                                    <DeleteLeadM checkedids={this.state.checkedids} />
-                                    <AssignLeadM checkedids={this.state.checkedids} />
-                                </div>
-                                :
-                                <div style={{ display: 'flex', marginBottom: 5 }} >
+                        <AddLead />
 
-                                    <SendMail checkedids={this.state.checkedids} checkedemail={this.state.checkedemail} many={true} fromemail={user.email} />
-                                    <UpdateStatusM checkedids={this.state.checkedids} />
-                                </div>
-                        }
                     </div>
-                    <FormGroup>
-                        <FormControlLabel control={<Switch color='warning' checked={this.state.realtime} onChange={this.handleSwitch} />} label="Real Time" />
-                    </FormGroup>
+                    <div style={{ marginTop: 3, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }} >
+
+                        <div>
+
+                            {this.state.realtime ? '' :
+                                user.isadmin ?
+                                    <div style={{ display: 'flex' }} >
+                                        <DeleteLeadM checkedids={this.state.checkedids} />
+                                        <AssignLeadM checkedids={this.state.checkedids} />
+                                    </div>
+                                    :
+                                    <div style={{ display: 'flex', marginBottom: 5 }} >
+
+                                        <SendMailM checkedids={this.state.checkedids} checkedemail={this.state.checkedemail} many={true} fromemail={user.email} />
+                                        <UpdateStatusM checkedids={this.state.checkedids} />
+                                    </div>
+                            }
+                        </div>
+                        <FormGroup>
+                            <FormControlLabel control={<Switch color='warning' checked={this.state.realtime} onChange={this.handleSwitch} />} label="Real Time" />
+                        </FormGroup>
+                    </div>
+
+
                 </div>
+
                 <TableContainer component={Paper} sx={{ maxHeight: 350, maxWidth: 1400, overflowY: 'scroll' }}  >
                     <Table sx={{ minWidth: 1600 }} aria-label="customized table"  >
                         <TableHead>
@@ -310,7 +344,7 @@ class LeadAdmin extends Component {
 
                                                                 <>
 
-                                                                    <SendMail {...row} many={false}  fromemail={user.email}  />
+                                                                    <SendMail {...row} many={false} fromemail={user.email} />
                                                                     <SendMsg  {...row} />
                                                                     <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                                     <UpdateStatus leadid={row._id} />

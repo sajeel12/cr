@@ -50,7 +50,7 @@ class DeleteLeadM extends Component {
         return (
             <>
                 <Button variant="contained"
-                    sx={{ width: 170, marginBottom:1, marginRight:1, backgroundColor: 'black', 
+                    sx={{ fontSize:20, width: 200, height:56 , marginBottom:1, marginRight:1, backgroundColor: 'black', 
                     borderRadius: 50,
                     "&:hover": {
                         backgroundColor:'red'

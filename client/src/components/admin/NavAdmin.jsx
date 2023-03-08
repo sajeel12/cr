@@ -43,7 +43,9 @@ const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
-  backgroundColor: '#33333',
+  // backgroundColor: '#33333',
+  backgroundColor: 'black',
+
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -57,6 +59,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
+  backgroundColor: 'black',
+
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -66,6 +70,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+  backgroundColor: 'black',
 
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
@@ -141,13 +146,13 @@ function NavAdmin({ username, isadmin }) {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              color: 'white',
+              color: '#43bc68',
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
           >
 
-            <MenuIcon />
+            <MenuIcon sx={{color:'#43bc68'}}  />
           </IconButton>
           <div style={{display:'flex', justifyContent:'space-between'}} >
             <Typography variant="h6" noWrap component="div">
@@ -161,7 +166,7 @@ function NavAdmin({ username, isadmin }) {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton sx={{color:'#43bc68'}}  onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -193,7 +198,7 @@ function NavAdmin({ username, isadmin }) {
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                       <LeaderboardIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
-                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
+                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0  }} />
                   </ListItemButton>
                 </ListItem>
               </Link>

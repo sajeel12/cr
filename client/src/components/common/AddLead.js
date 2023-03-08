@@ -101,7 +101,7 @@ class AddLead extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ marginBottom: 5, marginLeft: 20, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{ fontSize:20, width:200, height:56  ,marginBottom: 0, marginLeft: 5, backgroundColor: 'black', borderRadius: 50 }}
                 >
                     Add Lead
                 </Button>

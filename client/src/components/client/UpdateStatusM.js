@@ -76,7 +76,7 @@ class UpdateStatusM extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width: 150, backgroundColor: 'black',marginRight:5 , borderRadius: 50 }}
+                    sx={{fontSize:18, width: 200, height: 56, backgroundColor: 'black',marginRight:5 , borderRadius: 50 }}
                 >
                     Update Status
                 </Button>

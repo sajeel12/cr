@@ -106,7 +106,7 @@ class Agents extends Component {
 
                                     <StyledTableCell align="right">
                                         <Stack spacing={2} direction="row">
-                                            <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button>
+                                            {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
                                             <DeleteAgent id={row._id} username={row.username} />
                                             <AgentAdmin2 idt={row._id} />
                                         </Stack>

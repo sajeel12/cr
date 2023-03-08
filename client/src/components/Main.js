@@ -39,7 +39,7 @@ class Main extends Component {
         const { isAuthenticated, user } = this.props.auth;
 
         return (
-            <div>
+            <div >
                 
                     {/* {!isAuthenticated ?
                         <Navigate to='common/login' /> :

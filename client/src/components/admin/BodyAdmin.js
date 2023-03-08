@@ -9,7 +9,7 @@ class BodyAdmin extends Component {
     render() {
         return (
             <div  >
-                <AddLead />
+                {/* <AddLead /> */}
                 {/* <RegisterModel/> */}
                 <LeadAdmin/>
                 {/* <Agents/> */}

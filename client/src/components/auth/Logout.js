@@ -29,7 +29,7 @@ export class Logout extends Component {
         return (
 
             <Fragment>
-                <NavLink onClick={this.onClick}  >
+                <NavLink onClick={this.onClick} style={{color:'#707070'}}  >
                     Logout
                 </NavLink>
                 {/* <Navigate  to='/' /> */}

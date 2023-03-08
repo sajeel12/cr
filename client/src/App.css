@@ -6,16 +6,16 @@
 }
 body{
     overflow: hidden;
-    /* background-image: url("./images/truckLogin_adobe_express.svg");
+    background-image: url("./images/truckLogin_adobe_express.svg");
     background-size: 1500px;
     background-position-x: -70px;
-    background-position-y: -63px; */
+    background-position-y: -63px;
     
 }
 
 
 .log_nav{
-    /* border-top: 5px solid rgb(255, 235, 122); */
+    border-top: 5px solid rgb(255, 235, 122);
     background-color: black;
     height: 60px;
     color: white;
@@ -36,7 +36,7 @@ body{
 }
 
 .log_box{
-    /* margin-left: 185px; */
+    margin-left: 185px;
     border-top: 60px solid black;
     border-bottom: 5px solid black;
     margin-top: 100px;
@@ -51,4 +51,14 @@ body{
 .textfield{
     margin-top: 10px;
     color: rgba(0, 0, 0, 0.603);
+}
+
+
+.searchLead::placeholder{
+    font-size: 20px;
+    color: white;
+}
+
+.searchLead::-ms-value{
+    color:'white'
 }
