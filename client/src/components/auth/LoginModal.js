@@ -90,7 +90,7 @@ class Login extends Component {
     render() {
         return (
 
-            <>
+            <div className='image_container' >
                 <div className='log_nav' >
                     <h3>HS Logistics</h3>
                 </div>
@@ -131,7 +131,7 @@ class Login extends Component {
 
                     </div>
                 </div>
-            </>
+                </div>
 
         )
     }

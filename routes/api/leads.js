@@ -12,22 +12,23 @@ const { json } = require('express');
 router.get('/', auth, (req, res) => {
 
     User.findById(req.user.id).then(user => {
+        // .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
 
-            if (user.isadmin) {
-                Lead.find({})
-                    .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
-                    .exec((err, lead) => {
-                        if (err) throw (err);
-                        // console.log(lead)
-                        res.json(lead);
-                    });
-            
+        if (user.isadmin) {
+            Lead.find({})
+                .populate('owner').sort({ recieveddate: -1 })
+                .exec((err, lead) => {
+                    if (err) throw (err);
+                    // console.log(lead)
+                    res.json(lead);
+                });
+
         } else {
-            
-                Lead.find({ owner: user._id })
-                    .sort({ recieveddate: -1 })
-                    .then(leads => res.json(leads))
-            
+
+            Lead.find({ owner: user._id })
+                .sort({ recieveddate: -1 })
+                .then(leads => res.json(leads))
+
         }
 
     }

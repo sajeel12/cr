@@ -43,6 +43,7 @@ const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
+  backgroundColor: '#33333',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -65,6 +66,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
@@ -78,6 +80,7 @@ const AppBar = styled(MuiAppBar, {
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
+
   }),
   ...(open && {
     marginLeft: drawerWidth,
@@ -146,12 +149,14 @@ function NavAdmin({ username, isadmin }) {
 
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Digital Solution Hub      {isadmin ? '--------- Admin' : ''}
-          </Typography>
-          <Typography variant="h6" sx={{ marginLeft: 50, color: 'white', }} >
-            {username}
-          </Typography>
+          <div style={{display:'flex', justifyContent:'space-between'}} >
+            <Typography variant="h6" noWrap component="div">
+              Digital Solution Hub      {isadmin ? '--------- Admin' : ''}
+            </Typography>
+            <Typography variant="h6" sx={{ marginLeft: 50, color: 'white', }} >
+              {username}
+            </Typography>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -168,7 +173,8 @@ function NavAdmin({ username, isadmin }) {
           {isadmin ?
             <>
 
-              <Link to='/' >
+
+              <Link to='/' style={{ textDecoration: 'none', color: '#707070' }} >
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -185,7 +191,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LeaderboardIcon />
+                      <LeaderboardIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -193,7 +199,7 @@ function NavAdmin({ username, isadmin }) {
               </Link>
 
 
-              <Link to='/agents' >
+              <Link to='/agents' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -210,7 +216,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <SupportAgentIcon />
+                      <SupportAgentIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Agents"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -237,7 +243,7 @@ function NavAdmin({ username, isadmin }) {
                     }}
                   >
                     {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                    <LogoutIcon />
+                    <LogoutIcon sx={{ color: 'red' }} />
                   </ListItemIcon>
                   {/* <Logout/> */}
                   <ListItemText primary={<Logout />} sx={{ opacity: open ? 1 : 0 }} />
@@ -250,7 +256,7 @@ function NavAdmin({ username, isadmin }) {
 
             <>
 
-              <Link to='/' >
+              <Link to='/' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -267,14 +273,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LeaderboardIcon />
+                      <LeaderboardIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/followup' >
+              <Link to='/followup' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -291,14 +297,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <FollowTheSignsIcon />
+                      <FollowTheSignsIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Follow Up"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/quotes' >
+              <Link to='/quotes' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -315,14 +321,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <FormatQuoteIcon />
+                      <FormatQuoteIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Quotes"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/orders' >
+              <Link to='/orders' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -339,14 +345,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <BookOnlineIcon />
+                      <BookOnlineIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Orders"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/dispatched' >
+              <Link to='/dispatched' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -363,14 +369,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LocalShippingIcon />
+                      <LocalShippingIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Dispatched"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/archived' >
+              <Link to='/archived' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -387,14 +393,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <ArchiveIcon />
+                      <ArchiveIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Archived"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to='/potential' >
+              <Link to='/potential' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -411,14 +417,14 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <CloudIcon />
+                      <CloudIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Potential"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to="/customer_agreement" >
+              <Link to="/customer_agreement" style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -435,7 +441,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <NoteAltIcon />
+                      <NoteAltIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Customer's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -459,7 +465,7 @@ function NavAdmin({ username, isadmin }) {
                     }}
                   >
                     {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                    <LogoutIcon />
+                    <LogoutIcon sx={{ color: 'red' }} />
                   </ListItemIcon>
                   {/* <Logout/> */}
                   <ListItemText primary={<Logout />} sx={{ opacity: open ? 1 : 0 }} />
