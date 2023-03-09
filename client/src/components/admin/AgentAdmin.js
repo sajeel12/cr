@@ -220,6 +220,7 @@ class AgentAdmin extends Component {
                                                     <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell>
                                                     <StyledTableCell align="center">Recieved Date&nbsp;</StyledTableCell>
                                                     <StyledTableCell align="center">Time&nbsp;</StyledTableCell>
+                                                    <StyledTableCell align="center">Total Mails&nbsp;</StyledTableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -242,7 +243,7 @@ class AgentAdmin extends Component {
                                                                 </StyledTableCell>
                                                                 <StyledTableCell align="center">{row.email}</StyledTableCell>
                                                                 <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row._id}</StyledTableCell>
+                                                                <StyledTableCell align="center">{row.leadid}</StyledTableCell>
                                                                 <StyledTableCell align="center">{row.make}</StyledTableCell>
                                                                 <StyledTableCell align="center">{row.model}</StyledTableCell>
                                                                 <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
@@ -250,6 +251,7 @@ class AgentAdmin extends Component {
                                                                 <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
                                                                 <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
                                                                 <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
+                                                                <StyledTableCell align="center">{row.mailcount}</StyledTableCell>
 
                                                             </StyledTableRow>
 

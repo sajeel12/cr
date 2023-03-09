@@ -22,8 +22,8 @@ class DeleteAgent extends Component {
 
     state = {
         open: false,
-        id:'',
-        user:{}
+        id: '',
+        user: {}
     }
 
     onSubmit = e => {
@@ -33,9 +33,9 @@ class DeleteAgent extends Component {
     }
 
     componentDidMount = () => {
-        const {user} = this.props.auth;
-        const{id} = this.props;
-        this.setState({user: user, id: id})
+        const { user } = this.props.auth;
+        const { id } = this.props;
+        this.setState({ user: user, id: id })
     }
 
     handleClose = () => {
@@ -46,51 +46,53 @@ class DeleteAgent extends Component {
 
 
     render() {
-        const { user } = this.props.auth
+        const { user, isLoading } = this.props.auth
         return (
             <>
-                <Button variant="contained" disabled={this.state.id == this.state.user._id ? true : false}
-                    sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
-                    onClick={this.handleClose}
-                >Delete
-                </Button>
+                {isLoading ? 'Loading...' :
+                    <div>
+                        <Button variant="contained" disabled={this.state.id == this.state.user._id ? true : false}
+                            sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
+                            onClick={this.handleClose}
+                        >Delete
+                        </Button>
 
-                <Modal
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    sx={{ overflowX: 'scroll' }}
-                >
-                    <Box sx={this.style}>
-                        <Box
-                            component="form"
-                            sx={{
-                                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                            }}
-                            noValidate
-                            autoComplete="off"
+                        <Modal
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                            sx={{ overflowX: 'scroll' }}
                         >
-                            <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
-                                DELETE Agent  for Name ----  {this.props.username}
-                            </Typography>
+                            <Box sx={this.style}>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
+                                        DELETE Agent  for Name ----  {this.props.username}
+                                    </Typography>
 
-                            <hr />
-                            <Button variant='contained'
-                                sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
-                                onClick={this.onSubmit}
-                            >
-                                Delete
-                            </Button>
-                        </Box>
-                    </Box>
-                </Modal>
+                                    <hr />
+                                    <Button variant='contained'
+                                        sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
+                                        onClick={this.onSubmit}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </Modal>
 
 
 
-
+                    </div>
+                }
             </>
-
 
 
         )
