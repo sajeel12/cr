@@ -360,21 +360,47 @@ class SendMail extends Component {
         // if(this.state.template !== '')
         if (this.state.template !== '') {
             if (this.props.many) {
+
+                const subject = this.state.subject;
+                const html = this.state.template;
+                const { user } = this.props.auth;
+                const { email, emailpass } = user;
                 const checkedemail = this.props.checkedemail;
                 const checkedids = this.props.checkedids;
+                const checkedinputs = this.props.checkedinputs;
                 console.log("emails ->", checkedemail)
                 console.log("ids ->", checkedids)
 
-                checkedids.forEach(id => {
-                    checkedemail.forEach(to => {
+                
+                    checkedinputs.map(lead => {
+                        const id = lead._id;
+                        const to = lead.email;
                         const mail = {
+                            email,
+                            emailpass,
                             to,
                             id,
+                            html,
+                            subject,
                             many: false
                         }
                         this.props.sendMail(mail);
                     })
-                })
+                
+                // checkedids.forEach(id => {
+                //     checkedemail.forEach(to => {
+                //         const mail = {
+                //             email,
+                //             emailpass,
+                //             to,
+                //             id,
+                //             html,
+                //             subject,
+                //             many: false
+                //         }
+                //         this.props.sendMail(mail);
+                //     })
+                // })
 
             } else {
                 const to = this.props.email;
@@ -406,19 +432,27 @@ class SendMail extends Component {
         const { user } = this.props.auth;
         return (
             <div>
-                <Button onClick={this.toggle} variant='contained'
-                    sx={{ width: 168, backgroundColor: 'black', borderRadius: 50 }}
-                >
-                    <b style={{
-                        color: 'black'
-                        , backgroundColor: '#6bff9c',
-                        borderRadius: 60,
-                        width: 30,
-                        marginRight: 15,
+                {this.props.many ?
+                    <Button onClick={this.toggle} variant='contained'
+                        sx={{ fontSize: 20, width: 200, height: 56, marginRight: 1, backgroundColor: 'black', borderRadius: 50 }}>
+                        Send Email
 
-                    }}>
-                        {this.props.mailcount} </b>  Send Email
-                </Button>
+                    </Button>
+                    :
+                    <Button onClick={this.toggle} variant='contained'
+                        sx={{ width: 168, backgroundColor: 'black', borderRadius: 50 }}
+                    >
+                        <b style={{
+                            color: 'black'
+                            , backgroundColor: '#6bff9c',
+                            borderRadius: 60,
+                            width: 30,
+                            marginRight: 15,
+
+                        }}>
+                            {this.props.mailcount} </b>  Send Email
+                    </Button>
+                }
                 <Modal
                     open={this.state.open}
                     onClose={this.toggle}

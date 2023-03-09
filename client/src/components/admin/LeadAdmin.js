@@ -205,7 +205,7 @@ class LeadAdmin extends Component {
                                     :
                                     <div style={{ display: 'flex', marginBottom: 5 }} >
 
-                                        <SendMailM checkedids={this.state.checkedids} checkedemail={this.state.checkedemail} many={true} fromemail={user.email} />
+                                        <SendMail checkedinputs={this.state.checkedinputs} checkedids={this.state.checkedids} checkedemail={this.state.checkedemail} many={true} fromemail={user.email} />
                                         <UpdateStatusM checkedids={this.state.checkedids} />
                                     </div>
                             }
