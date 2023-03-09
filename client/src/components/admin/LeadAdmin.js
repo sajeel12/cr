@@ -268,7 +268,7 @@ class LeadAdmin extends Component {
                                                         <StyledTableCell align="center">{row.owner ? row.owner.username === user.username ? "You" : row.owner.username : "N/A"}</StyledTableCell>
                                                     </>
                                                     : ''}
-                                                <StyledTableCell align="center">{row._id}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.leadid}</StyledTableCell>
                                                 <StyledTableCell align="center">{row.make}</StyledTableCell>
                                                 <StyledTableCell align="center">{row.model}</StyledTableCell>
                                                 <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
@@ -322,7 +322,7 @@ class LeadAdmin extends Component {
                                                             <StyledTableCell align="center">{row.owner.username === user.username ? "You" : row.owner.username}</StyledTableCell>
                                                         </>
                                                         : ''}
-                                                    <StyledTableCell align="center">{row._id}</StyledTableCell>
+                                                    <StyledTableCell align="center">{row.leadid}</StyledTableCell>
                                                     <StyledTableCell align="center">{row.make}</StyledTableCell>
                                                     <StyledTableCell align="center">{row.model}</StyledTableCell>
                                                     <StyledTableCell align="center">{row.modelyear}</StyledTableCell>

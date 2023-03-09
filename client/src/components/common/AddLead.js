@@ -10,7 +10,7 @@ import { v1 as uuid } from 'uuid';
 import { connect } from "react-redux";
 import { addLead } from '../../actions/leadActions'
 import PropTypes from 'prop-types';
-
+import ShortUniqueId from 'short-unique-id';
 
 class AddLead extends Component {
 
@@ -54,10 +54,14 @@ class AddLead extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+
+        const suid = new ShortUniqueId({length: 6})
+        const uid  = suid();
+        const uuid =  `HS${uid}`;
         if (this.state.fullname !== '' && this.state.destinationcity !== '') {
             const { user } = this.props.auth;
             const newLead = {
-                id: uuid(),
+                id: uuid,
                 owner: user._id,
                 fullname: this.state.fullname,
                 email: this.state.email,

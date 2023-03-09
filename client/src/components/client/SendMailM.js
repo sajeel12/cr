@@ -36,43 +36,7 @@ class SendMailM extends Component {
     `;
 
     newquotehtml = `
-    <div style="margin: 0 5%;">
-    <div style="  align-items: center;">
-        <h1 style="color: rgba(0, 0, 0, 0.692);">Hi ${this.props.fullname}</h1>
-        <br>
-        <p>Thank you for your interest in our company! Below you will find your auto transport quote details.</p>
-    </div>
-    <br>
-    <hr>
-    <div style="display: flex; justify-content: space-between;">
-        <p>Door to Door Service</p>
-        <p>${this.props.price} $</p>
-    </div>
-    <hr>
-    <div style="display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
-        <p><b>Total </b></p> 
-        <p style="color: rgb(4, 139, 72);">  ${this.props.price}$</p>
-    </div>
-    <hr>
-    <br>
-    <h2 style="color: rgba(0, 0, 0, 0.733);">Quote Details</h2>
-    <br>
-    <p style="color: rgba(0, 0, 0, 0.692);">
-        Quote ID: ${this.props._id} <br>
-        ${this.props.year} ${this.props.make} ${this.props.model}<br>
-        Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode} <br>
-        Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
-        Available Date: ${this.props.shipdate} <br>
-        Carrier Type: Open<br>
-        Deposit: $600,000<br>
-        Total Cost: $${this.props.price}<br>
-        If you have any questions or would like us to match a competitor's rate please call me at (516) 656-1474.
-        Regards,<br>
-        ${this.props.fromemail}<br>
-        ${this.state.company}<br>
-        Direct: (516) 656-1474<br>
-    </p>
-</div>
+    <h3> kamal ${this.props.price} </h3>
     `
 
 

@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
         from: req.body.email,
         to: req.body.to,
         subject: req.body.subject,
-        text: '',
+        text: 'SM Transports',
         html: req.body.html
     };
 
@@ -38,8 +38,11 @@ router.post('/', (req, res) => {
     mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
             console.log('Fail bhai', err)
+            console.log(req.body.html)
         } else {
             console.log('success')
+            // console.log(req.body.html)
+
             if (req.body.many) {
                 Lead.updateMany({ _id: { $in: req.body.id } }, {
                     mailsent: true
