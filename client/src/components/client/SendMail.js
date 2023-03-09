@@ -365,16 +365,16 @@ class SendMail extends Component {
                 console.log("emails ->", checkedemail)
                 console.log("ids ->", checkedids)
 
-                // checkedids.forEach(id => {
-                //     checkedemail.forEach(to => {
-                //         const mail = {
-                //             to,
-                //             id,
-                //             many: false
-                //         }
-                //         this.props.sendMail(mail);
-                //     })
-                // })
+                checkedids.forEach(id => {
+                    checkedemail.forEach(to => {
+                        const mail = {
+                            to,
+                            id,
+                            many: false
+                        }
+                        this.props.sendMail(mail);
+                    })
+                })
 
             } else {
                 const to = this.props.email;
