@@ -45,6 +45,8 @@ app.use('/api/leads/status/ms', require('./routes/api/leads/updateStatusM'));
 
 app.use('/api/mail', require('./routes/api/mail'));
 
+app.use('/api/seed/seed/seed', require('./routes/api/seed'));
+
 
 
 // serve static assets if in production

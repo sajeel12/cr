@@ -166,7 +166,7 @@ class RegisterModel extends Component {
 
                             <hr />
                             <Button variant='contained'
-                                        sx={{ marginBottom: 0, marginLeft: 0, backgroundColor:'orange' }}
+                                        sx={{ marginBottom: 0, marginLeft: 0, backgroundColor:'orange', color:'black' }}
                                         onClick={this.toggleAdmin}
                                     >
                                         {this.state.isadmin ? 'Admin' : 'Agent'}
