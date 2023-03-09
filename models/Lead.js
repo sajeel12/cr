@@ -129,7 +129,11 @@ const LeadSchema = new Schema({
         required: false,
         default: false
     },
-
+    mailcount: {
+        type: Number,
+        required: false,
+        default: 0
+    },
     ip: {
         type: String,
         required: false

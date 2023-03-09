@@ -26,7 +26,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import CloudIcon from '@mui/icons-material/Cloud';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
-
+import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
 import MailIcon from '@mui/icons-material/Mail';
 import { Link, BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -152,9 +152,9 @@ function NavAdmin({ username, isadmin }) {
             }}
           >
 
-            <MenuIcon sx={{color:'#43bc68'}}  />
+            <MenuIcon sx={{ color: '#43bc68' }} />
           </IconButton>
-          <div style={{display:'flex', justifyContent:'space-between'}} >
+          <div style={{ display: 'flex', justifyContent: 'space-between' }} >
             <Typography variant="h6" noWrap component="div">
               Digital Solution Hub      {isadmin ? '--------- Admin' : ''}
             </Typography>
@@ -166,7 +166,7 @@ function NavAdmin({ username, isadmin }) {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton sx={{color:'#43bc68'}}  onClick={handleDrawerClose}>
+          <IconButton sx={{ color: '#43bc68' }} onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -198,7 +198,7 @@ function NavAdmin({ username, isadmin }) {
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                       <LeaderboardIcon sx={{ color: '#43bc68' }} />
                     </ListItemIcon>
-                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0  }} />
+                    <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -228,7 +228,29 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-
+              <Link to='/agents' style={{ textDecoration: 'none', color: '#707070' }}>
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      
+                      <SportsKabaddiIcon sx={{ color: '#43bc68' }}/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Vendors"} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
 
               <ListItem disablePadding sx={{ display: 'block' }}>

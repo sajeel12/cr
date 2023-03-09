@@ -130,35 +130,35 @@ export class AgreementForm extends Component {
     onSubmit = () => {
 
         // console.log(this.state.lead);
+        if (!this.state.electronicsignature == '') {
+            const agreement = {
+                leadid: this.props.params.get("hash_id"),
 
-        const agreement = {
-            leadid: this.props.params.get("hash_id"),
+                electronicsignature: this.state.electronicsignature,
+                ip: this.state.ip.IPv4,
+                agreementurl: window.location.href,
 
-            electronicsignature: this.state.electronicsignature,
-            ip: this.state.ip.IPv4,
-            agreementurl: window.location.href,
-
-            fullname: this.state.fullname,
-            email: this.state.email,
-            phoneno: this.state.phoneno,
-            origincity: this.state.origincity,
-            originaddress: this.state.originaddress,
-            origincity: this.state.origincity,
-            originstate: this.state.originstate,
-            originzipcode: this.state.originzipcode,
-            destinationaddress: this.state.destinationaddress,
-            destinationcity: this.state.destinationcity,
-            destinationstate: this.state.destinationstate,
-            destinationzipcode: this.state.destinationzipcode,
-            model: this.state.model,
-            modelyear: this.state.modelyear,
-            make: this.state.make,
-            vehicletype: this.state.vehicletype
+                fullname: this.state.fullname,
+                email: this.state.email,
+                phoneno: this.state.phoneno,
+                origincity: this.state.origincity,
+                originaddress: this.state.originaddress,
+                origincity: this.state.origincity,
+                originstate: this.state.originstate,
+                originzipcode: this.state.originzipcode,
+                destinationaddress: this.state.destinationaddress,
+                destinationcity: this.state.destinationcity,
+                destinationstate: this.state.destinationstate,
+                destinationzipcode: this.state.destinationzipcode,
+                model: this.state.model,
+                modelyear: this.state.modelyear,
+                make: this.state.make,
+                vehicletype: this.state.vehicletype
+            }
+            this.props.addAgreement(agreement);
+            window.location.reload()
+            // console.log(agreement)
         }
-        this.props.addAgreement(agreement);
-        window.location.reload()
-        // console.log(agreement)
-
     }
 
 
@@ -173,7 +173,7 @@ export class AgreementForm extends Component {
         return (
             <>
                 {
-                    loading ? 'Loading...' : 
+                    loading ? 'Loading...' :
                         <div style={{ overflowY: 'scroll', maxHeight: 600 }} >
 
                             <Box sx={{ flexGrow: 1 }}>
@@ -448,7 +448,7 @@ export class AgreementForm extends Component {
                                 </div>
                             </Container >
                         </div >
-                       
+
 
                 }
             </>

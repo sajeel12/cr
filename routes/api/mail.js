@@ -17,8 +17,8 @@ router.post('/', (req, res) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: req.body.email  , // generated ethereal user  kevin@smtransports.us
-            pass:  req.body.emailpass , // generated ethereal password          kevintest
+            user: req.body.email, // generated ethereal user  kevin@smtransports.us
+            pass: req.body.emailpass, // generated ethereal password          kevintest
         },
     });
 
@@ -55,7 +55,8 @@ router.post('/', (req, res) => {
                     })
             } else {
                 Lead.findByIdAndUpdate(req.body.id, {
-                    "mailsent": true
+                    "mailsent": true,
+                    $inc:{"mailcount":1}
                 }, { new: true })
                     .exec((err, lead) => {
                         if (err)

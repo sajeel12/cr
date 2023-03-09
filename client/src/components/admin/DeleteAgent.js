@@ -3,7 +3,7 @@ import {
     Typography, Box, Modal, Button,
     TextField, Divider
 } from '@mui/material';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { deleteAgent } from '../../actions/agentActions';
 
@@ -21,7 +21,9 @@ class DeleteAgent extends Component {
     };
 
     state = {
-        open: false
+        open: false,
+        id:'',
+        user:{}
     }
 
     onSubmit = e => {
@@ -30,7 +32,11 @@ class DeleteAgent extends Component {
         this.handleClose();
     }
 
- 
+    componentDidMount = () => {
+        const {user} = this.props.auth;
+        const{id} = this.props;
+        this.setState({user: user, id: id})
+    }
 
     handleClose = () => {
         this.setState({
@@ -40,9 +46,10 @@ class DeleteAgent extends Component {
 
 
     render() {
+        const { user } = this.props.auth
         return (
             <>
-                <Button variant="contained"
+                <Button variant="contained" disabled={this.state.id == this.state.user._id ? true : false}
                     sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
                     onClick={this.handleClose}
                 >Delete
@@ -64,13 +71,13 @@ class DeleteAgent extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            <Typography variant="h5" component="h2" sx={{  color: 'red', fontWeight:'bolder' }} >
+                            <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
                                 DELETE Agent  for Name ----  {this.props.username}
                             </Typography>
 
                             <hr />
-                            <Button variant='contained' 
-                                sx={{ marginBottom: 5 , backgroundColor:'red', color:'white' }}
+                            <Button variant='contained'
+                                sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
                                 onClick={this.onSubmit}
                             >
                                 Delete
@@ -91,8 +98,10 @@ class DeleteAgent extends Component {
 }
 
 
+
 const mapStateToProps = (state) => ({
-    agent:state.agent
+    agent: state.agent,
+    auth: state.auth
 })
 
-export default connect(mapStateToProps, {deleteAgent})(DeleteAgent);
+export default connect(mapStateToProps, { deleteAgent })(DeleteAgent);

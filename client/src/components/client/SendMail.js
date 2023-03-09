@@ -357,7 +357,8 @@ class SendMail extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const subject_check = this.state.subject;
-        if (subject_check !== '') {
+        // if(this.state.template !== '')
+        if (this.state.template !== '') {
             if (this.props.many) {
                 const checkedemail = this.props.checkedemail;
                 const checkedids = this.props.checkedids;
@@ -406,9 +407,17 @@ class SendMail extends Component {
         return (
             <div>
                 <Button onClick={this.toggle} variant='contained'
-                    sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{ width: 168, backgroundColor: 'black', borderRadius: 50 }}
                 >
-                    Send Email
+                    <b style={{
+                        color: 'black'
+                        , backgroundColor: '#6bff9c',
+                        borderRadius: 60,
+                        width: 30,
+                        marginRight: 15,
+
+                    }}>
+                        {this.props.mailcount} </b>  Send Email
                 </Button>
                 <Modal
                     open={this.state.open}

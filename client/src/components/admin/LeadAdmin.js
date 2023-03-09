@@ -71,7 +71,7 @@ class LeadAdmin extends Component {
     }
 
 
-    searchStyle={
+    searchStyle = {
         border: 'none',
         borderRadius: 50,
         width: 200,
@@ -118,24 +118,44 @@ class LeadAdmin extends Component {
 
         const { name, checked } = e.target;
         const leads = this.state.leads
-        const checkedvalue = leads.map((lead) => (
-            lead._id === name ? { ...lead, ischecked: checked } : lead
-        ));
-        console.log(checkedvalue);
-        this.setState({ leads: checkedvalue })
 
-        const checkedinputs = checkedvalue.filter(lead => lead.ischecked === true);
-        this.setState({ checkedinputs: checkedinputs });
+        if (name === 'allcheck') {
+            const checkedvalue = leads.map((lead) => {
+                return { ...lead, ischecked: checked }
+            });
+            this.setState({ leads: checkedvalue })
 
-        const checkedids = checkedinputs.map((lead) => (lead._id));
-        this.setState({ checkedids: checkedids });
+            const checkedinputs = checkedvalue.filter(lead => lead.ischecked === true);
+            this.setState({ checkedinputs: checkedinputs });
 
-        const checkedemail = checkedinputs.map((lead) => (lead.email));
-        this.setState({ checkedemail: checkedemail });
+            const checkedids = checkedinputs.map((lead) => (lead._id));
+            this.setState({ checkedids: checkedids });
+
+            const checkedemail = checkedinputs.map((lead) => (lead.email));
+            this.setState({ checkedemail: checkedemail });
 
 
-        console.log(JSON.stringify(checkedids));
+            console.log(JSON.stringify(checkedids));
+        }
+        else {
 
+            const checkedvalue = leads.map((lead) => (
+                lead._id === name ? { ...lead, ischecked: checked } : lead
+            ));
+            this.setState({ leads: checkedvalue })
+
+            const checkedinputs = checkedvalue.filter(lead => lead.ischecked === true);
+            this.setState({ checkedinputs: checkedinputs });
+
+            const checkedids = checkedinputs.map((lead) => (lead._id));
+            this.setState({ checkedids: checkedids });
+
+            const checkedemail = checkedinputs.map((lead) => (lead.email));
+            this.setState({ checkedemail: checkedemail });
+
+
+            console.log(JSON.stringify(checkedids));
+        }
     }
 
 
@@ -162,12 +182,12 @@ class LeadAdmin extends Component {
                             variant="standard"
                             onChange={(e) => this.setState({ searchedval: e.target.value })} /> */}
 
-                        <input  className='searchLead'  type="text"  placeholder='Search Lead'
+                        <input className='searchLead' type="text" placeholder='Search Lead'
                             style={this.searchStyle}
                             onChange={(e) => this.setState({ searchedval: e.target.value })}
                         />
-                        
-                        
+
+
 
                         <AddLead />
 
@@ -203,8 +223,11 @@ class LeadAdmin extends Component {
                         <TableHead>
                             <TableRow  >
                                 {!this.state.realtime &&
-                                    <StyledTableCell> </StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">
+                                        <input type="checkbox" style={{ width: 18, height: 18 }} name="allcheck" checked={!leads.some((lead) => lead?.ischecked !== true)} onChange={this.handleCheck} />
+                                    </StyledTableCell>
                                 }
+
                                 <StyledTableCell>FullName </StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
@@ -228,7 +251,7 @@ class LeadAdmin extends Component {
                         <TableBody>
                             {this.state.leads.filter((row) =>
                                 // note that I've incorporated the searchedVal length check here
-                                !this.state.searchedval.length || row.fullname
+                                !this.state.searchedval.length || row.leadid
                                     .toString()
                                     .toLowerCase()
                                     .includes(this.state.searchedval.toString().toLowerCase())
@@ -290,7 +313,7 @@ class LeadAdmin extends Component {
 
                                                             <>
 
-                                                                <SendMail toemail={row.email} many={false} leadid={row._id} fromemail={user.email} />
+                                                                <SendMail toemail={row.email} many={false} mailcount={row.mailcount} leadid={row._id} fromemail={user.email} />
                                                                 <SendMsg  {...row} />
                                                                 <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                                 <UpdateStatus leadid={row._id} />

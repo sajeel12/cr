@@ -29,6 +29,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 class RegisterModel extends Component {
+    
     style = {
         position: 'absolute',
         top: '50%',
@@ -138,7 +139,7 @@ class RegisterModel extends Component {
         return (
             <div>
                 <Button onClick={this.toggle} variant='contained'
-                    sx={{ marginBottom: 5, marginLeft: 20, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{width:200, height:56, fontSize:20, marginBottom: 3, marginLeft: 3, backgroundColor: 'black', borderRadius: 50 }}
                 >
                     Add Agent
 

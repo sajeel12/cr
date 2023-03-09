@@ -74,6 +74,8 @@ class Agents extends Component {
     render() {
         const { agents } = this.props.agent;
         const { loading } = this.props.lead;
+        const { user } = this.props.auth;
+
         return (
             <Container sx={{ width: 1400 }}  >
 
@@ -102,13 +104,16 @@ class Agents extends Component {
                                     <StyledTableCell align="center">{row.email}</StyledTableCell>
 
                                     <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                    <StyledTableCell align="center">{String(row.isadmin)}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.isadmin ? 'Admin' : 'Agent'}</StyledTableCell>
 
                                     <StyledTableCell align="right">
                                         <Stack spacing={2} direction="row">
+
                                             {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
-                                            <DeleteAgent id={row._id} username={row.username} />
-                                            <AgentAdmin2 idt={row._id} />
+                                            <DeleteAgent userid={user._id} id={row._id} username={row.username} />
+                                            {row.isadmin ? "" :
+                                                <AgentAdmin2 idt={row._id} />
+                                            }
                                         </Stack>
                                     </StyledTableCell>
 
@@ -130,12 +135,14 @@ class Agents extends Component {
 Agents.propTypes = {
     getAgents: PropTypes.func.isRequired,
     agent: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
     lead: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
     agent: state.agent,
-    lead: state.lead
+    lead: state.lead,
+    auth: state.auth
 });
 
 
