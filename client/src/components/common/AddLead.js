@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { addLead } from '../../actions/leadActions'
 import PropTypes from 'prop-types';
 import ShortUniqueId from 'short-unique-id';
+import { Alert } from '@mui/material';
 
 class AddLead extends Component {
 
@@ -25,15 +26,17 @@ class AddLead extends Component {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 640,
-        height:600,
+        height: 600,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-        overflowY:'scroll'
+        overflowY: 'scroll'
     };
     state = {
         open: false,
+        error: false,
+
         fullname: '',
         email: '',
         phoneno: '',
@@ -55,10 +58,29 @@ class AddLead extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const suid = new ShortUniqueId({length: 6})
-        const uid  = suid();
-        const uuid =  `HS${uid}`;
-        if (this.state.fullname !== '' && this.state.destinationcity !== '') {
+        const suid = new ShortUniqueId({ length: 6 })
+        const uid = suid();
+        const uuid = `HS${uid}`;
+        if (this.state.fullname !== ''
+            && this.state.destinationcity !== ''
+            && this.state.fullname !== ''
+            && this.state.email !== ''
+            && this.state.phoneno !== ''
+            && this.state.originaddress !== ''
+            && this.state.origincity !== ''
+            && this.state.originstate !== ''
+            && this.state.originzipcode !== ''
+            && this.state.destinationaddress !== ''
+            && this.state.destinationcity !== ''
+            && this.state.destinationstate !== ''
+            && this.state.destinationzipcode !== ''
+            && this.state.model !== ''
+            && this.state.modelyear !== ''
+            && this.state.make !== ''
+            && this.state.vehicletype !== ''
+        ) {
+            this.setState({error:false})
+
             const { user } = this.props.auth;
             const newLead = {
                 id: uuid,
@@ -78,7 +100,7 @@ class AddLead extends Component {
                 modelyear: this.state.modelyear,
                 make: this.state.make,
                 vehicletype: this.state.vehicletype,
-                shipdate:this.state.shipdate
+                shipdate: this.state.shipdate
 
             };
 
@@ -86,7 +108,7 @@ class AddLead extends Component {
             this.handleClose();
         }
         else {
-            alert('fill all fields')
+            this.setState({error:true})
         }
     }
 
@@ -105,7 +127,7 @@ class AddLead extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ fontSize:20, width:200, height:56  ,marginBottom: 0, marginLeft: 5, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{ fontSize: 20, width: 200, height: 56, marginBottom: 0, marginLeft: 5, backgroundColor: 'black', borderRadius: 50 }}
                 >
                     Add Lead
                 </Button>
@@ -114,7 +136,7 @@ class AddLead extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
-                    sx={{ overflowY: 'scroll', height:700 }}
+                    sx={{ overflowY: 'scroll', height: 700 }}
                 >
                     <Box sx={this.style}>
 
@@ -129,7 +151,7 @@ class AddLead extends Component {
                             <Typography variant="h5" component="h2">
                                 Add Lead
                             </Typography>
-
+                            {this.state.error && <Alert  severity="error"> Please Fill All Fields</Alert> }
                             <hr />
                             <form  >
                                 <TextField
@@ -157,10 +179,10 @@ class AddLead extends Component {
                                     variant="standard"
                                     required
                                 />
-                            <hr/>
-                            <Typography variant="h6" component="h2">
-                                Origin
-                            </Typography>
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Origin
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -193,10 +215,10 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
-                                <hr/>
-                            <Typography variant="h6" component="h2">
-                                Destination
-                            </Typography>
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Destination
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -229,10 +251,10 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
-                                <hr/>
-                            <Typography variant="h6" component="h2">
-                                Vehicle Detail
-                            </Typography>
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Vehicle Detail
+                                </Typography>
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -276,8 +298,10 @@ class AddLead extends Component {
 
                                 <div>
                                     <Button variant='contained'
-                                        sx={{ marginTop: 5, backgroundColor:'black',width:100,
-                                         borderRadius:50, marginLeft:28 }}
+                                        sx={{
+                                            marginTop: 5, backgroundColor: 'black', width: 100,
+                                            borderRadius: 50, marginLeft: 28
+                                        }}
                                         onClick={this.onSubmit}
                                     >
                                         Add
