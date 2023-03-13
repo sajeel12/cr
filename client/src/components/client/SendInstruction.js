@@ -31,7 +31,10 @@ class SendInstruction extends Component {
 
 
     apiinstruction = `
-     <h3>   this is the instruction for API </h3> 
+     <h3>   this is the instruction for API
+      <br>
+      your token is ${this.props.password}
+      </h3> 
     `;
 
 
@@ -100,9 +103,9 @@ class SendInstruction extends Component {
         // clear errors
         this.props.clearErrors();
 
-        this.setState({
-            open: !this.state.open
-        });
+        // this.setState({
+        //     open: !this.state.open
+        // });
     }
 
     onChange = (e) => {
@@ -159,110 +162,7 @@ class SendInstruction extends Component {
 
                 </Button>
 
-                <Modal
-                    open={this.state.open}
-                    onClose={this.toggle}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    sx={{ overflowX: 'scroll' }}
-                >
-                    <Box sx={this.style}>
-
-                        <Box
-                            component="form"
-                            sx={{
-                                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <Typography variant="h5" component="h2">
-                                Send Email
-                            </Typography>
-
-                            <hr />
-                            <form  >
-                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
-                                    <InputLabel id="demo-simple-select-standard-label">Company</InputLabel>
-
-                                    <Select
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard"
-                                        value={this.state.company}
-                                        onChange={this.onCompany}
-                                        label="Company"
-                                    >
-                                        <MenuItem value="SM Transports" >SM Transports</MenuItem>
-                                        <MenuItem value="HS Logistics" >HS Logistics</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
-
-                                    <InputLabel id="demo-simple-select-standard-label">Select Template</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard"
-                                        value={this.state.selected}
-                                        onChange={this.onTemplate}
-                                        label="Select Template"
-                                    >
-
-                                        <MenuItem value='1' >New Quote</MenuItem>
-                                        <MenuItem value='2' >Dispatched</MenuItem>
-                                        <MenuItem value='3' >FollowUp</MenuItem>
-                                        <MenuItem value='4' >Order Confirmation</MenuItem>
-                                        <MenuItem value='5' >Payment Recieved</MenuItem>
-                                        <MenuItem value='6' >Agreemnet</MenuItem>
-                                        <MenuItem value='7' >Second FollowUp</MenuItem>
-
-                                    </Select>
-
-
-                                </FormControl>
-
-                                <TextField
-
-                                    onChange={this.onChange}
-                                    name='from'
-                                    id="standard-read-only-input"
-                                    label="from"
-                                    type="text"
-                                    variant="standard"
-                                    value={this.props.fromemail}
-
-                                />
-
-
-
-                                <TextField
-
-                                    onChange={this.onChange}
-                                    name='to'
-                                    id="standard-read-only-input"
-                                    label="To"
-                                    type="text"
-                                    variant="standard"
-                                    value={this.props.email}
-
-                                />
-
-                            </form>
-
-                            <Button variant='contained'
-                                sx={{ marginBottom: 5 }}
-                                onClick={this.onSubmit}
-                            >
-                                Send
-                            </Button>
-
-
-                        </Box>
-
-
-
-                    </Box>
-                </Modal>
+               
             </div>
 
         )

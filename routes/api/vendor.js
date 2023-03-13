@@ -4,39 +4,39 @@ const router = express.Router();
 const ShortUniqueId = require('short-unique-id');
 
 const Lead = require('../../models/Lead');
+const User = require('../../models/User');
 
 
 router.post('/', (req, res) => {
     const mytoken = 'ef44e422c0d287dec044df60e34beaaf1c0c49878fdec010a82755616bf615f9'
     const token = req.body.token;
 
-    const suid = new ShortUniqueId({ length: 6 })
-    const uid = suid();
-    const uuid = `HS${uid}`;
-    if (req.body.fullname !== ''
-        && req.body.destinationcity !== ''
-        && req.body.fullname !== ''
-        && req.body.email !== ''
-        && req.body.phoneno !== ''
-        && req.body.originaddress !== ''
-        && req.body.origincity !== ''
-        && req.body.originstate !== ''
-        && req.body.originzipcode !== ''
-        && req.body.destinationaddress !== ''
-        && req.body.destinationcity !== ''
-        && req.body.destinationstate !== ''
-        && req.body.destinationzipcode !== ''
-        && req.body.model !== ''
-        && req.body.modelyear !== ''
-        && req.body.make !== ''
-        && req.body.vehicletype !== ''
-    ) {
-        if (token) {
-            if (token == mytoken) {
+    User.findOne({ password: token })
+        .then(user => {
+            if (req.body.fullname !== ''
+                && req.body.destinationcity !== ''
+                && req.body.fullname !== ''
+                && req.body.email !== ''
+                && req.body.phoneno !== ''
+                && req.body.originaddress !== ''
+                && req.body.origincity !== ''
+                && req.body.originstate !== ''
+                && req.body.originzipcode !== ''
+                && req.body.destinationaddress !== ''
+                && req.body.destinationcity !== ''
+                && req.body.destinationstate !== ''
+                && req.body.destinationzipcode !== ''
+                && req.body.model !== ''
+                && req.body.modelyear !== ''
+                && req.body.make !== ''
+                && req.body.vehicletype !== ''
+            ) {
+
+
                 const newLead = new Lead({
 
-                    leadid: uuid,
-                    owner: null,
+
+                    owner: user._id,
                     fullname: req.body.fullname,
                     email: req.body.email,
                     phoneno: req.body.phoneno,
@@ -55,15 +55,17 @@ router.post('/', (req, res) => {
                     shipdate: req.body.shipdate
                 });
                 newLead.save()
-                    .then(lead => res.json(lead));
+                    .then(lead => res.status(200).json({msg: 'success'}));
+
+
 
             } else {
-                res.status({ msg: 'UnAuthorized 404' })
+                res.status(404).json({ msg: "InComplete Fields" })
             }
-        }
-    } else {
-        res.status(404).json({ msg: "InComplete Fields" })
-    }
+
+        })
+        .catch(err => res.status(404).json({ msg: "UnAuthorized User" }));
+
 
 });
 
