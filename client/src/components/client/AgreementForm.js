@@ -98,12 +98,30 @@ export class AgreementForm extends Component {
     }
 
     onGetData = () => {
-        this.setState({ lead: this.props.agreement.agreements });
-        console.log(this.state.lead)
+        this.setState({
+            fullname: this.props.agreement.agreements.fullname,
+            email: this.props.agreement.agreements.email,
+            phoneno: this.props.agreement.agreements.phoneno,
+            origincity: this.props.agreement.agreements.origincity,
+            originaddress: this.props.agreement.agreements.originaddress,
+            origincity: this.props.agreement.agreements.origincity,
+            originstate: this.props.agreement.agreements.originstate,
+            originzipcode: this.props.agreement.agreements.originzipcode,
+            getAgreement: PropTypes.func.isRequired,
+            destinationaddress: this.props.agreement.agreements.destinationaddress,
+            destinationcity: this.props.agreement.agreements.destinationcity,
+            destinationstate: this.props.agreement.agreements.destinationstate,
+            destinationzipcode: this.props.agreement.agreements.destinationzipcode,
+            model: this.props.agreement.agreements.model,
+            modelyear: this.props.agreement.agreements.modelyear,
+            make: this.props.agreement.agreements.make,
+            vehicletype: this.props.agreement.agreements.vehicletype,
+        });
+
     }
 
     setAgreeState = () => {
-
+        console.log('from Set Agree State')
         const { agreements } = this.props.agreement;
         this.setState({
             fullname: agreements.fullname,
@@ -191,6 +209,19 @@ export class AgreementForm extends Component {
                             </Box>
                             <Container maxWidth="sm" align='center'  >
                                 <div style={{ marginTop: 20 }} >
+                                    <Button onClick={this.onGetData} variant='contained'
+
+                                        sx={{
+                                            marginBottom:3,
+                                            width: 150, backgroundColor: 'yellow', color: 'black', borderRadius: 50,
+                                            "&:hover": {
+                                                backgroundColor: 'aqua'
+
+                                            }
+                                        }}
+                                    >
+                                        Auto Fill Data
+                                    </Button>
                                     {/* ==================================================== */}
                                     <Accordion  >
                                         <AccordionSummary
@@ -334,15 +365,15 @@ export class AgreementForm extends Component {
                                                     <th style={{ paddingLeft: 20 }}> Model</th>
                                                 </tr>
                                                 <tr >
-                                                    <td style={{ paddingLeft: 20 }} > {this.state.modelyear}</td>
-                                                    <td style={{ paddingLeft: 20 }} > {this.state.make}</td>
-                                                    <td style={{ paddingLeft: 20 }}> {this.state.model}</td>
+                                                    <td style={{ paddingLeft: 20 }} > {agreements.modelyear}</td>
+                                                    <td style={{ paddingLeft: 20 }} > {agreements.make}</td>
+                                                    <td style={{ paddingLeft: 20 }}> {agreements.model}</td>
                                                 </tr>
                                             </table>
                                             <hr />
                                             <Typography>PRICE </Typography>
                                             <br />
-                                            <p> <b> Total</b> &nbsp;&nbsp;&nbsp;  {this.state.price}$ </p>
+                                            <p> <b> Total</b> &nbsp;&nbsp;&nbsp;  {agreements.price}$ </p>
 
 
                                         </AccordionDetails>
@@ -376,10 +407,10 @@ export class AgreementForm extends Component {
                                                 name='electronicsignature'
                                                 sx={{ width: 300, marginBottom: 2 }}
                                                 id="standard-basic" label="Electronic Signature" variant="standard" />
-                                            <p style={{ textAlign: 'left' }} >Your IP Address </p>
-                                            <TextField
+                                            {/* <p style={{ textAlign: 'left' }} >Your IP Address </p> */}
+                                            {/* <TextField
                                                 sx={{ width: 300 }}
-                                                id="standard-basic-readonly" disabled value={this.state.ip.IPv4} label="" variant="standard" />
+                                                id="standard-basic-readonly" disabled value={this.state.ip.IPv4} label="" variant="standard" /> */}
 
                                             <FormGroup sx={{ marginTop: 2 }} >
                                                 <FormControlLabel onChange={this.onChangeAgree} control={<Checkbox />} label="I Agreed to the all Terms And Condition mention below" />
@@ -432,17 +463,7 @@ export class AgreementForm extends Component {
                                     >
                                         Agree
                                     </Button>
-                                    <Button onClick={this.onGetData} variant='contained'
 
-                                        sx={{
-                                            width: 150, backgroundColor: 'black', borderRadius: 50,
-                                            "&:hover": {
-                                                backgroundColor: 'green'
-                                            }
-                                        }}
-                                    >
-                                        get pre daa
-                                    </Button>
                                     <br />
 
                                 </div>

@@ -12,7 +12,6 @@ import { addLead } from '../../actions/leadActions'
 import PropTypes from 'prop-types';
 import ShortUniqueId from 'short-unique-id';
 import { Alert } from '@mui/material';
-
 class AddLead extends Component {
 
     static propTypes = {
