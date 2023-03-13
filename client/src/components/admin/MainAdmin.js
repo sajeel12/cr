@@ -18,6 +18,7 @@ import AgreementForm from '../client/AgreementForm';
 import LoginModal from '../auth/LoginModal';
 import AgreementWrapper from '../client/AgreementWrapper';
 import AgreementPanel from '../client/AgreementPanel';
+import Vendors from './Vendors';
 
 class MainAdmin extends Component {
     DrawerHeader = styled('div')(({ theme }) => ({
@@ -84,9 +85,27 @@ class MainAdmin extends Component {
                                         <NavAdmin username={user.username} isadmin={user.isadmin} />
                                         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                                             <this.DrawerHeader />
-                                            
+
                                             {user.isadmin ?
                                                 <BodyAgent />
+                                                :
+                                                ''
+                                            }
+                                        </Box>
+                                    </Box>
+                                </Box>
+
+                            } />
+                            <Route path='/vendors' element={
+
+                                <Box sx={{ display: 'flex' }}>
+                                    <Box sx={{ display: 'flex' }}>
+                                        <NavAdmin username={user.username} isadmin={user.isadmin} />
+                                        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                                            <this.DrawerHeader />
+
+                                            {user.isadmin ?
+                                                <Vendors/>
                                                 :
                                                 ''
                                             }
@@ -127,7 +146,7 @@ class MainAdmin extends Component {
                                         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                                             <this.DrawerHeader />
                                             <FollowUp />
-                                        {/* <Navigate to='/followup'/> */}
+                                            {/* <Navigate to='/followup'/> */}
 
                                         </Box>
                                     </Box>
@@ -172,7 +191,7 @@ class MainAdmin extends Component {
                                     </Box>
                                 </Box>
                             } />
-                             <Route path='/customer_agreement' element={
+                            <Route path='/customer_agreement' element={
                                 <Box sx={{ display: 'flex' }}>
                                     <Box sx={{ display: 'flex' }}>
                                         <NavAdmin username={user.username} isadmin={user.isadmin} />
@@ -210,7 +229,7 @@ class MainAdmin extends Component {
 
                             } />
 
-                            <Route path='agreement' element={ <AgreementWrapper /> } />
+                            <Route path='agreement' element={<AgreementWrapper />} />
                         </Route>
 
 

@@ -25,8 +25,10 @@ class SendMail extends Component {
         open: false,
         company: '',
         template: '',
+        templateM: '',
         tempselected: '',
-        subject: ''
+        subject: '',
+        tmpno: 0
     }
 
 
@@ -58,7 +60,7 @@ class SendMail extends Component {
     <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
          ID: ${this.props.leadid} <br>
-        ${this.props.year} ${this.props.make} ${this.props.model}<br>
+        ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
         Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode} <br>
         Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
         Available Date: ${this.props.shipdate} <br>
@@ -120,7 +122,7 @@ class SendMail extends Component {
         ${this.props.leadid}  <br>
         ${this.props.originaddress}<br>
         ${this.props.destinationaddress}<br>
-        ${this.props.year} ${this.props.make} ${this.props.model} <br>
+        ${this.props.modelyear} ${this.props.make} ${this.props.model} <br>
         ${this.props.price} $
         </p>
 
@@ -187,7 +189,7 @@ class SendMail extends Component {
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
             Order ID: ${this.props.leadid} <br>
-            ${this.props.year} ${this.props.make} ${this.props.model}<br>
+            ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
             Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode}<br>
             Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
             Available Date: ${this.props.shipdate}<br>
@@ -259,7 +261,7 @@ class SendMail extends Component {
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
         Quote ID: ${this.props.leadid} <br>
-        ${this.props.year} ${this.props.make} ${this.props.model}<br>
+        ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
         Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode}<br>
         Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
         Available Date: ${this.props.shipdate}<br>
@@ -305,17 +307,17 @@ class SendMail extends Component {
     onTemplate = (e) => {
         this.setState({ tempselected: e.target.value })
         if (e.target.value === '1') {
-            this.setState({ template: this.newquotehtml, subject: " Shipment Details " })
+            this.setState({ tmpno: 1, template: this.newquotehtml, subject: " Shipment Details " })
         } else if (e.target.value === '2') {
-            this.setState({ template: this.dispatchedhtml, subject: "Dispatched to Destination" })
+            this.setState({ tmpno: 2, template: this.dispatchedhtml, subject: "Dispatched to Destination" })
         } else if (e.target.value === '3') {
-            this.setState({ template: this.followuphtml, subject: "FollowUp" })
+            this.setState({ tmpno: 3, template: this.followuphtml, subject: "FollowUp" })
         } else if (e.target.value === '4') {
-            this.setState({ template: this.orderconfirmationhtml, subject: "Confirm Your Order Please..." })
+            this.setState({ tmpno: 4, template: this.orderconfirmationhtml, subject: "Confirm Your Order Please..." })
         } else if (e.target.value === '5') {
-            this.setState({ template: this.paymentrecievedhtml, subject: "Payment Recieved" })
+            this.setState({ tmpno: 5, template: this.paymentrecievedhtml, subject: "Payment Recieved" })
         } else if (e.target.value === '6') {
-            this.setState({ template: this.agreement, subject: "Order Agreement" })
+            this.setState({ tmpno: 6, template: this.agreement, subject: "Order Agreement" })
         }
         else {
             this.setState({ template: this.secondfollowuphtml, subject: "Follow UP" })
@@ -362,7 +364,7 @@ class SendMail extends Component {
             if (this.props.many) {
 
                 const subject = this.state.subject;
-                const html = this.state.template;
+                // const html = this.state.template;
                 const { user } = this.props.auth;
                 const { email, emailpass } = user;
                 const checkedemail = this.props.checkedemail;
@@ -371,36 +373,299 @@ class SendMail extends Component {
                 console.log("emails ->", checkedemail)
                 console.log("ids ->", checkedids)
 
-                
-                    checkedinputs.map(lead => {
-                        const id = lead._id;
-                        const to = lead.email;
-                        const mail = {
-                            email,
-                            emailpass,
-                            to,
-                            id,
-                            html,
-                            subject,
-                            many: false
-                        }
-                        this.props.sendMail(mail);
-                    })
-                
-                // checkedids.forEach(id => {
-                //     checkedemail.forEach(to => {
-                //         const mail = {
-                //             email,
-                //             emailpass,
-                //             to,
-                //             id,
-                //             html,
-                //             subject,
-                //             many: false
-                //         }
-                //         this.props.sendMail(mail);
-                //     })
-                // })
+                checkedinputs.map(lead => {
+
+
+                    const agreementM = `
+    <h3>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${lead._id}" >Click here</a>  </h4> 
+   <br/> <hr/>  <h2 style='color:red' > HS Logistics </h3> 
+   `;
+
+                    const newquotehtmlM = `   <div style="margin: 0 0;">
+   <div style="  align-items: center;">
+       <h1 style="color: rgba(0, 0, 0, 0.692);">Hi ${lead.fullname}</h1>
+       <br>
+       <p>Thank you for your interest in our company! Below you will find your auto transport   details.</p>
+   </div>
+   <br>
+   <hr>
+   <div style="display: flex; justify-content: space-between;">
+       <p>Door to Door Service</p>
+       <p>${lead.price} $</p>
+   </div>
+   <hr>
+   <div style="display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
+       <p><b>Total </b></p> 
+       <p style="color: rgb(4, 139, 72);margin-left:60px">  ${lead.price}$</p>
+   </div>
+   <hr>
+   <br>
+   <h2 style="color: rgba(0, 0, 0, 0.733);"> Details</h2>
+   <br>
+   <p style="color: rgba(0, 0, 0, 0.692);">
+        ID: ${lead.leadid} <br>
+       ${lead.modelyear} ${lead.make} ${lead.model}<br>
+       Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode} <br>
+       Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
+       Available Date: ${lead.shipdate} <br>
+       Carrier Type:  opn <br>
+       Total : $ ${lead.price}<br>
+       If you have any questions or would like us to match a competitor's  fee  kindly contact us 5166561474.
+       Regards,<br>
+       ${lead.fromemail}<br>
+       ${this.state.company}<br>
+       Direct:  5166561474 <br>
+   </p>
+</div>
+   `
+
+                    const dispatchedhtmlM = `
+<div style="margin: 0 0;">
+<div style=" display: flex; flex-direction: column; align-items: center;">
+   <h1 style="color: rgba(0, 0, 0, 0.692);margin-right:50px;">Your Order Has Been Dispatched</h1>
+   <br> <br>
+   <p style="color: rgba(0, 0, 0, 0.692);">
+       ${lead.fullname},<br><br>
+
+       We are happy to inform you that your shipment from ${lead.origincity} to ${lead.destinationcity} has been assigned to a truck. You will be contacted shortly with an estimated pickup and delivery time.
+       <br><br>
+       Please feel free to call us with any questions!
+       <br><br>
+       Sincerely,
+       <br><br>
+       ${this.state.company} <br>
+       Direct at 5166561474</p>
+</div>
+</div>
+`
+
+                    const followuphtmlM = `
+<div style="margin: 0 0;">
+<div style=" background-color: rgba(0, 0, 0, 0.048);padding: 20px;">
+   <h2 style="color: rgba(0, 0, 0, 0.692);">Sorry we missed you!</h2>
+   <br>
+   <p>${lead.fullname}, <br> <br>
+       We tried to contact you today to follow up on your requested quote; sorry we missed you! Your custom
+       quote is below. Please feel free to contact us with any questions!</p>
+</div>
+<br>
+<div style=" background-color: rgb(1, 10, 59);padding: 20px;display: flex; border-bottom: solid orange 10px;">
+
+   <div style="flex-basis: 50%; display: flex;">
+       <p style="color: white;">
+           Quote ID: <br>
+           Origin:  <br>
+           Destination:  <br>
+           Vehicle:<br>
+           Price: 
+       </p>
+       <p style="color: white;margin-left: 20px;">
+
+       ${lead.leadid}  <br>
+       ${lead.originaddress}<br>
+       ${lead.destinationaddress}<br>
+       ${lead.modelyear} ${lead.make} ${lead.model} <br>
+       ${lead.price} $
+       </p>
+
+   </div>
+   <div style="flex-basis: 50%;">
+       <h2 style="color: white;">
+           Your Custom Quote</h2>
+           <br>
+       <p style="color: white;" >
+           Your custom price for you shipment from ${lead.originaddress} to  ${lead.destinationaddress} is $${lead.price}. If you have
+           any questions, or would like to book your shipment via phone, please feel free to call us at 5166561474.
+           <br>
+           <br>
+
+           You may also book your shipment online via the button below.
+           <br><br>
+           Book Now">Book Online
+           Please feel free to contact us with any questions.
+           <br><br>
+           Sincerely,
+           <br><br>
+           ${this.state.company}
+
+           <br><br>
+           ${lead.fromemail}
+           <br><br>
+           5166561474
+       </p>
+   </div>
+</div>
+
+</div>
+
+`
+
+                    const orderconfirmationhtmlM = `
+<div style="margin: 0 0;">
+       <div style=" display: flex; flex-direction: column; align-items: center;">
+           <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
+           <br>
+           <p>${lead.fullname}, <br>
+
+               Thank you for placing your order with SM Transports! </p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <div style="display: flex; justify-content: space-between;">
+           <p>Door to Door Service</p>
+           <p>${lead.price} $</p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <div
+           style="padding: 10px 0; display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
+           <p><b>Total</b></p>
+           <p style="color: rgb(4, 139, 72);margin-left:50px;"> ${lead.price} $</p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <h2 style="color: rgba(0, 0, 0, 0.733);">Order Details</h2>
+       <br>
+       <p style="color: rgba(0, 0, 0, 0.692);">
+           Order ID: ${lead.leadid} <br>
+           ${lead.modelyear} ${lead.make} ${lead.model}<br>
+           Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
+           Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
+           Available Date: ${lead.shipdate}<br>
+           Carrier Type: Open<br>
+           Deposit: $0<br>
+           Total Cost: $${lead.price}<br> <br>
+           If you have any questions please feel free to call us!
+           <br><br>
+           Sincerely,<br><br>
+           ${lead.fromemail}<br>
+           ${this.state.company}
+           <br>
+           Direct: 5166561474<br>
+       </p>
+   </div>
+`
+
+                    const paymentrecievedhtmlM = `
+<div style="margin: 0 0;">
+<div style=" display: flex; flex-direction: column; align-items: center;">
+   <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
+   <br> <br>
+   <p style="color: rgba(0, 0, 0, 0.692);">
+       ${lead.fullname},<br><br>
+
+       We have received your payment for order number <b> ${lead.leadid} </b>.
+       <br><br>
+       Please contact us at 5166561474 with any questions!
+       <br><br>
+       Sincerely,
+       <br><br>
+       ${this.state.company}
+       
+       5166561474
+</div>
+</div>
+`
+
+                    const secondfollowuphtmlM = `
+<div style="margin: 0 0;">
+       <div style=" display: flex; flex-direction: column; align-items: center;">
+           <h1 style="color: rgba(0, 0, 0, 0.692);">A quick reminder...</h1>
+           <br>
+           <p>${lead.fullname}, <br>
+
+               We are reaching out to you today as a follow up to the quote you 
+               requested. Your quote details are listed below. If you have any questions, or would like to
+                place your order, please feel free to contact us at 5166561474. </p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <div style="display: flex; justify-content: space-between;">
+           <p>Door to Door Service </p>
+           <p style="margin-left:50px" > ${lead.price} $</p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <div
+           style="padding: 10px 0; display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
+           <p><b>Total</b></p>
+           <p style="color: rgb(4, 139, 72);margin-left:50px"> ${lead.price} $</p>
+       </div>
+       <br>
+       <hr>
+       <br>
+       <h2 style="color: rgba(0, 0, 0, 0.733);">Quote Details</h2>
+       <br>
+       <p style="color: rgba(0, 0, 0, 0.692);">
+       Quote ID: ${lead.leadid} <br>
+       ${lead.modelyear} ${lead.make} ${lead.model}<br>
+       Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
+       Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
+       Available Date: ${lead.shipdate}<br>
+       Carrier Type: Open<br>
+       Deposit: $0<br>
+       Total Cost: $${lead.price}<br> <br>
+           If you have any questions please feel free to call us!
+           <br><br>
+           Sincerely,<br><br>
+           ${lead.fromemail}<br>
+       ${this.state.company}
+       <br>
+           Direct: 5166561474<br>
+       </p>
+   </div>
+`
+
+
+                    let htmlM = '';
+                    if (this.state.tmpno === 1) {
+                        this.setState({ templateM: newquotehtmlM })
+                        htmlM = newquotehtmlM;
+                    } else if (this.state.tmpno === 2) {
+                        this.setState({ templateM: dispatchedhtmlM })
+                        htmlM = dispatchedhtmlM;
+                    } else if (this.state.tmpno === 3) {
+                        this.setState({ templateM: followuphtmlM })
+                        htmlM = followuphtmlM
+                    } else if (this.state.tmpno === 4) {
+                        this.setState({ templateM: orderconfirmationhtmlM })
+                        htmlM = orderconfirmationhtmlM
+                    } else if (this.state.tmpno === 5) {
+                        this.setState({ templateM: paymentrecievedhtmlM })
+                        htmlM = paymentrecievedhtmlM
+                    } else if (this.state.tmpno === 6) {
+                        this.setState({ templateM: agreementM })
+                        htmlM = agreementM;
+                    } else {
+                        this.setState({ templateM: secondfollowuphtmlM })
+                        htmlM = secondfollowuphtmlM;
+
+                    }
+
+
+                    // const html = this.state.templateM;
+                    const html = htmlM;
+
+                    const id = lead._id;
+                    const to = lead.email;
+                    const mail = {
+                        email,
+                        emailpass,
+                        to,
+                        id,
+                        html,
+                        vendor: false,
+                        subject,
+                        many: false
+                    }
+                    this.props.sendMail(mail);
+                })
+
 
             } else {
                 const to = this.props.email;
@@ -415,7 +680,7 @@ class SendMail extends Component {
                     emailpass,
                     to,
                     id,
-
+                    vendor: false,
                     subject,
                     html,
                     many: false

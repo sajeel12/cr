@@ -46,7 +46,8 @@ router.post('/', auth, (req, res) => {
         const newLead = new Lead({
 
             owner: user._id,
-            leadid:req.body.id,
+            // leadid:req.body.id,
+
             fullname: req.body.fullname,
             email: req.body.email,
             phoneno: req.body.phoneno,
@@ -67,6 +68,7 @@ router.post('/', auth, (req, res) => {
         newLead.save()
             .then(lead => res.json(lead));
 
+        // Lead.up
     }
 
     );

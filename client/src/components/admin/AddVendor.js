@@ -28,7 +28,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
-class RegisterModel extends Component {
+class AddVendor extends Component {
 
     style = {
         position: 'absolute',
@@ -118,12 +118,10 @@ class RegisterModel extends Component {
         // create user object 
 
         const newUser = {
-            isadmin,
-            username,
+            isvendor: true,
             fullname,
             email,
-            emailpass,
-            phoneno,
+           
             password
         };
 
@@ -141,7 +139,7 @@ class RegisterModel extends Component {
                 <Button onClick={this.toggle} variant='contained'
                     sx={{ width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3, backgroundColor: 'black', borderRadius: 50 }}
                 >
-                    Add Agent
+                    Add Vendor
 
                 </Button>
                 <Modal
@@ -162,16 +160,12 @@ class RegisterModel extends Component {
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2">
-                                Add Lead
+                                Add Vendor
                             </Typography>
 
                             <hr />
-                            <Button variant='contained'
-                                sx={{ marginBottom: 0, marginLeft: 0, backgroundColor: 'orange', color: 'black' }}
-                                onClick={this.toggleAdmin}
-                            >
-                                {this.state.isadmin ? 'Admin' : 'Agent'}
-                            </Button>
+                           
+                            
                             <form  >
                                 <TextField
                                     onChange={this.onChange}
@@ -181,14 +175,7 @@ class RegisterModel extends Component {
                                     type="text"
                                     variant="standard"
                                 />
-                                <TextField
-                                    onChange={this.onChange}
-                                    name='username'
-                                    id="standard-required"
-                                    label="Username "
-                                    type="text"
-                                    variant="standard"
-                                />
+
                                 <TextField
                                     onChange={this.onChange}
                                     name='email'
@@ -198,23 +185,7 @@ class RegisterModel extends Component {
                                     variant="standard"
                                 />
 
-                                <TextField
-                                    onChange={this.onChange}
-                                    name='emailpass'
-                                    id="standard-required"
-                                    label="Email Password"
-                                    type="text"
-                                    variant="standard"
-                                />
 
-                                <TextField
-                                    onChange={this.onChange}
-                                    name='phoneno'
-                                    id="standard-required"
-                                    label="Phone No"
-                                    type="text"
-                                    variant="standard"
-                                />
                                 <div style={{ display: 'flex' }} >
 
 
@@ -248,7 +219,7 @@ class RegisterModel extends Component {
                                 sx={{ marginBottom: 5, backgroundColor: 'black', borderRadius: 50 }}
                                 onClick={this.onSubmit}
                             >
-                                Add Agent
+                                Add Vendor
                             </Button>
 
 
@@ -264,7 +235,7 @@ class RegisterModel extends Component {
     };
 }
 
-RegisterModel.propTypes = {
+AddVendor.propTypes = {
     register: PropTypes.func.isRequired,
 }
 
@@ -274,4 +245,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(RegisterModel);
+export default connect(mapStateToProps, { register, clearErrors })(AddVendor);

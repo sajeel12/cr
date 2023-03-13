@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 
 const UserSchema = new Schema({
+    isvendor: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
     isadmin: {
         type: Boolean,
         default: false,
@@ -14,8 +19,7 @@ const UserSchema = new Schema({
     },
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
     },
     email: {
         type: String,
@@ -28,8 +32,8 @@ const UserSchema = new Schema({
     },
     phoneno: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
+       
     },
     password: {
         type: String,
@@ -38,6 +42,11 @@ const UserSchema = new Schema({
     register_date: {
         type: Date,
         default: Date.now
+    },
+    mailsent:{
+        type:Boolean,
+        default: false,
+        require: false
     }
 
 })

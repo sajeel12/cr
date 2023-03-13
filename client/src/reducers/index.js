@@ -6,7 +6,7 @@ import authReducer from './authReducer';
 import agentReducer from "./agentReducer";
 import mailReducer from "./mailReducer";
 import agreementReducer from "./agreementReducer";
-
+import vendorReducer from "./vendorReducer"
 
 export default combineReducers({
     item: itemReducer,
@@ -15,6 +15,7 @@ export default combineReducers({
     auth: authReducer,
     agent: agentReducer,
     mail: mailReducer,
-    agreement: agreementReducer
+    agreement: agreementReducer,
+    vendor: vendorReducer
 
 })

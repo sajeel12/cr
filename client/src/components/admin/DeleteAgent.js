@@ -23,7 +23,7 @@ class DeleteAgent extends Component {
     state = {
         open: false,
         id: '',
-        user: {}
+        userid: ''
     }
 
     onSubmit = e => {
@@ -33,9 +33,9 @@ class DeleteAgent extends Component {
     }
 
     componentDidMount = () => {
-        const { user } = this.props.auth;
-        const { id } = this.props;
-        this.setState({ user: user, id: id })
+        // const user  = this.props.userid;
+        const { id, userid } = this.props;
+        this.setState({ userid: userid, id: id })
     }
 
     handleClose = () => {
@@ -49,9 +49,9 @@ class DeleteAgent extends Component {
         const { user, isLoading } = this.props.auth
         return (
             <>
-                {isLoading ? 'Loading...' :
+                {! user && this.props.id ? 'Loading...' :
                     <div>
-                        <Button variant="contained" disabled={this.state.id == this.state.user._id ? true : false}
+                        <Button variant="contained" disabled={this.state.id == this.state.userid ? true : false}
                             sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
                             onClick={this.handleClose}
                         >Delete

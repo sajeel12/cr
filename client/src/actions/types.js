@@ -23,6 +23,12 @@ export const  ADD_LEAD = 'ADD_LEAD';
 export const  DELETE_LEAD = 'DELETE_LEAD';
 export const  LEAD_LOADING = 'LEAD_LOADING';
 
+export const  GET_VENDOR = 'GET_VENDOR';
+export const  UPDATE_VENDOR = 'UPDATE_VENDOR';
+export const  ADD_VENDOR = 'ADD_VENDOR';
+export const  DELETE_VENDOR = 'DELETE_VENDOR';
+export const  VENDOR_LOADING = 'VENDOR_LOADING';
+
 
 export const  ADD_AGENT = 'ADD_AGENT';
 export const  UPDATE_AGENT = 'UPDATE_AGENT';

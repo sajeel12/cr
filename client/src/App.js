@@ -17,8 +17,9 @@ import { BrowserRouter, Router, Route } from 'react-router-dom';
 
 class App extends Component {
 
-  componentDidMount() {
-    store.dispatch(loadUser());
+  componentDidMount =async () => {
+
+    await  store.dispatch(loadUser());
   }
 
   render() {

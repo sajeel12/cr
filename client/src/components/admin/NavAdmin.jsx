@@ -228,7 +228,7 @@ function NavAdmin({ username, isadmin }) {
                 </ListItem>
               </Link>
 
-              <Link to='/agents' style={{ textDecoration: 'none', color: '#707070' }}>
+              {/* <Link to='/vendors' style={{ textDecoration: 'none', color: '#707070' }}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -250,7 +250,7 @@ function NavAdmin({ username, isadmin }) {
                     <ListItemText primary={"Vendors"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                 </ListItem>
-              </Link>
+              </Link> */}
 
 
               <ListItem disablePadding sx={{ display: 'block' }}>

@@ -26,6 +26,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import DeleteAgent from './DeleteAgent';
 import AgentAdmin from './AgentAdmin';
 import AgentAdmin2 from './AgentAdmin2';
+import SendMail from '../client/SendMail';
+import SendInstruction from '../client/SendInstruction';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -56,6 +58,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 class Agents extends Component {
 
+    syncGetAgents = async () => {
+        const res = await this.props.getAgents();
+    }
 
     componentDidMount() {
         this.props.getAgents();
@@ -77,59 +82,66 @@ class Agents extends Component {
         const { user } = this.props.auth;
 
         return (
-            <Container sx={{ width: 1400 }}  >
+            <>
+                {!user ? 'is Loading...' :
+                    <Container sx={{ width: 1400 }}  >
 
-                <TableContainer component={Paper} sx={{ maxHeight: 500, maxWidth: 1600, overflowY: 'scroll' }}  >
-                    <Table sx={{ minWidth: 1000, minHeight: 200 }} aria-label="customized table">
-                        <TableHead>
-                            <TableRow>
+                        <TableContainer component={Paper} sx={{ maxHeight: 450, maxWidth: 1600, overflowY: 'scroll' }}  >
+                            <Table sx={{ minWidth: 1000, minHeight: 200 }} aria-label="customized table">
+                                <TableHead>
+                                    <TableRow>
+                                        <StyledTableCell align="center">Full Name </StyledTableCell>
 
-                                <StyledTableCell align="center">Username</StyledTableCell>
-                                <StyledTableCell align="center">Email</StyledTableCell>
-                                <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">isAdmin&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Actions&nbsp;</StyledTableCell>
+                                        <StyledTableCell align="center">Username</StyledTableCell>
+                                        <StyledTableCell align="center">Email</StyledTableCell>
+                                        <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
+                                        <StyledTableCell align="center">Type &nbsp;</StyledTableCell>
+                                        <StyledTableCell align="center">Actions&nbsp;</StyledTableCell>
 
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {agents.map((row) => (
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {agents.map((row) => (
 
-                                <StyledTableRow key={row._id}>
-
-
-
-
-                                    <StyledTableCell align="center">{row.username}</StyledTableCell>
-                                    <StyledTableCell align="center">{row.email}</StyledTableCell>
-
-                                    <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                    <StyledTableCell align="center">{row.isadmin ? 'Admin' : 'Agent'}</StyledTableCell>
-
-                                    <StyledTableCell align="right">
-                                        <Stack spacing={2} direction="row">
-
-
-                                            {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
-                                            {user._id == row._id ? '' :
-                                                <DeleteAgent userid={user._id} id={row._id} username={row.username} />
-                                            }
-                                            {row.isadmin ? "" :
-                                                <AgentAdmin2 idt={row._id} />
-                                            }
-                                        </Stack>
-                                    </StyledTableCell>
+                                        <StyledTableRow key={row._id} style={{ backgroundColor: row.isvendor && '#DCF700' }} >
 
 
 
+                                            <StyledTableCell align="center">{row.fullname}</StyledTableCell>
 
-                                </StyledTableRow>
+                                            <StyledTableCell align="center">{row.username}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.email}</StyledTableCell>
 
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Container>
+                                            <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.isvendor ? 'Vendor' : row.isadmin ? 'Admin' : 'Agent'}</StyledTableCell>
+
+                                            <StyledTableCell align="right">
+                                                <Stack spacing={2} direction="row">
+
+
+                                                    {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
+
+                                                    <DeleteAgent userid={user._id} id={row._id} username={row.username} />
+
+                                                    {row.isadmin || row.isvendor ? "" :
+                                                        <AgentAdmin2 idt={row._id} />
+                                                    }
+                                                    {row.isvendor && <SendInstruction  {...row} />}
+                                                </Stack>
+                                            </StyledTableCell>
+
+
+
+
+                                        </StyledTableRow>
+
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Container>
+                }
+            </>
 
         );
     }

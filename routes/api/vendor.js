@@ -61,8 +61,8 @@ router.post('/', (req, res) => {
                 res.status({ msg: 'UnAuthorized 404' })
             }
         }
-    }else{
-        res.status(404).json({msg: "InComplete Fields"})
+    } else {
+        res.status(404).json({ msg: "InComplete Fields" })
     }
 
 });

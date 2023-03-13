@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
                             if (err) throw err;
                             res.cookie('auth_token', token)
                             res.json({
-                                token,
+                                // token,
                                 user: {
                                     id: user.id,
                                     isadmin:user.isadmin,

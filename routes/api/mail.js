@@ -4,7 +4,8 @@ const router = express.Router();
 
 const nodemailer = require('nodemailer');
 
-const Lead = require('../../models/Lead')
+const Lead = require('../../models/Lead');
+const User = require('../../models/User');
 
 
 
@@ -42,27 +43,42 @@ router.post('/', (req, res) => {
         } else {
             console.log('success')
             // console.log(req.body.html)
-
-            if (req.body.many) {
-                Lead.updateMany({ _id: { $in: req.body.id } }, {
-                    mailsent: true
-                }, { new: true })
-                    .exec((err, lead) => {
-                        if (err)
-                            res.status(404).json({ success: false });
-                        else
-                            res.status(200).json(lead);
-                    })
+            if (!req.body.vendor) {
+                if (req.body.many) {
+                    Lead.updateMany({ _id: { $in: req.body.id } }, {
+                        mailsent: true
+                    }, { new: true })
+                        .exec((err, lead) => {
+                            if (err)
+                                res.status(404).json({ success: false });
+                            else
+                                res.status(200).json(lead);
+                        })
+                } else {
+                    Lead.findByIdAndUpdate(req.body.id, {
+                        "mailsent": true,
+                        $inc: { "mailcount": 1 }
+                    }, { new: true })
+                        .exec((err, lead) => {
+                            if (err)
+                                res.status(404).json({ success: false });
+                            else
+                                res.status(200).json(lead);
+                        })
+                }
             } else {
-                Lead.findByIdAndUpdate(req.body.id, {
-                    "mailsent": true,
-                    $inc:{"mailcount":1}
+                console.log(req.body);
+                User.findByIdAndUpdate({_id:req.body.id}, {
+                    "mailsent": true
                 }, { new: true })
-                    .exec((err, lead) => {
+                    .exec((err, user) => {
                         if (err)
-                            res.status(404).json({ success: false });
+                            console.log('mailsent success')
+                            // res.status(404).json({ sucess: false })
                         else
-                            res.status(200).json(lead);
+                        console.log('mailsent false')
+
+                            // res.status(200).json({ success: true })
                     })
             }
         }

@@ -4,6 +4,7 @@ import {
     TextField, Divider
 
 } from '@mui/material';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { v1 as uuid } from 'uuid';
 
 
@@ -56,10 +57,11 @@ class UpdateLead extends Component {
         modelyear: this.props.modelyear,
         make: this.props.make,
         vehicletype: this.props.vehicletype,
-        price: this.props.price
+        price: this.props.price,
+        internalnotes: this.props.internalnotes
 
     }
-    
+
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -82,7 +84,8 @@ class UpdateLead extends Component {
             modelyear: this.state.modelyear,
             make: this.state.make,
             vehicletype: this.state.vehicletype,
-            price: this.state.price
+            price: this.state.price,
+            internalnotes: this.state.internalnotes
         }
 
         const id = this.props._id;
@@ -318,7 +321,16 @@ class UpdateLead extends Component {
 
                                 />
 
-
+                                <TextareaAutosize
+                                    onChange={this.onChange}
+                                    maxRows={2}
+                                    
+                                    aria-label="maximum height"
+                                    placeholder="Internal Notes"
+                                    name='internalnotes'
+                                    value={this.state.internalnotes}
+                                    style={{ width: 250, height:50, marginTop:5, marginLeft:10 }}
+                                />
 
 
                                 <div>

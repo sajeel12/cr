@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 const User = require('./User');
 
@@ -10,14 +11,39 @@ const LeadSchema = new Schema({
         ref: 'user'
 
     },
+    vehicle: [{
+
+        model: {
+            type: String,
+            required: true
+        },
+        make: {
+            type: String,
+            required: true
+        },
+        vehicletype: {
+            type: String,
+            required: true
+        },
+        modelyear: {
+            type: String,
+            required: true
+        },
+        vehiclecondition: {
+            type: String,
+            required: false
+        }
+    }],
+
     fullname: {
         type: String,
         required: true
     },
-    leadid: {
-        type: String,
-        required: true
-    },
+    // leadid: {
+    //     type: Number,
+    //     required: true,
+    //     default: 0
+    // },
     email: {
         type: String,
         required: true
@@ -155,5 +181,8 @@ const LeadSchema = new Schema({
 
 
 });
+
+
+LeadSchema.plugin(AutoIncrement, {inc_field: 'leadid'});
 
 module.exports = Lead = mongoose.model('lead', LeadSchema);

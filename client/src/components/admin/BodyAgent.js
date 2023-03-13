@@ -4,6 +4,7 @@ import Agents from './Agents';
 
 
 import RegisterModel from '../auth/RegisterModel';
+import AddVendor from './AddVendor';
 
 class BodyAgent extends Component {
     render() {
@@ -12,7 +13,10 @@ class BodyAgent extends Component {
 
 
             <>
-                <RegisterModel/>
+                <div style={{display:'flex'}} >
+                    <RegisterModel />
+                    <AddVendor/>
+                </div>
                 <Agents />
             </>
 
