@@ -33,8 +33,34 @@ class SendInstruction extends Component {
     apiinstruction = `
      <h3>   this is the instruction for API
       <br>
-      your token is ${this.props.password}
+      your token is <br><br> "  <span style="color:aqua;" > ${this.props.password} </span> "
       </h3> 
+
+    <hr>
+      <p>
+      
+      {   <br>
+        "token": "${this.props.password}",  <br> <br>
+        "fullname": "Ali bhai Vendor",<br>
+        "email": "lahore@bes.com",<br>
+        "phoneno": "s",<br>
+        "originaddress": "kanganpur lahre ae",<br>
+        "origincity": "lahore",<br>
+        "originstate": "sf",<br>
+        "originzipcode": "d",<br>
+        "destinationaddress": "d",<br>
+        "destinationcity": "d",<br>
+        "destinationstate": "df",<br>
+        "destinationzipcode": "hj",<br>
+        "model": "bv",<br>
+        "make": "g",<br>
+        "modelyear": "g",<br>
+        "vehicletype": "f",<br>
+        "shipdate": "gh"<br>
+    }
+      
+      </p>
+
     `;
 
 
@@ -128,7 +154,7 @@ class SendInstruction extends Component {
         const mail = {
             email,
             emailpass,
-            
+
             to,
             id,
             vendor: true,
@@ -152,17 +178,17 @@ class SendInstruction extends Component {
                 <Button onClick={this.onSubmit} variant='contained'
                     sx={{
                         width: 200,
-                        marginRight: 1, 
+                        marginRight: 1,
                         backgroundColor: this.props.mailsent ? '#F7E771' : 'black',
                         color: this.props.mailsent ? 'black' : '',
                         borderRadius: 50
                     }}>
                     {this.props.mailsent ? 'Already Sent  ' : 'Send Instructions'}
-                    
+
 
                 </Button>
 
-               
+
             </div>
 
         )
