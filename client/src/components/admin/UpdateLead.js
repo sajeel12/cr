@@ -58,6 +58,7 @@ class UpdateLead extends Component {
         make: this.props.make,
         vehicletype: this.props.vehicletype,
         price: this.props.price,
+        shipdate: this.props.shipdate,
         internalnotes: this.props.internalnotes
 
     }
@@ -85,6 +86,7 @@ class UpdateLead extends Component {
             make: this.state.make,
             vehicletype: this.state.vehicletype,
             price: this.state.price,
+            shipdate:this.state.shipdate,
             internalnotes: this.state.internalnotes
         }
 
@@ -320,16 +322,18 @@ class UpdateLead extends Component {
                                     value={this.state.price}
 
                                 />
+                                <input style={{ width: 220, marginLeft: 8, marginTop: 10 }}
+                                    type="date"  value={this.state.shipdate} name='shipdate' onChange={this.onChange} />
 
                                 <TextareaAutosize
                                     onChange={this.onChange}
                                     maxRows={2}
-                                    
+
                                     aria-label="maximum height"
                                     placeholder="Internal Notes"
                                     name='internalnotes'
                                     value={this.state.internalnotes}
-                                    style={{ width: 250, height:50, marginTop:5, marginLeft:10 }}
+                                    style={{ width: 250, height: 50, marginTop: 5, marginLeft: 10 }}
                                 />
 
 

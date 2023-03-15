@@ -58,7 +58,7 @@ class SendMailM extends Component {
     <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
          ID: ${this.props.leadid} <br>
-        ${this.props.year} ${this.props.make} ${this.props.model}<br>
+        ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
         Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode} <br>
         Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
         Available Date: ${this.props.shipdate} <br>

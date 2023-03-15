@@ -17,16 +17,34 @@ import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAgreement } from '../../actions/agreementAction';
-
-
-
+import { Modal } from '@mui/material';
+import { print, Preview } from 'react-html2pdf';
+import moment from 'moment';
 
 export class Agreement extends Component {
 
-    style = {
-        paddingLeft: 5
-    }
+    // style = {
+    //     paddingLeft: 5
+    // }
 
+    style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700,
+        height: 600,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+        overflowY: 'scroll'
+    };
+
+
+    state = {
+        open: false
+    };
 
     agreements = this.props.agreement;
 
@@ -37,6 +55,16 @@ export class Agreement extends Component {
 
     }
 
+    onPdf = () => {
+        console.log('In Pdf function ')
+        print('a', 'toPrint');
+    }
+
+    handleClose = () => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
 
     render() {
 
@@ -306,8 +334,7 @@ export class Agreement extends Component {
                             </Container >
                         </div >
                 }
-                <Button onClick={this.onPdf} variant='contained'
-
+                <Button onClick={this.handleClose} variant='contained'
                     sx={{
                         width: 150, backgroundColor: 'black', borderRadius: 50,
                         "&:hover": {
@@ -317,6 +344,163 @@ export class Agreement extends Component {
                 >
                     save as pdf
                 </Button>
+
+                <Modal
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    sx={{ overflowY: 'scroll', height: 700, }}
+                >
+                    <Box sx={this.style}>
+
+                        <Box
+                            component="form"
+                            sx={{
+                                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+
+                            <Preview id={'toPrint'} >
+
+                                <div className="modal-body " style={{
+                                    marginTop: 50,
+                                    marginBottom: 30,
+                                    marginLeft: 30,
+                                    marginRight: 30
+
+                                }} id="invoicee">
+
+                                    <div className="invpoiceheading" style={{ marginTop: 20 }} >
+                                        <b>INVOICE</b>
+                                    </div>
+                                    <div className="logoandnumber ">
+                                        <div className="logoo">
+                                            <h1>SM Transports</h1>
+                                        </div>
+                                        <div className="numberr">
+                                            {/* {agreements.phoneno} */}
+                                        </div>
+                                    </div>
+                                    <div className="ordernumbr">
+                                        <h6>ORDER# {agreements.leadid} </h6>
+                                    </div>
+                                    <div className="customeralex d-flex">
+                                        <div className="" style={{ width: 300 }}>
+                                            <h6>Customer: {agreements.fullname} </h6>
+                                        </div>
+                                        <div className="d-flex justify-content-start" style={{ width: 200 }}>
+                                            <h6>Order Date</h6>
+                                            {moment(agreements.recieveddate).format("ddd, MMM D YYYY")}
+                                        </div>
+                                    </div>
+                                    <div className="d-flex">
+                                        <div className="customerinfo"><b>Phone : </b> {agreements.phoneno} <br />
+                                            <b>Order Date : </b> {agreements.recieveddate} <br />
+                                            {/* <b>Payment Method : </b> COD */}
+                                        </div>
+                                        <div className="orderpayment">
+
+                                        </div>
+                                    </div>
+                                    <div className="dialog d-flex justify-content-between">
+                                        <div className="dialogbox1">
+                                            <p>We do bumper to bumper insurance (includes up to $250,000 Carrier's insurance),
+                                                door-to-door shipment, including all the tolls and taxes, and 100 lbs. of personal
+                                                belongings with absolutely no hidden charges</p>
+                                        </div>
+                                        <div className="dialogbox2">
+                                            <div className="box2heading">
+                                                <b>PRICE AND PAYMENT</b>
+                                            </div>
+                                            <div className="p-2">
+                                                {/* <b>First Payment : </b> $3443 <br />
+                                                <b>First Payment Due : </b> $24 <br />
+                                                <b>Next Payment : </b> $554 <br />
+                                                <b>Next Payment Due : </b> $4554 <br /> */}
+                                                <b>Total Tariff : </b> ${agreements.price}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="shippmentdetails mt-3">
+                                        <div className="w-100 text-center">
+                                            <h5><b>Shippment Details</b></h5>
+                                        </div>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Transport Type : 1</th>
+                                                    <th>Available Pickup Date : {agreements.shipdate}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Vehicles</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1) {agreements.modelyear}, {agreements.make} {agreements.model}  Car</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Origin: {agreements.origincity}, {agreements.originstate}, {agreements.originzipcode}</td>
+                                                    <td>Destination:  {agreements.destinationcity}, {agreements.destinationstate}, {agreements.destinationzipcode}</td>
+
+                                                </tr>
+                                                {/* <tr>
+                                                    <td>{agreements.origincity} {agreements.originstate} {agreements.originzipcode}</td>
+                                                    <td> {agreements.destinationcity} {agreements.destinationstate} {agreements.destinationzipcode}</td>
+                                                </tr> */}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="details ">
+                                        <div className="text-center w-100 mt-3">
+                                            <h5><b>DIGITAL SIGNATURE CERTIFICATE</b></h5>
+                                        </div>
+                                        <p className="mt-1" style={{ fontSize: 13, marginLeft: 10 }}>By selecting "I Agree" and entering
+                                            my full name as a binding electronic
+                                            signature I understand that an electronic signature has the same legal effect and can be
+                                            enforced in the same way as a written signature. Furthermore, I hereby accept the terms and
+                                            conditions of service as described in the "Term" section below</p>
+                                        <div className="d-flex">
+                                            <div className="detailbox">
+                                                <b>Electronic Signature : </b> "{agreements.signature}"  <br />
+                                                <p>This Link represents the permanent URL(Agreement) of
+                                                    SM Transport Solutions. <br />
+                                                    <a href={agreements.agreementurl}>{agreements.agreementurl}</a>
+                                                </p>
+                                                {/* <b>Signed and Accepted On: </b>Jan 12, 2023 */}
+                                                <br />
+                                                <p> <b>Your IP Adress : </b>  {agreements.ip} </p>
+                                            </div>
+                                            {/* <div className="detailbox d-flex justify-content-center">
+                                                <img src="imgawaisia/qr.png" alt="d" width="120px" height="120px" />
+                                            </div> */}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </Preview>
+
+                            <Button onClick={this.onPdf} variant='contained'
+                                sx={{
+                                    width: 150, backgroundColor: 'black', borderRadius: 50,
+                                    "&:hover": {
+                                        backgroundColor: 'green'
+                                    }
+                                }}
+                            >
+                                save as pdf
+                            </Button>
+                        </Box>
+                    </Box>
+                </Modal>
+
             </>
         )
     }

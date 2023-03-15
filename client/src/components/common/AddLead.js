@@ -4,8 +4,12 @@ import {
     TextField, Divider
 
 } from '@mui/material';
-import { v1 as uuid } from 'uuid';
-
+// import { v1 as uuid } from 'uuid';
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { connect } from "react-redux";
 import { addLead } from '../../actions/leadActions'
@@ -40,7 +44,7 @@ class AddLead extends Component {
         email: '',
         phoneno: '',
         origincity: '',
-        originaddress: '',
+        // originaddress: '',
         originstate: '',
         originzipcode: '',
         destinationaddress: '',
@@ -50,7 +54,8 @@ class AddLead extends Component {
         model: '',
         modelyear: '',
         make: '',
-        vehicletype: ''
+        vehicletype: '',
+        shipdate: ''
 
     }
 
@@ -65,7 +70,7 @@ class AddLead extends Component {
             && this.state.fullname !== ''
             && this.state.email !== ''
             && this.state.phoneno !== ''
-            && this.state.originaddress !== ''
+            // && this.state.originaddress !== ''
             && this.state.origincity !== ''
             && this.state.originstate !== ''
             && this.state.originzipcode !== ''
@@ -78,7 +83,7 @@ class AddLead extends Component {
             && this.state.make !== ''
             && this.state.vehicletype !== ''
         ) {
-            this.setState({error:false})
+            this.setState({ error: false })
 
             const { user } = this.props.auth;
             const newLead = {
@@ -87,7 +92,7 @@ class AddLead extends Component {
                 fullname: this.state.fullname,
                 email: this.state.email,
                 phoneno: this.state.phoneno,
-                originaddress: this.state.originaddress,
+                // originaddress: this.state.originaddress,
                 origincity: this.state.origincity,
                 originstate: this.state.originstate,
                 originzipcode: this.state.originzipcode,
@@ -107,7 +112,7 @@ class AddLead extends Component {
             this.handleClose();
         }
         else {
-            this.setState({error:true})
+            this.setState({ error: true })
         }
     }
 
@@ -150,7 +155,7 @@ class AddLead extends Component {
                             <Typography variant="h5" component="h2">
                                 Add Lead
                             </Typography>
-                            {this.state.error && <Alert  severity="error"> Please Fill All Fields</Alert> }
+                            {this.state.error && <Alert severity="error"> Please Fill All Fields</Alert>}
                             <hr />
                             <form  >
                                 <TextField
@@ -182,14 +187,16 @@ class AddLead extends Component {
                                 <Typography variant="h6" component="h2">
                                     Origin
                                 </Typography>
-                                <TextField
+
+                                {/* <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
                                     name='originaddress'
                                     label="Origin Address"
                                     type="required"
                                     variant="standard"
-                                />
+                                /> */}
+
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -286,14 +293,30 @@ class AddLead extends Component {
                                     type="required"
                                     variant="standard"
                                 />
-                                <TextField
+
+
+                                {/* <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
                                     name='shipdate'
                                     label="Ship Date"
                                     type="required"
                                     variant="standard"
-                                />
+                                /> */}
+                                
+                                <input  style={{width:220, marginLeft:8, marginTop:10}}
+                                 type="date"  name='shipdate' onChange={this.onChange}  />
+
+                                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DemoContainer components={['DatePicker', 'DatePicker']}>
+                                        <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
+                                        <DatePicker
+                                            label="Controlled picker"
+                                            value={value}
+                                            onChange={(newValue) => setValue(newValue)}
+                                        />
+                                    </DemoContainer>
+                                </LocalizationProvider> */}
 
                                 <div>
                                     <Button variant='contained'
