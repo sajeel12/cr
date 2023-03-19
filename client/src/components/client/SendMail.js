@@ -32,14 +32,17 @@ class SendMail extends Component {
     }
 
 
-    agreement = `
-     <h3>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${this.props._id}" >Click here</a>  </h4> 
+    agreement = (props) => {
+        const agreement = `
+     <h3>   Please Confirm your Shipment <a href="http://www.crmsmtransports.site/agreement?hash_id=${props._id}" >Click here</a>  </h4> 
     <br/> <hr/>  <h2 style='color:red' > HS Logistics </h3> 
     `;
-
-    newquotehtml = `   <div style="margin: 0 0;">
+        return agreement;
+    }
+    newquotehtml = (props) => {
+        const newquotehtml = `   <div style="margin: 0 0;">
     <div style="  align-items: center;">
-        <h1 style="color: rgba(0, 0, 0, 0.692);">Hi ${this.props.fullname}</h1>
+        <h1 style="color: rgba(0, 0, 0, 0.692);">Hi ${props.fullname}</h1>
         <br>
         <p>Thank you for your interest in our company! Below you will find your auto transport   details.</p>
     </div>
@@ -47,45 +50,46 @@ class SendMail extends Component {
     <hr>
     <div style="display: flex; justify-content: space-between;">
         <p>Door to Door Service</p>
-        <p>${this.props.price} $</p>
+        <p>${props.price} $</p>
     </div>
     <hr>
     <div style="display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
         <p><b>Total </b></p> 
-        <p style="color: rgb(4, 139, 72);margin-left:60px">  ${this.props.price}$</p>
+        <p style="color: rgb(4, 139, 72);margin-left:60px">  ${props.price}$</p>
     </div>
     <hr>
     <br>
     <h2 style="color: rgba(0, 0, 0, 0.733);"> Details</h2>
     <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
-         ID: ${this.props.leadid} <br>
-        ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
-        Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode} <br>
-        Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
-        Available Date: ${this.props.shipdate} <br>
+         ID: ${props.leadid} <br>
+         ${props.model} ${props.modelyear} ${props.make} <br>
+        Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode} <br>
+        Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
+        Available Date: ${props.shipdate} <br>
         Carrier Type:  opn <br>
-        Total : $ ${this.props.price}<br>
+        Total : $ ${props.price}<br>
         If you have any questions or would like us to match a competitor's  fee  kindly contact us 5166561474.
         Regards,<br>
-        ${this.props.fromemail}<br>
+        ${props.fromemail}<br>
         ${this.state.company}<br>
         Direct:  5166561474 <br>
     </p>
 </div>
     `
+        return newquotehtml;
+    }
 
-
-
-    dispatchedhtml = `
+    dispatchedhtml = (props) => {
+        const dispatchedhtml = `
 <div style="margin: 0 0;">
 <div style=" display: flex; flex-direction: column; align-items: center;">
     <h1 style="color: rgba(0, 0, 0, 0.692);margin-right:50px;">Your Order Has Been Dispatched</h1>
     <br> <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
-        ${this.props.fullname},<br><br>
+        ${props.fullname},<br><br>
 
-        We are happy to inform you that your shipment from ${this.props.origincity} to ${this.props.destinationcity} has been assigned to a truck. You will be contacted shortly with an estimated pickup and delivery time.
+        We are happy to inform you that your shipment from ${props.origincity} to ${props.destinationcity} has been assigned to a truck. You will be contacted shortly with an estimated pickup and delivery time.
         <br><br>
         Please feel free to call us with any questions!
         <br><br>
@@ -96,13 +100,16 @@ class SendMail extends Component {
 </div>
 </div>
 `
+        return dispatchedhtml;
+    }
 
-    followuphtml = `
+    followuphtml = (props) => {
+        const followuphtml = `
 <div style="margin: 0 0;">
 <div style=" background-color: rgba(0, 0, 0, 0.048);padding: 20px;">
     <h2 style="color: rgba(0, 0, 0, 0.692);">Sorry we missed you!</h2>
     <br>
-    <p>${this.props.fullname}, <br> <br>
+    <p>${props.fullname}, <br> <br>
         We tried to contact you today to follow up on your requested quote; sorry we missed you! Your custom
         quote is below. Please feel free to contact us with any questions!</p>
 </div>
@@ -119,11 +126,11 @@ class SendMail extends Component {
         </p>
         <p style="color: white;margin-left: 20px;">
 
-        ${this.props.leadid}  <br>
-        ${this.props.originaddress}<br>
-        ${this.props.destinationaddress}<br>
-        ${this.props.modelyear} ${this.props.make} ${this.props.model} <br>
-        ${this.props.price} $
+        ${props.leadid}  <br>
+        ${props.originaddress}<br>
+        ${props.destinationaddress}<br>
+        ${props.model} ${props.modelyear} ${props.make}  <br>
+        ${props.price} $
         </p>
 
     </div>
@@ -132,7 +139,7 @@ class SendMail extends Component {
             Your Custom Quote</h2>
             <br>
         <p style="color: white;" >
-            Your custom price for you shipment from ${this.props.originaddress} to  ${this.props.destinationaddress} is $${this.props.price}. If you have
+            Your custom price for you shipment from ${props.originaddress} to  ${props.destinationaddress} is $${props.price}. If you have
             any questions, or would like to book your shipment via phone, please feel free to call us at 5166561474.
             <br>
             <br>
@@ -147,7 +154,7 @@ class SendMail extends Component {
             ${this.state.company}
 
             <br><br>
-            ${this.props.fromemail}
+            ${props.fromemail}
             <br><br>
             5166561474
         </p>
@@ -157,13 +164,15 @@ class SendMail extends Component {
 </div>
 
 `
-
-    orderconfirmationhtml = `
+        return followuphtml;
+    }
+    orderconfirmationhtml = (props) => {
+        const orderconfirmationhtml = `
 <div style="margin: 0 0;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
             <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
             <br>
-            <p>${this.props.fullname}, <br>
+            <p>${props.fullname}, <br>
 
                 Thank you for placing your order with SM Transports! </p>
         </div>
@@ -172,7 +181,7 @@ class SendMail extends Component {
         <br>
         <div style="display: flex; justify-content: space-between;">
             <p>Door to Door Service</p>
-            <p>${this.props.price} $</p>
+            <p>${props.price} $</p>
         </div>
         <br>
         <hr>
@@ -180,7 +189,7 @@ class SendMail extends Component {
         <div
             style="padding: 10px 0; display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
             <p><b>Total</b></p>
-            <p style="color: rgb(4, 139, 72);margin-left:50px;"> ${this.props.price} $</p>
+            <p style="color: rgb(4, 139, 72);margin-left:50px;"> ${props.price} $</p>
         </div>
         <br>
         <hr>
@@ -188,34 +197,37 @@ class SendMail extends Component {
         <h2 style="color: rgba(0, 0, 0, 0.733);">Order Details</h2>
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
-            Order ID: ${this.props.leadid} <br>
-            ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
-            Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode}<br>
-            Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
-            Available Date: ${this.props.shipdate}<br>
+            Order ID: ${props.leadid} <br>
+            ${props.model} ${props.modelyear} ${props.make} <br>
+            Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode}<br>
+            Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
+            Available Date: ${props.shipdate}<br>
             Carrier Type: Open<br>
             Deposit: $0<br>
-            Total Cost: $${this.props.price}<br> <br>
+            Total Cost: $${props.price}<br> <br>
             If you have any questions please feel free to call us!
             <br><br>
             Sincerely,<br><br>
-            ${this.props.fromemail}<br>
+            ${props.fromemail}<br>
             ${this.state.company}
             <br>
             Direct: 5166561474<br>
         </p>
     </div>
 `
+        return orderconfirmationhtml;
+    }
 
-    paymentrecievedhtml = `
+    paymentrecievedhtml = (props) => {
+        const paymentrecievedhtml = `
 <div style="margin: 0 0;">
 <div style=" display: flex; flex-direction: column; align-items: center;">
     <h1 style="color: rgba(0, 0, 0, 0.692);">Thank You!</h1>
     <br> <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
-        ${this.props.fullname},<br><br>
+        ${props.fullname},<br><br>
 
-        We have received your payment for order number <b> ${this.props.leadid} </b>.
+        We have received your payment for order number <b> ${props.leadid} </b>.
         <br><br>
         Please contact us at 5166561474 with any questions!
         <br><br>
@@ -227,13 +239,16 @@ class SendMail extends Component {
 </div>
 </div>
 `
+        return paymentrecievedhtml;
+    }
 
-    secondfollowuphtml = `
+    secondfollowuphtml = (props) => {
+        const secondfollowuphtml = `
 <div style="margin: 0 0;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
             <h1 style="color: rgba(0, 0, 0, 0.692);">A quick reminder...</h1>
             <br>
-            <p>${this.props.fullname}, <br>
+            <p>${props.fullname}, <br>
 
                 We are reaching out to you today as a follow up to the quote you 
                 requested. Your quote details are listed below. If you have any questions, or would like to
@@ -244,7 +259,7 @@ class SendMail extends Component {
         <br>
         <div style="display: flex; justify-content: space-between;">
             <p>Door to Door Service </p>
-            <p style="margin-left:50px" > ${this.props.price} $</p>
+            <p style="margin-left:50px" > ${props.price} $</p>
         </div>
         <br>
         <hr>
@@ -252,7 +267,7 @@ class SendMail extends Component {
         <div
             style="padding: 10px 0; display: flex; justify-content: space-between; background-color: rgba(255, 235, 205, 0.712);">
             <p><b>Total</b></p>
-            <p style="color: rgb(4, 139, 72);margin-left:50px"> ${this.props.price} $</p>
+            <p style="color: rgb(4, 139, 72);margin-left:50px"> ${props.price} $</p>
         </div>
         <br>
         <hr>
@@ -260,25 +275,26 @@ class SendMail extends Component {
         <h2 style="color: rgba(0, 0, 0, 0.733);">Quote Details</h2>
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
-        Quote ID: ${this.props.leadid} <br>
-        ${this.props.modelyear} ${this.props.make} ${this.props.model}<br>
-        Origin: ${this.props.origincity}, ${this.props.originstate} ${this.props.originzipcode}<br>
-        Destination: ${this.props.destinationcity}, ${this.props.destinationstate} ${this.props.destinationzipcode}<br>
-        Available Date: ${this.props.shipdate}<br>
+        Quote ID: ${props.leadid} <br>
+        ${props.model} ${props.modelyear} ${props.make} <br>
+        Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode}<br>
+        Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
+        Available Date: ${props.shipdate}<br>
         Carrier Type: Open<br>
         Deposit: $0<br>
-        Total Cost: $${this.props.price}<br> <br>
+        Total Cost: $${props.price}<br> <br>
             If you have any questions please feel free to call us!
             <br><br>
             Sincerely,<br><br>
-            ${this.props.fromemail}<br>
+            ${props.fromemail}<br>
         ${this.state.company}
         <br>
             Direct: 5166561474<br>
         </p>
     </div>
 `
-
+        return secondfollowuphtml;
+    }
 
     style = {
         position: 'absolute',
@@ -307,20 +323,27 @@ class SendMail extends Component {
     onTemplate = (e) => {
         this.setState({ tempselected: e.target.value })
         if (e.target.value === '1') {
-            this.setState({ tmpno: 1, template: this.newquotehtml, subject: " Shipment Details " })
+            const newquotehtml = this.newquotehtml(this.props);
+            this.setState({ tmpno: 1, template: newquotehtml, subject: " Shipment Details " })
         } else if (e.target.value === '2') {
-            this.setState({ tmpno: 2, template: this.dispatchedhtml, subject: "Dispatched to Destination" })
+            const dispatchedhtml = this.dispatchedhtml(this.props);
+            this.setState({ tmpno: 2, template: dispatchedhtml, subject: "Dispatched to Destination" })
         } else if (e.target.value === '3') {
-            this.setState({ tmpno: 3, template: this.followuphtml, subject: "FollowUp" })
+            const followuphtml = this.followuphtml(this.props);
+            this.setState({ tmpno: 3, template: followuphtml, subject: "FollowUp" })
         } else if (e.target.value === '4') {
-            this.setState({ tmpno: 4, template: this.orderconfirmationhtml, subject: "Confirm Your Order Please..." })
+            const orderconfirmationhtml = this.orderconfirmationhtml(this.props);
+            this.setState({ tmpno: 4, template: orderconfirmationhtml, subject: "Confirm Your Order Please..." })
         } else if (e.target.value === '5') {
-            this.setState({ tmpno: 5, template: this.paymentrecievedhtml, subject: "Payment Recieved" })
+            const paymentrecievedhtml = this.paymentrecievedhtml(this.props);
+            this.setState({ tmpno: 5, template: paymentrecievedhtml, subject: "Payment Recieved" })
         } else if (e.target.value === '6') {
-            this.setState({ tmpno: 6, template: this.agreement, subject: "Order Agreement" })
+            const agreement = this.agreement(this.props);
+            this.setState({ tmpno: 6, template: agreement, subject: "Order Agreement" })
         }
         else {
-            this.setState({ template: this.secondfollowuphtml, subject: "Follow UP" })
+            const secondfollowuphtml = this.secondfollowuphtml(this.props);
+            this.setState({ template: secondfollowuphtml, subject: "Follow UP" })
         }
 
     }
@@ -788,7 +811,7 @@ class SendMail extends Component {
                                     label="from"
                                     type="text"
                                     variant="standard"
-                                    value={this.props.fromemail}
+                                    value={user.email}
 
                                 />
 

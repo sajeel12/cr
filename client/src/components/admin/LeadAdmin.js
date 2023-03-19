@@ -37,6 +37,7 @@ import SendMailM from '../client/SendMailM';
 import AssignLeadM from './AssignLeadM';
 import AddLead from '../common/AddLead';
 import { display } from '@mui/system';
+import SendMailWrapper from '../client/SendMailWrapper';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -84,6 +85,8 @@ class LeadAdmin extends Component {
 
 
     state = {
+        msgopen: false,
+
         leads: [],
         checkedvalue: [],
         checkedinputs: [],
@@ -91,6 +94,10 @@ class LeadAdmin extends Component {
         checkedemail: [],
         searchedval: "",
         realtime: true
+    }
+
+    handlemsg = () => {
+        this.setState({ msgopen: !this.state.msgopen })
     }
 
     componentDidMount() {
@@ -367,8 +374,10 @@ class LeadAdmin extends Component {
 
                                                                 <>
 
-                                                                    <SendMail {...row} many={false} fromemail={user.email} />
-                                                                    <SendMsg  {...row} />
+                                                                    <SendMailWrapper {...row} />
+
+                                                                    <SendMsg   {...row} />
+
                                                                     <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
                                                                     <UpdateStatus leadid={row._id} />
                                                                     <UpdateLead {...row} />

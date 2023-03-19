@@ -19,42 +19,82 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 export class SendMsg extends Component {
 
 
-    msg1 = `
-Hey ${this.props.fullname},
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+
+    //         open: false,
+    //         msg: this.msg1,
+    //         copy: false,
+    //         selected: '',
+    //         myProp: props.fullname // initialize state with the prop
+    //     };
+    // }
+    state = {
+        open: false,
+        msg: this.msg1,
+        copy: false,
+        selected: '',
+        lead: this.props  // initialize state with the prop
+    }
+
+    // componentDidMount = () => {
+    //     console.log( "props  llll",this.props)
+    //     this.setState({name: this.props.name})
+    // }
+
+
+
+    msg1 = (props) => {
+        const msg1 = `
+Hey ${props.fullname},
 This Is ${this.props.user.fullname} from SM Transports.
-We Believe That You're Looking To Ship Your Vehicle. So The Total Quote For Your Vehicle Shipment Is $${this.props.price}.
-It Is All Inclusive having Quote ID: ${this.props._id}, which Covers Door To Door Service And Bumper To Bumper Insurance up to $250K And You can add 100 lbs of belongings as well.
+We Believe That You're Looking To Ship Your Vehicle. So The Total Quote For Your Vehicle Shipment Is $${props.price}.
+It Is All Inclusive having Quote ID: ${props._id}, which Covers Door To Door Service And Bumper To Bumper Insurance up to $250K And You can add 100 lbs of belongings as well.
 For Further Details And Discussions. Please Call Me or Text Me Back At (714)-902 6330.
 US DOT # 3964435
 MC# 1479476`;
 
-    msg2 = `
+        return msg1;
+    }
+
+    msg2 = (props) => {
+        const msg2 = `
 Hello,
 ${this.props.user.fullname} here from SM Transports.
-Just wanted to double-check if your vehicle is ready for pick-up? The quote for your vehicle's move is ${this.props.price} which is all- inclusive. Please can text or call me with
+Just wanted to double-check if your vehicle is ready for pick-up? The quote for your vehicle's move is ${props.price} which is all- inclusive. Please can text or call me with
 your questions from 9 AM-7 PM EST. We are fully insured, bonded, and offer door-to-door services. You can contact me for further assistance at (714)-902-6330
 Waiting for your response! Thank you`;
+        return msg2;
+    }
 
-    msg3 = `
-Hello ${this.props.fullname},
-It's ${this.props.user.fullname} with SM Transports. We've got request to move your vehicle with Order ID: ${this.props._id}. 
-I did check the carrier rate going on your route and I can tell that your load can be transported with our company for ${this.props.price} (all inclusive), with all taxes and fees 
+    msg3 = (props) => {
+        const msg3 = `
+Hello ${props.fullname},
+It's ${this.props.user.fullname} with SM Transports. We've got request to move your vehicle with Order ID: ${props._id}. 
+I did check the carrier rate going on your route and I can tell that your load can be transported with our company for ${props.price} (all inclusive), with all taxes and fees 
 and insurance which is starting from $250,000 up to 1 Million Dollars.
 How does this quote sound to you? My direct line is (714)-902-6330, you can give us a call or text me at your convenient time. Thanks!`;
-
-    msg4 = `
+        return msg3;
+    }
+    msg4 = (props) => {
+        const msg4 = `
 Hello,
 It's ${this.props.user.fullname} with SM Transports and I am only one text away if you have any questions. I've got a driver in your area for $1499 who could pick up your vehicle this week anytime. 
 Waiting for your call or text, our direct line is (714)-902-6330. Have a nice day!`;
-
-    msg5 = `
+        return msg4;
+    }
+    msg5 = (props) => {
+        const msg5 = `
 Hello,
 It's ${this.props.user.fullname} with SM Transports. 
-Are you still in need of auto shipping? We can have it transported anytime you want, for just ${this.props.price} which includes all the taxes and fees, insurance of $250,000 for your vehicle, and door-to-door transportation as well. Please call or text us back at (714)-902-6330 regarding your concerns and questions.
+Are you still in need of auto shipping? We can have it transported anytime you want, for just ${props.price} which includes all the taxes and fees, insurance of $250,000 for your vehicle, and door-to-door transportation as well. Please call or text us back at (714)-902-6330 regarding your concerns and questions.
 Thank you!
 `;
-
-    msg6 = `
+        return msg5;
+    }
+    msg6 = (props) => {
+        const msg6 = `
 Hello,
 I wanted to follow-up with you regarding
 the shipment of your vehicle. If you have
@@ -68,22 +108,27 @@ picked up, so please give us a call or reply
 to (714)-902-6330 for more information
 and scheduling options. Thanks!
 `;
-
-    msg7 = `
+        return msg6;
+    }
+    msg7 = (props) => {
+        const msg7 = `
 Hi,
 Are you no longer interested in the shipment? Please let me know either way.
 Simply reply with "STOP" and your quote
 will automatically cancel from my system.
 Thank you.
 `;
+        return msg7;
+    }
 
-    msg8 = `
-Dear ${this.props.fullname}, 
-Your order ${this.props._id} has been dispatched in ${this.props.price} out of which you've already paid the deposit of $175 and the rest of balance $1000 is to be paid at delivery in cash or certified funds. 
+    msg8 = (props) => {
+        const msg8 = `
+Dear ${props.fullname}, 
+Your order ${this.props._id} has been dispatched in ${props.price} out of which you've already paid the deposit of $175 and the rest of balance $1000 is to be paid at delivery in cash or certified funds. 
 (In-case the pickup gets rescheduled or you cancel the order after dispatching then there will be additional reschedule fee of $150.00 and initial deposit will be non refundable).
 `;
-
-
+        return msg8;
+    }
 
 
     style = {
@@ -95,39 +140,63 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
+
         p: 4,
     };
-    state = {
 
-        open: false,
-        msg: this.msg1,
-        copy: false,
-        selected: ''
+    // componentDidMount(prevProps) {
+    //     console.log(this.state.name)
+
+    //     this.interval = setInterval(() => {
+    //         this.forceUpdate();
+    //         if (prevProps.name !== this.props.name) {
+    //             this.setState({ name: this.props.name });
+    //             console.log(this.props.name)
+    //         }
+    //     }, 1000);
+    // }
+
+    // componentWillUnmount() {
+    //     clearInterval(this.interval);
+    // }
 
 
-
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.name !== this.props.name) {
+    //         this.setState({ name: this.props.name });
+    //     }
+    // }
 
     handleChange = (e) => {
-        this.setState({selected:e.target.value})
+        // this.setState({ fullname: this.props.fullname })
+
+        this.setState({ selected: e.target.value })
         if (e.target.value === '1') {
-            this.setState({ msg: this.msg1 })
+            const msg1 = this.msg1(this.props);
+            this.setState({ msg: msg1 })
         } else if (e.target.value === '2') {
-            this.setState({ msg: this.msg2 })
-        }else if (e.target.value === '3') {
-            this.setState({ msg: this.msg3 })
-        }else if (e.target.value === '4') {
-            this.setState({ msg: this.msg4 })
-        }else if (e.target.value === '5') {
-            this.setState({ msg: this.msg5 })
-        }else if (e.target.value === '6') {
-            this.setState({ msg: this.msg6 })
-        }else if (e.target.value === '7') {
-            this.setState({ msg: this.msg7 })
-        }else {
-            this.setState({ msg: this.msg8 })
+            const msg2 = this.msg2(this.props);
+            this.setState({ msg: msg2 })
+        } else if (e.target.value === '3') {
+            const msg3 = this.msg3(this.props);
+            this.setState({ msg: msg3 })
+        } else if (e.target.value === '4') {
+            const msg4 = this.msg4(this.props);
+            this.setState({ msg: msg4 })
+        } else if (e.target.value === '5') {
+            const msg5 = this.msg5(this.props);
+            this.setState({ msg: msg5 })
+        } else if (e.target.value === '6') {
+            const msg6 = this.msg6(this.props);
+            this.setState({ msg: msg6 })
+        } else if (e.target.value === '7') {
+            const msg7 = this.msg7(this.props);
+            this.setState({ msg: msg7 })
+        } else {
+            const msg8 = this.msg8(this.props);
+            this.setState({ msg: msg8 })
         }
-        
+
     }
 
     onTemplate = (e) => {
@@ -166,6 +235,10 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
         this.setState({
             open: !this.state.open
         });
+        // if(this.state.open){
+        //     window.location.reload();
+        // }
+
     }
 
     onChange = (e) => {
@@ -175,9 +248,12 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
 
 
     render() {
+
+        // this.setState({lead: this.props})
+
         return (
 
-            <div>
+            <div key={this.props.name} >
                 <Button onClick={this.toggle} variant='contained'
                     sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
                 >
@@ -202,7 +278,7 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2">
-                                Send Message
+                                Send Message {this.state.fullname}
                             </Typography>
 
                             <hr />
@@ -211,7 +287,7 @@ Your order ${this.props._id} has been dispatched in ${this.props.price} out of w
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
 
                                     <InputLabel id="demo-simple-select-standard-label">Select Template</InputLabel>
-                                    
+
                                     <Select
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"

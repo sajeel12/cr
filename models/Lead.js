@@ -58,7 +58,7 @@ const LeadSchema = new Schema({
     },
     originaddress: {
         type: String,
-        required: true
+        required: false
     },
     origincity: {
         type: String,
