@@ -427,7 +427,7 @@ class SendMail extends Component {
    <br>
    <p style="color: rgba(0, 0, 0, 0.692);">
         ID: ${lead.leadid} <br>
-       ${lead.modelyear} ${lead.make} ${lead.model}<br>
+        ${lead.model} ${lead.modelyear} ${lead.make} <br>
        Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode} <br>
        Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
        Available Date: ${lead.shipdate} <br>
@@ -487,7 +487,7 @@ class SendMail extends Component {
        ${lead.leadid}  <br>
        ${lead.originaddress}<br>
        ${lead.destinationaddress}<br>
-       ${lead.modelyear} ${lead.make} ${lead.model} <br>
+       ${lead.model} ${lead.modelyear} ${lead.make} <br>
        ${lead.price} $
        </p>
 
@@ -497,7 +497,7 @@ class SendMail extends Component {
            Your Custom Quote</h2>
            <br>
        <p style="color: white;" >
-           Your custom price for you shipment from ${lead.originaddress} to  ${lead.destinationaddress} is $${lead.price}. If you have
+           Your custom price for you shipment from ${lead.origincity} to  ${lead.destinationcity} is $${lead.price}. If you have
            any questions, or would like to book your shipment via phone, please feel free to call us at 5166561474.
            <br>
            <br>
@@ -554,7 +554,7 @@ class SendMail extends Component {
        <br>
        <p style="color: rgba(0, 0, 0, 0.692);">
            Order ID: ${lead.leadid} <br>
-           ${lead.modelyear} ${lead.make} ${lead.model}<br>
+           ${lead.model} ${lead.modelyear} ${lead.make} <br>
            Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
            Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
            Available Date: ${lead.shipdate}<br>
@@ -626,7 +626,7 @@ class SendMail extends Component {
        <br>
        <p style="color: rgba(0, 0, 0, 0.692);">
        Quote ID: ${lead.leadid} <br>
-       ${lead.modelyear} ${lead.make} ${lead.model}<br>
+       ${lead.model} ${lead.modelyear} ${lead.make} <br>
        Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
        Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
        Available Date: ${lead.shipdate}<br>

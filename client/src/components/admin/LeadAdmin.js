@@ -374,7 +374,7 @@ class LeadAdmin extends Component {
 
                                                                 <>
 
-                                                                    <SendMailWrapper {...row} />
+                                                                    <SendMail {...row} />
 
                                                                     <SendMsg   {...row} />
 

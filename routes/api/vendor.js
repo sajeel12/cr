@@ -8,7 +8,7 @@ const User = require('../../models/User');
 
 
 router.post('/', (req, res) => {
-    const mytoken = 'ef44e422c0d287dec044df60e34beaaf1c0c49878fdec010a82755616bf615f9'
+    // const mytoken = 'ef44e422c0d287dec044df60e34beaaf1c0c49878fdec010a82755616bf615f9'
     const token = req.body.token;
 
     User.findOne({ password: token })
@@ -18,11 +18,11 @@ router.post('/', (req, res) => {
                 && req.body.fullname !== ''
                 && req.body.email !== ''
                 && req.body.phoneno !== ''
-                && req.body.originaddress !== ''
+
                 && req.body.origincity !== ''
                 && req.body.originstate !== ''
                 && req.body.originzipcode !== ''
-                && req.body.destinationaddress !== ''
+
                 && req.body.destinationcity !== ''
                 && req.body.destinationstate !== ''
                 && req.body.destinationzipcode !== ''
@@ -40,11 +40,9 @@ router.post('/', (req, res) => {
                     fullname: req.body.fullname,
                     email: req.body.email,
                     phoneno: req.body.phoneno,
-                    originaddress: req.body.originaddress,
                     origincity: req.body.origincity,
                     originstate: req.body.originstate,
                     originzipcode: req.body.originzipcode,
-                    destinationaddress: req.body.destinationaddress,
                     destinationcity: req.body.destinationcity,
                     destinationstate: req.body.destinationstate,
                     destinationzipcode: req.body.destinationzipcode,
@@ -52,10 +50,16 @@ router.post('/', (req, res) => {
                     make: req.body.make,
                     modelyear: req.body.modelyear,
                     vehicletype: req.body.vehicletype,
-                    shipdate: req.body.shipdate
+                    shipdate: req.body.shipdate,
+                    internalnotes: req.body.internalnotes
                 });
                 newLead.save()
-                    .then(lead => res.status(200).json({msg: 'success'}));
+                    .then(lead =>
+                        lead.update({ $push: { vehicle: { $each: req.body.vehicles } } })
+                            .then(res.status(200).json({ msg: "success" }))
+
+
+                    );
 
 
 

@@ -96,7 +96,7 @@ class AddLead extends Component {
                 origincity: this.state.origincity,
                 originstate: this.state.originstate,
                 originzipcode: this.state.originzipcode,
-                destinationaddress: this.state.destinationaddress,
+                // destinationaddress: this.state.destinationaddress,
                 destinationcity: this.state.destinationcity,
                 destinationstate: this.state.destinationstate,
                 destinationzipcode: this.state.destinationzipcode,
@@ -225,14 +225,14 @@ class AddLead extends Component {
                                 <Typography variant="h6" component="h2">
                                     Destination
                                 </Typography>
-                                <TextField
+                                {/* <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
                                     name='destinationaddress'
                                     label="Destination Address"
                                     type="required"
                                     variant="standard"
-                                />
+                                /> */}
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"

@@ -15,19 +15,19 @@ const LeadSchema = new Schema({
 
         model: {
             type: String,
-            required: true
+            required: false
         },
         make: {
             type: String,
-            required: true
+            required: false
         },
         vehicletype: {
             type: String,
-            required: true
+            required: false
         },
         modelyear: {
             type: String,
-            required: true
+            required: false
         },
         vehiclecondition: {
             type: String,
@@ -56,10 +56,10 @@ const LeadSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    originaddress: {
-        type: String,
-        required: false
-    },
+    // originaddress: {
+    //     type: String,
+    //     required: false
+    // },
     origincity: {
         type: String,
         required: true
@@ -72,10 +72,10 @@ const LeadSchema = new Schema({
         type: String,
         required: true
     },
-    destinationaddress: {
-        type: String,
-        required: true
-    },
+    // destinationaddress: {
+    //     type: String,
+    //     required: true
+    // },
     destinationcity: {
         type: String,
         required: true
@@ -90,19 +90,19 @@ const LeadSchema = new Schema({
     },
     model: {
         type: String,
-        required: true
+        required: false
     },
     make: {
         type: String,
-        required: true
+        required: false
     },
     vehicletype: {
         type: String,
-        required: true
+        required: false
     },
     modelyear: {
         type: String,
-        required: true
+        required: false
     },
     vehiclecondition: {
         type: String,

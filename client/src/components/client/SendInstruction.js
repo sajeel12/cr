@@ -39,12 +39,11 @@ class SendInstruction extends Component {
     <hr>
       <p>
       
-      {   <br>
-        "token": "${this.props.password}",  <br> <br>
-        "fullname": "Ali bhai Vendor",<br>
+      { <br>
+        "token": "${this.props.password} ", <br><br>
+        "fullname": "kamal bhai Vendor",<br>
         "email": "lahore@bes.com",<br>
         "phoneno": "s",<br>
-        "originaddress": "kanganpur lahre ae",<br>
         "origincity": "lahore",<br>
         "originstate": "sf",<br>
         "originzipcode": "d",<br>
@@ -56,9 +55,29 @@ class SendInstruction extends Component {
         "make": "g",<br>
         "modelyear": "g",<br>
         "vehicletype": "f",<br>
-        "shipdate": "gh"<br>
-    }
-      
+        "shipdate": "gh",<br>
+        "internalnotes": "i am happy",<br>
+        "vehicles": [<br>
+            {<br>
+                "model": "sss",<br>
+                "make": "suzuki",<br>
+                "modelyear": "2012",<br>
+                "vehicletype": "suv"<br>
+            },<br>
+            {<br>
+                "model": "sss",<br>
+                "make": "honda",<br>
+                "modelyear": "2012",<br>
+                "vehicletype": "suv"<br>
+            },<br>
+            {<br>
+                "model": "alsvin",<br>
+                "make": "chengan",<br>
+                "modelyear": "2012",<br>
+                "vehicletype": "suv"<br>
+            }<br>
+        ]<br>
+    }<br>
       </p>
 
     `;
