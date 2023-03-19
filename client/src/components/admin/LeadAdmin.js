@@ -295,7 +295,7 @@ class LeadAdmin extends Component {
                                                 {user.isadmin ?
                                                     <>
                                                         <StyledTableCell align="center">{row.isassigned ? row.owner?.username : 'N/A'}</StyledTableCell>
-                                                        <StyledTableCell align="center">{row.owner ? row.owner.username === user.username ? "You" : row.owner.username : "N/A"}</StyledTableCell>
+                                                        <StyledTableCell align="center">{row.owner ? row.owner.fullname === user.fullname ? "You" : row.owner.fullname : "N/A"}</StyledTableCell>
                                                     </>
                                                     : ''}
                                                 <StyledTableCell align="center">{row.leadid}</StyledTableCell>

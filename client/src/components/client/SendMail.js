@@ -104,6 +104,7 @@ class SendMail extends Component {
     }
 
     followuphtml = (props) => {
+        const {user} = this.props.auth;
         const followuphtml = `
 <div style="margin: 0 0;">
 <div style=" background-color: rgba(0, 0, 0, 0.048);padding: 20px;">
@@ -127,8 +128,8 @@ class SendMail extends Component {
         <p style="color: white;margin-left: 20px;">
 
         ${props.leadid}  <br>
-        ${props.originaddress}<br>
-        ${props.destinationaddress}<br>
+        ${props.origincity}<br>
+        ${props.destinationcity}<br>
         ${props.model} ${props.modelyear} ${props.make}  <br>
         ${props.price} $
         </p>
@@ -154,7 +155,7 @@ class SendMail extends Component {
             ${this.state.company}
 
             <br><br>
-            ${props.fromemail}
+            ${user.email}
             <br><br>
             5166561474
         </p>

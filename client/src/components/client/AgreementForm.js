@@ -364,11 +364,13 @@ export class AgreementForm extends Component {
                                                     <th style={{ paddingLeft: 20 }}> Make</th>
                                                     <th style={{ paddingLeft: 20 }}> Model</th>
                                                 </tr>
-                                                <tr >
-                                                    <td style={{ paddingLeft: 20 }} > {agreements.modelyear}</td>
-                                                    <td style={{ paddingLeft: 20 }} > {agreements.make}</td>
-                                                    <td style={{ paddingLeft: 20 }}> {agreements.model}</td>
-                                                </tr>
+                                                {agreements.vehicle?.map((vehicle) => (
+                                                    < tr >
+                                                        <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                                        <td style={{ paddingLeft: 20 }} > {vehicle.make}</td>
+                                                        <td style={{ paddingLeft: 20 }}> {vehicle.model}</td>
+                                                    </tr>
+                                                ))}
                                             </table>
                                             <hr />
                                             <Typography>PRICE </Typography>

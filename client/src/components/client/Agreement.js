@@ -237,11 +237,13 @@ export class Agreement extends Component {
                                                     <th style={{ paddingLeft: 20 }}> Make</th>
                                                     <th style={{ paddingLeft: 20 }}> Model</th>
                                                 </tr>
-                                                <tr >
-                                                    <td style={{ paddingLeft: 20 }} > {agreements.modelyear}</td>
-                                                    <td style={{ paddingLeft: 20 }} > {agreements.make}</td>
-                                                    <td style={{ paddingLeft: 20 }}> {agreements.model}</td>
-                                                </tr>
+                                                {agreements.vehicle.map((vehicle) => (
+                                                    < tr >
+                                                        <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                                        <td style={{ paddingLeft: 20 }} > {vehicle.make}</td>
+                                                        <td style={{ paddingLeft: 20 }}> {vehicle.model}</td>
+                                                    </tr>
+                                                ))}
                                             </table>
                                             <hr />
                                             <Typography>PRICE </Typography>
@@ -442,10 +444,14 @@ export class Agreement extends Component {
                                                     <td>Vehicles</td>
                                                     <td></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>1) {agreements.modelyear}, {agreements.make} {agreements.model}  Car</td>
-                                                    <td></td>
-                                                </tr>
+                                                {agreements.vehicle.map((vehicle) => (
+                                                    < tr >
+
+                                                        <td>->> {vehicle.modelyear}, {vehicle.make}, {vehicle.model}  </td>
+                                                    </tr>
+                                                ))}
+
+
                                                 <tr>
                                                     <td>Origin: {agreements.origincity}, {agreements.originstate}, {agreements.originzipcode}</td>
                                                     <td>Destination:  {agreements.destinationcity}, {agreements.destinationstate}, {agreements.destinationzipcode}</td>
