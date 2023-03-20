@@ -28,6 +28,7 @@ import AgentAdmin from './AgentAdmin';
 import AgentAdmin2 from './AgentAdmin2';
 import SendMail from '../client/SendMail';
 import SendInstruction from '../client/SendInstruction';
+import UpdateUser from '../auth/UpdateUser';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -120,6 +121,7 @@ class Agents extends Component {
 
 
                                                     {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
+                                                    {row._id == user._id || row.isvendor ? "": <UpdateUser {...row} />}
 
                                                     <DeleteAgent userid={user._id} id={row._id} username={row.username} />
 

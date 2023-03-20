@@ -40,45 +40,39 @@ class SendInstruction extends Component {
       <p>
       
       { <br>
-        "token": "${this.props.password} ", <br><br>
-        "fullname": "kamal bhai Vendor",<br>
+        "token": "$2a$10$johm9JGr1jl9Geuitmq7ZOgi.0fqQNKMdYJfUxaPlgWifBiyTyRdC",<br><br>
+        "fullname": "final format check",<br>
         "email": "lahore@bes.com",<br>
-        "phoneno": "s",<br>
-        "origincity": "lahore",<br>
-        "originstate": "sf",<br>
-        "originzipcode": "d",<br>
-        "destinationaddress": "d",<br>
-        "destinationcity": "d",<br>
-        "destinationstate": "df",<br>
-        "destinationzipcode": "hj",<br>
-        "model": "bv",<br>
-        "make": "g",<br>
-        "modelyear": "g",<br>
-        "vehicletype": "f",<br>
-        "shipdate": "gh",<br>
+        "phoneno": "(051) 548712",<br>
+        "origincity": "Greenville",<br>
+        "originstate": "CA",<br>
+        "originzipcode": "95947",<br>
+        "origincountry": "USA",<br>
+        "destinationcity": "Dallas",<br>
+        "destinationstate": "TX",<br>
+        "destinationzipcode": "75214",<br>
+        "destinationcountry": "USA",<br>
+        "shipdate": "11/10/2017"",<br> "mm/dd/yyyy"
         "internalnotes": "i am happy",<br>
+        "transporttype": 2,<br>
         "vehicles": [<br>
-            {<br>
-                "model": "sss",<br>
+            {   <br>
+                "isoperable":0,<br>
+                "model": "43sa",<br>
                 "make": "suzuki",<br>
                 "modelyear": "2012",<br>
                 "vehicletype": "suv"<br>
-            },<br>
+            },
             {<br>
-                "model": "sss",<br>
-                "make": "honda",<br>
-                "modelyear": "2012",<br>
-                "vehicletype": "suv"<br>
-            },<br>
-            {<br>
-                "model": "alsvin",<br>
+                "isoperable":1,<br>
+                "model": "76g6",<br>
                 "make": "chengan",<br>
                 "modelyear": "2012",<br>
                 "vehicletype": "suv"<br>
             }<br>
         ]<br>
-    }<br>
-      </p>
+    }<br><br>
+      </p><br>
 
     `;
 

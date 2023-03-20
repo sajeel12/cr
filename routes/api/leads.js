@@ -42,6 +42,7 @@ router.get('/', auth, (req, res) => {
 
 // Post request  
 router.post('/', auth, (req, res) => {
+    console.log(req.body)
     User.findById(req.user.id).then(user => {
         const newLead = new Lead({
 
@@ -59,14 +60,16 @@ router.post('/', auth, (req, res) => {
             destinationcity: req.body.destinationcity,
             destinationstate: req.body.destinationstate,
             destinationzipcode: req.body.destinationzipcode,
-            model: req.body.model,
-            make: req.body.make,
-            modelyear: req.body.modelyear,
-            vehicletype: req.body.vehicletype,
-            shipdate: req.body.shipdate
+            shipdate: req.body.shipdate,
+            transporttype: req.body.transporttype,
+            isoperable: req.body.isoperable
         });
         newLead.save()
-            .then(lead => res.json(lead));
+            .then(lead =>
+                lead.update({ $push: { vehicle: { $each: req.body.vehicle } } })
+                    .then(res.status(200).json({ msg: "success" }))
+            )
+            // .then(lead => res.json(lead));
 
         // Lead.up
     }

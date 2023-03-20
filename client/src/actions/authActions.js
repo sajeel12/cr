@@ -66,6 +66,35 @@ export const register = ({  isvendor,  isadmin, fullname, username, email, email
 }
 
 
+
+
+export const updateUser = ({  isvendor,  isadmin, fullname, username, email, emailpass,phoneno, password }) => dispatch => {
+    //Headers
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    // request body 
+
+    const body = JSON.stringify({ isvendor, isadmin, fullname, username, email,emailpass,phoneno, password });
+
+    axios.put('/api/users', body, config)
+        .then(res => dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'))
+            dispatch({
+                type: REGISTER_FAIL
+            })
+        })
+
+}
+
+
 // login
 
 export const login = ({ username, password }) => dispatch => {

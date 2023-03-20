@@ -244,12 +244,13 @@ class LeadAdmin extends Component {
                                         <StyledTableCell align="center">Lead By&nbsp;</StyledTableCell>
                                     </>
                                     : ''}
-                                <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Year&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Ship Date&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell>
+                                <StyledTableCell align="center">Lead_Id&nbsp;</StyledTableCell>
+                                {/* <StyledTableCell align="center">Make&nbsp;</StyledTableCell> */}
+                                {/* <StyledTableCell align="center">Model&nbsp;</StyledTableCell> */}
+                                {/* <StyledTableCell align="center">Year&nbsp;</StyledTableCell> */}
+                                <StyledTableCell style={{ width: 100 }} align="center">Ship_Date&nbsp;</StyledTableCell>
+                                {/* <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell> */}
+                                <StyledTableCell align="center">Vehicles&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Recieved Date&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Time&nbsp;</StyledTableCell>
                                 <StyledTableCell sx={{ width: 300 }} align="center">Actions</StyledTableCell>
@@ -299,11 +300,29 @@ class LeadAdmin extends Component {
                                                     </>
                                                     : ''}
                                                 <StyledTableCell align="center">{row.leadid}</StyledTableCell>
-                                                <StyledTableCell align="center">{row.make}</StyledTableCell>
+                                                {/* <StyledTableCell align="center">{row.make}</StyledTableCell>
                                                 <StyledTableCell align="center">{row.model}</StyledTableCell>
-                                                <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
-                                                <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
-                                                <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
+                                                <StyledTableCell align="center">{row.modelyear}</StyledTableCell> */}
+                                                <StyledTableCell align="center">{moment(row.shipdate).format("ddd, MMM D YYYY")}</StyledTableCell>
+                                                {/* <StyledTableCell align="center">{row.vehicletype}</StyledTableCell> */}
+                                                <StyledTableCell align="center">
+                                                    <table>
+                                                        <tr>
+                                                            <th style={{ paddingLeft: 20 }} > Year</th>
+                                                            <th style={{ paddingLeft: 20 }}> Make</th>
+                                                            <th style={{ paddingLeft: 20 }}> Model</th>
+                                                            <th style={{ paddingLeft: 20 }}> Type</th>
+                                                        </tr>
+                                                        {row.vehicle?.map((vehicle) => (
+                                                            < tr >
+                                                                <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                                                <td style={{ paddingLeft: 20 }} > {vehicle.make}</td>
+                                                                <td style={{ paddingLeft: 20 }}> {vehicle.model}</td>
+                                                                <td style={{ paddingLeft: 20 }}> {vehicle.vehicletype}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </table>
+                                                </StyledTableCell>
                                                 <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
                                                 <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
                                                 <StyledTableCell align="center"  >
@@ -353,11 +372,29 @@ class LeadAdmin extends Component {
                                                         </>
                                                         : ''}
                                                     <StyledTableCell align="center">{row.leadid}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.make}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.model}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
-                                                    <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
+                                                    {/* <StyledTableCell align="center">{row.make}</StyledTableCell> */}
+                                                    {/* <StyledTableCell align="center">{row.model}</StyledTableCell> */}
+                                                    {/* <StyledTableCell align="center">{row.modelyear}</StyledTableCell> */}
+                                                    <StyledTableCell align="center">{moment(row.shipdate).format("ddd, MMM D YYYY")}</StyledTableCell>
+                                                    {/* <StyledTableCell align="center">{row.vehicletype}</StyledTableCell> */}
+                                                    <StyledTableCell align="center">
+                                                        <table>
+                                                            <tr>
+                                                                <th style={{ paddingLeft: 20 }} > Year</th>
+                                                                <th style={{ paddingLeft: 20 }}> Make</th>
+                                                                <th style={{ paddingLeft: 20 }}> Model</th>
+                                                                <th style={{ paddingLeft: 20 }}> Type</th>
+                                                            </tr>
+                                                            {row.vehicle.map((vehicle) => (
+                                                                < tr >
+                                                                    <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                                                    <td style={{ paddingLeft: 20 }} > {vehicle.make}</td>
+                                                                    <td style={{ paddingLeft: 20 }}> {vehicle.model}</td>
+                                                                    <td style={{ paddingLeft: 20 }}> {vehicle.vehicletype}</td>
+                                                                </tr>
+                                                            ))}
+                                                        </table>
+                                                    </StyledTableCell>
                                                     <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
                                                     <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
                                                     <StyledTableCell align="center"  >

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+
 import {
     Typography, Box, Modal, Button,
-    TextField, Divider
+    TextField, Divider, MenuItem,
+    InputLabel,
+    Select,
+    FormControl
 
 } from '@mui/material';
 // import { v1 as uuid } from 'uuid';
@@ -38,13 +42,16 @@ class AddLead extends Component {
     };
     state = {
         open: false,
+        vehiclemodel: false,
         error: false,
+
+        vehiclecount: 1,
 
         fullname: '',
         email: '',
         phoneno: '',
         origincity: '',
-        // originaddress: '',
+        originaddress: '',
         originstate: '',
         originzipcode: '',
         destinationaddress: '',
@@ -55,7 +62,10 @@ class AddLead extends Component {
         modelyear: '',
         make: '',
         vehicletype: '',
-        shipdate: ''
+        shipdate: '',
+        transporttype: 1,
+        isoperable: 0,
+        vehicle: []
 
     }
 
@@ -74,14 +84,14 @@ class AddLead extends Component {
             && this.state.origincity !== ''
             && this.state.originstate !== ''
             && this.state.originzipcode !== ''
-            && this.state.destinationaddress !== ''
+            // && this.state.destinationaddress !== ''
             && this.state.destinationcity !== ''
             && this.state.destinationstate !== ''
             && this.state.destinationzipcode !== ''
-            && this.state.model !== ''
-            && this.state.modelyear !== ''
-            && this.state.make !== ''
-            && this.state.vehicletype !== ''
+            // && this.state.model !== ''
+            // && this.state.modelyear !== ''
+            // && this.state.make !== ''
+            // && this.state.vehicletype !== ''
         ) {
             this.setState({ error: false })
 
@@ -92,11 +102,11 @@ class AddLead extends Component {
                 fullname: this.state.fullname,
                 email: this.state.email,
                 phoneno: this.state.phoneno,
-                // originaddress: this.state.originaddress,
+                originaddress: this.state.originaddress,
                 origincity: this.state.origincity,
                 originstate: this.state.originstate,
                 originzipcode: this.state.originzipcode,
-                // destinationaddress: this.state.destinationaddress,
+                destinationaddress: this.state.destinationaddress,
                 destinationcity: this.state.destinationcity,
                 destinationstate: this.state.destinationstate,
                 destinationzipcode: this.state.destinationzipcode,
@@ -104,21 +114,42 @@ class AddLead extends Component {
                 modelyear: this.state.modelyear,
                 make: this.state.make,
                 vehicletype: this.state.vehicletype,
-                shipdate: this.state.shipdate
+                shipdate: this.state.shipdate,
+                transporttype: this.state.transporttype,
+                vehicle: this.state.vehicle
 
             };
 
             this.props.addLead(newLead);
             this.handleClose();
+            this.setState({ vehicle: [] })
         }
         else {
             this.setState({ error: true })
         }
     }
 
+    handletransporttype = (e) => {
+        this.setState({ transporttype: e.target.value })
+    }
+    handleisoperable = (e) => {
+        this.setState({ isoperable: e.target.value })
+    }
+
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
+    vehiclemodel = () => {
+        this.setState({ vehiclemodel: true })
+    }
+
+    handleClosevehiclemodel = () => {
+        this.setState({
+            vehiclemodel: !this.state.vehiclemodel
+        });
+    }
+
 
     handleClose = () => {
         this.setState({
@@ -127,7 +158,44 @@ class AddLead extends Component {
     }
 
 
+    handleaddvehicle = () => {
+        this.state.vehicle.push(
+            {
+
+                model: this.state.model,
+                modelyear: this.state.modelyear,
+                make: this.state.make,
+                vehicletype: this.state.vehicletype,
+                isoperable: this.state.isoperable
+            }
+        )
+        this.handleClosevehiclemodel();
+    }
+    handleremovevehicle = (i) => {
+        this.state.vehicle.splice(i, 1)
+        // this.setState({ vehiclecount: this.state.vehiclecount - 1 })
+
+    }
+
+
     render() {
+
+        // const vehiclefields = [];
+        // for (let i = 1; i <= this.state.vehiclecount; i++) {
+        //     vehiclefields.push(
+        //         < div key={i}>
+        //             {/* =======================================Vehicle Start===================================================== */}
+
+
+
+
+        //             {/* =======================================Vehicle end===================================================== */}
+        //         </div>
+        //     )
+        // }
+
+
+
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
@@ -188,14 +256,14 @@ class AddLead extends Component {
                                     Origin
                                 </Typography>
 
-                                {/* <TextField
+                                <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
                                     name='originaddress'
                                     label="Origin Address"
                                     type="required"
                                     variant="standard"
-                                /> */}
+                                />
 
                                 <TextField
                                     onChange={this.onChange}
@@ -225,14 +293,14 @@ class AddLead extends Component {
                                 <Typography variant="h6" component="h2">
                                     Destination
                                 </Typography>
-                                {/* <TextField
+                                <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
                                     name='destinationaddress'
                                     label="Destination Address"
                                     type="required"
                                     variant="standard"
-                                /> */}
+                                />
                                 <TextField
                                     onChange={this.onChange}
                                     id="standard-required"
@@ -258,71 +326,186 @@ class AddLead extends Component {
                                     variant="standard"
                                 />
                                 <hr />
+
                                 <Typography variant="h6" component="h2">
-                                    Vehicle Detail
+                                    Ship Date
                                 </Typography>
-                                <TextField
-                                    onChange={this.onChange}
-                                    id="standard-required"
-                                    name='model'
-                                    label="Model"
-                                    type="required"
-                                    variant="standard"
-                                />
-                                <TextField
-                                    onChange={this.onChange}
-                                    id="standard-required"
-                                    name='modelyear'
-                                    label="Model Year"
-                                    type="required"
-                                    variant="standard"
-                                />
-                                <TextField
-                                    onChange={this.onChange}
-                                    id="standard-required"
-                                    name='make'
-                                    label="Make "
-                                    type="required"
-                                    variant="standard"
-                                />
-                                <TextField
-                                    onChange={this.onChange}
-                                    id="standard-required"
-                                    name='vehicletype'
-                                    label="Vehicle Type"
-                                    type="required"
-                                    variant="standard"
-                                />
+
+                                <input style={{ width: 220, marginLeft: 8, marginTop: 10 }}
+                                    type="date" name='shipdate' onChange={this.onChange} />
 
 
-                                {/* <TextField
-                                    onChange={this.onChange}
-                                    id="standard-required"
-                                    name='shipdate'
-                                    label="Ship Date"
-                                    type="required"
-                                    variant="standard"
-                                /> */}
-                                
-                                <input  style={{width:220, marginLeft:8, marginTop:10}}
-                                 type="date"  name='shipdate' onChange={this.onChange}  />
+                                <hr />
+                                <Typography variant="h6" component="h2">
+                                    Transport Type
+                                </Typography>
 
-                                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                        <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
-                                        <DatePicker
-                                            label="Controlled picker"
-                                            value={value}
-                                            onChange={(newValue) => setValue(newValue)}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider> */}
+                                <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
+
+                                    <InputLabel id="demo-simple-select-standard-label">Transport Type</InputLabel>
+
+                                    <Select
+                                        labelId="demo-simple-select-standard-label"
+                                        id="demo-simple-select-standard"
+                                        value={this.state.transporttype}
+                                        onChange={this.handletransporttype}
+                                        label="Select Template"
+                                    >
+                                        <MenuItem value={1} >1</MenuItem>
+                                        <MenuItem value={2} >2</MenuItem>
+                                        <MenuItem value={3} >3</MenuItem>
+
+                                    </Select>
+
+
+                                </FormControl>
+
+
+                                <hr />
+                                <table>
+                                    <tr>
+                                        <th style={{ paddingLeft: 1 }} > </th>
+                                        <th style={{ paddingLeft: 20 }} > Year</th>
+                                        <th style={{ paddingLeft: 50 }}> Make</th>
+                                        <th style={{ paddingLeft: 50 }}> Model</th>
+                                        <th style={{ paddingLeft: 50 }}> vehicletype</th>
+                                        <th style={{ paddingLeft: 50 }}> *</th>
+                                    </tr>
+                                    {this.state.vehicle.map((vehicle, i) => (
+                                        < tr key={i}  >
+                                            <td style={{ paddingLeft: 1 }} > {i + 1})</td>
+                                            <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                            <td style={{ paddingLeft: 50 }} > {vehicle.make}</td>
+                                            <td style={{ paddingLeft: 50 }}> {vehicle.model}</td>
+                                            <td style={{ paddingLeft: 50 }}> {vehicle.vehicletype}</td>
+                                            <td>
+                                                <Button onClick={() => this.handleremovevehicle(i)} variant='contained'
+                                                    sx={{ fontSize: 12, width: 10, marginLeft: 3, marginBottom: 1, backgroundColor: 'red', borderRadius: 100 }}
+                                                >
+                                                    -
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </table>
+
+                                {/* vehicle area */}
+
+
+                                <Button onClick={this.vehiclemodel} variant='contained'
+                                    sx={{ fontSize: 12, width: 10, marginTop: 3, marginLeft: 0, backgroundColor: 'black', borderRadius: 100 }}
+                                >
+                                    +
+                                </Button>
+                                <Modal
+                                    open={this.state.vehiclemodel}
+                                    onClose={this.handleClosevehiclemodel}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                    sx={{ overflowY: 'scroll', height: 600 }}
+                                >
+                                    <Box sx={this.style}>
+
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <Typography variant="h5" component="h2">
+                                                Add Vehicle
+                                            </Typography>
+                                            <hr />
+                                            <Typography variant="h6" component="h2">
+                                                Vehicle Detail
+                                            </Typography>
+                                            <TextField
+                                                onChange={this.onChange}
+                                                id="standard-required"
+                                                name='modelyear'
+                                                label="Model Year"
+                                                type="required"
+                                                variant="standard"
+                                            />
+                                                <TextField
+                                                    onChange={this.onChange}
+                                                    id="standard-required"
+                                                    name='make'
+                                                    label="Make "
+                                                    type="required"
+                                                    variant="standard"
+                                                />
+                                            <TextField
+                                                onChange={this.onChange}
+                                                id="standard-required"
+                                                name='model'
+                                                label="Model"
+                                                type="required"
+                                                variant="standard"
+                                            />
+                                            <TextField
+                                                onChange={this.onChange}
+                                                id="standard-required"
+                                                name='vehicletype'
+                                                label="Vehicle Type"
+                                                type="required"
+                                                variant="standard"
+                                            />
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
+
+                                                <InputLabel id="demo-simple-select-standard-label">is  Operable?</InputLabel>
+
+                                                <Select
+                                                    labelId="demo-simple-select-standard-label"
+                                                    id="demo-simple-select-standard"
+                                                    value={this.state.isoperable}
+                                                    onChange={this.handleisoperable}
+                                                    label="is Operable"
+                                                >
+                                                    <MenuItem value={0} >No</MenuItem>
+                                                    <MenuItem value={1} >Yes</MenuItem>
+
+                                                </Select>
+
+
+                                            </FormControl>
+
+                                            <Button onClick={this.handleaddvehicle} variant='contained'
+                                                sx={{ fontSize: 27, width: 10, marginTop: 1, marginLeft: 0, backgroundColor: 'black', borderRadius: 100 }}
+                                            >
+                                                +
+                                            </Button>
+                                        </Box>
+                                    </Box>
+                                </Modal>
+
+
+
+
+
+
+
+
+
+                                {/* {this.state.vehiclecount > 1 &&
+                                    <Button onClick={this.handleremovevehicle} variant='contained'
+                                        sx={{ fontSize: 27, width: 10, marginTop: 1, marginLeft: 0, backgroundColor: 'red', borderRadius: 100 }}
+                                    >
+                                        -
+                                    </Button>
+                                } */}
+
+                                {/* vehicle area */}
+
+
 
                                 <div>
                                     <Button variant='contained'
                                         sx={{
-                                            marginTop: 5, backgroundColor: 'black', width: 100,
-                                            borderRadius: 50, marginLeft: 28
+                                            marginTop: 5, backgroundColor: 'black', width: 500,
+                                            borderRadius: 50, marginLeft: 3
                                         }}
                                         onClick={this.onSubmit}
                                     >

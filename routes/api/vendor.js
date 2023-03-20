@@ -43,15 +43,14 @@ router.post('/', (req, res) => {
                     origincity: req.body.origincity,
                     originstate: req.body.originstate,
                     originzipcode: req.body.originzipcode,
+                    origincountry: req.body.origincountry,
                     destinationcity: req.body.destinationcity,
                     destinationstate: req.body.destinationstate,
                     destinationzipcode: req.body.destinationzipcode,
-                    model: req.body.model,
-                    make: req.body.make,
-                    modelyear: req.body.modelyear,
-                    vehicletype: req.body.vehicletype,
+                    destinationcountry: req.body.destinationcountry,
                     shipdate: req.body.shipdate,
-                    internalnotes: req.body.internalnotes
+                    internalnotes: req.body.internalnotes,
+                    transporttype: req.body.transporttype
                 });
                 newLead.save()
                     .then(lead =>
