@@ -104,7 +104,7 @@ class Agents extends Component {
                                 <TableBody>
                                     {agents.map((row) => (
 
-                                        <StyledTableRow key={row._id} style={{ backgroundColor: row.isvendor && '#DCF700' }} >
+                                        <StyledTableRow key={row._id} style={{ backgroundColor: row.isvendor && '#dbfcff' }} >
 
 
 
