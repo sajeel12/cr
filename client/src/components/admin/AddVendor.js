@@ -42,6 +42,8 @@ class AddVendor extends Component {
         p: 4,
     };
     state = {
+        msg: null,
+
         agent: 'Agent',
         open: false,
         isadmin: false,
@@ -84,11 +86,11 @@ class AddVendor extends Component {
             }
         }
 
-        if (this.state.modal) {
-            if (isAuthenticated) {
-                this.toggle();
-            }
-        }
+        // if (this.state.modal) {
+        //     if (isAuthenticated) {
+        //         this.toggle();
+        //     }
+        // }
     }
     toggleAdmin = () => {
         this.setState({
@@ -121,15 +123,15 @@ class AddVendor extends Component {
             isvendor: true,
             fullname,
             email,
-           
+
             password
         };
 
         // attemp to register
         this.props.register(newUser);
 
-        console.log(newUser);
-        this.toggle();
+        if (this.state.msg !== null)
+            this.toggle();
     }
 
 
@@ -159,13 +161,15 @@ class AddVendor extends Component {
                             noValidate
                             autoComplete="off"
                         >
+                            {this.state.msg ? (<Alert color="danger" >{this.state.msg}</Alert>)
+                                : null}
                             <Typography variant="h5" component="h2">
                                 Add Vendor
                             </Typography>
 
                             <hr />
-                           
-                            
+
+
                             <form  >
                                 <TextField
                                     onChange={this.onChange}

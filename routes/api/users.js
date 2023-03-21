@@ -14,12 +14,12 @@ router.post('/', (req, res) => {
     console.log(req.body);
     if (req.body.isvendor) {
         if (!fullname || !email || !password) {
-            return res.status(400).json({ msg: 'credintials not provided' })
+            return res.status(400).json({ msg: 'Credintials not provided !' })
         } else {
 
             User.findOne({ email })            // {email : email} ---> just {email}  because they are same
                 .then(user => {
-                    if (user) return res.status(400).json({ msg: 'User Already exits' })
+                    if (user) return res.status(400).json({ msg: 'Vendor Already exists' })
 
                     const newUser = User({
                         isvendor,
@@ -44,12 +44,12 @@ router.post('/', (req, res) => {
         }
     } else {
         if (!username || !fullname || !phoneno || !email || !password) {
-            return res.status(400).json({ msg: 'credintials not provided' })
+            return res.status(400).json({ msg: 'Credintials not provided' })
         } else {
 
             User.findOne({ email })            // {email : email} ---> just {email}  because they are same
                 .then(user => {
-                    if (user) return res.status(400).json({ msg: 'User Already exits' })
+                    if (user) return res.status(400).json({ msg: 'User Already exists' })
 
                     const newUser = User({
                         isadmin,

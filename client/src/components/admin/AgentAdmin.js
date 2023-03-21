@@ -159,10 +159,13 @@ class AgentAdmin extends Component {
                             <Typography variant="h5" component="h2">
                                 Agent Activity
                             </Typography>
+                            <hr />
+
+                            Total Leads =  (<span style={{color:'#26a500', fontWeight:'bold'}} > {leads.length} </span>) 
 
                             <hr />
 
-                            <BottomNavigation sx={{ marginLeft:50,width: 450  }} value={this.state.navval} onChange={this.handleNav}>
+                            <BottomNavigation sx={{ marginLeft: 50, width: 450 }} value={this.state.navval} onChange={this.handleNav}>
                                 <BottomNavigationAction
                                     label="Leads"
                                     value="lead"
@@ -204,7 +207,7 @@ class AgentAdmin extends Component {
                             <div>
                                 <Container sx={{ width: 1400 }}  >
 
-                                    <TableContainer component={Paper} sx={{ maxHeight: 300, maxWidth: 1600, overflowY: 'scroll' }}  >
+                                    <TableContainer component={Paper} sx={{ maxHeight: 250, maxWidth: 1600, overflowY: 'scroll' }}  >
                                         <Table sx={{ minWidth: 1600 }} aria-label="customized table"  >
                                             <TableHead>
                                                 <TableRow  >
@@ -213,11 +216,10 @@ class AgentAdmin extends Component {
                                                     <StyledTableCell align="center">Email</StyledTableCell>
                                                     <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
                                                     <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
-                                                    <StyledTableCell align="center">Make&nbsp;</StyledTableCell>
-                                                    <StyledTableCell align="center">Model&nbsp;</StyledTableCell>
-                                                    <StyledTableCell align="center">Year&nbsp;</StyledTableCell>
+
                                                     <StyledTableCell align="center">Ship Date&nbsp;</StyledTableCell>
-                                                    <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell>
+                                                    <StyledTableCell align="center">Vehicles&nbsp;</StyledTableCell>
+
                                                     <StyledTableCell align="center">Recieved Date&nbsp;</StyledTableCell>
                                                     <StyledTableCell align="center">Time&nbsp;</StyledTableCell>
                                                     <StyledTableCell align="center">Total Mails&nbsp;</StyledTableCell>
@@ -227,35 +229,52 @@ class AgentAdmin extends Component {
                                                 {leads.map((row) => (
                                                     row.status === this.state.navval &&
 
-                                                            <StyledTableRow key={row._id} 
-                                                               sx={
-                                                                row.mailsent && { backgroundColor: '#F7E771' } 
-                                                               }
-                                                            >
+                                                    <StyledTableRow key={row._id}
+                                                        sx={
+                                                            row.mailsent && { backgroundColor: '#F7E771' }
+                                                        }
+                                                    >
 
 
 
 
 
-                                                                <StyledTableCell component="th" scope="row">
-                                                                    {row.fullname}
+                                                        <StyledTableCell component="th" scope="row">
+                                                            {row.fullname}
 
-                                                                </StyledTableCell>
-                                                                <StyledTableCell align="center">{row.email}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.leadid}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.make}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.model}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.modelyear}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
-                                                                <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
-                                                                <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
-                                                                <StyledTableCell align="center">{row.mailcount}</StyledTableCell>
+                                                        </StyledTableCell>
+                                                        <StyledTableCell align="center">{row.email}</StyledTableCell>
+                                                        <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
+                                                        <StyledTableCell align="center">{row.leadid}</StyledTableCell>
 
-                                                            </StyledTableRow>
+                                                        <StyledTableCell align="center">{row.shipdate}</StyledTableCell>
+                                                        <StyledTableCell align="center">
+                                                            <table>
+                                                                <tr>
+                                                                    <th style={{ paddingLeft: 20 }} > Year</th>
+                                                                    <th style={{ paddingLeft: 20 }}> Make</th>
+                                                                    <th style={{ paddingLeft: 20 }}> Model</th>
+                                                                    <th style={{ paddingLeft: 20 }}> Type</th>
+                                                                </tr>
+                                                                {row.vehicle?.map((vehicle) => (
+                                                                    < tr >
+                                                                        <td style={{ paddingLeft: 20 }} > {vehicle.modelyear}</td>
+                                                                        <td style={{ paddingLeft: 20 }} > {vehicle.make}</td>
+                                                                        <td style={{ paddingLeft: 20 }}> {vehicle.model}</td>
+                                                                        <td style={{ paddingLeft: 20 }}> {vehicle.vehicletype}</td>
+                                                                    </tr>
+                                                                ))}
+                                                            </table>
 
-                                                    
+                                                        </StyledTableCell>
+
+                                                        <StyledTableCell align="center">{moment(row.recieveddate).format("ddd, MMM D YYYY")}</StyledTableCell>
+                                                        <StyledTableCell align="center">{moment(row.recieveddate).format("h:mm a")}</StyledTableCell>
+                                                        <StyledTableCell align="center">{row.mailcount}</StyledTableCell>
+
+                                                    </StyledTableRow>
+
+
                                                 ))}
                                             </TableBody>
                                         </Table>

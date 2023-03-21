@@ -42,6 +42,8 @@ class RegisterModel extends Component {
         p: 4,
     };
     state = {
+        msg: null,
+
         agent: 'Agent',
         open: false,
         isadmin: false,
@@ -84,11 +86,11 @@ class RegisterModel extends Component {
             }
         }
 
-        if (this.state.modal) {
-            if (isAuthenticated) {
-                this.toggle();
-            }
-        }
+        // if (this.state.modal) {
+        //     if (isAuthenticated) {
+        //         this.toggle();
+        //     }
+        // }
     }
     toggleAdmin = () => {
         this.setState({
@@ -129,15 +131,16 @@ class RegisterModel extends Component {
 
         // attemp to register
         this.props.register(newUser);
-
-        console.log(newUser);
-        this.toggle();
+        
+        if (this.state.msg !== null)
+            this.toggle();
     }
 
 
     render() {
         return (
             <div>
+
                 <Button onClick={this.toggle} variant='contained'
                     sx={{ width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3, backgroundColor: 'black', borderRadius: 50 }}
                 >
@@ -161,8 +164,10 @@ class RegisterModel extends Component {
                             noValidate
                             autoComplete="off"
                         >
+                            {this.state.msg ? (<Alert  color="danger" >{this.state.msg}</Alert>)
+                                : null}
                             <Typography variant="h5" component="h2">
-                                Add Lead
+                                Add Agent
                             </Typography>
 
                             <hr />
