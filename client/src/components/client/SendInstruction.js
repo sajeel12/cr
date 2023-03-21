@@ -192,8 +192,13 @@ class SendInstruction extends Component {
                     sx={{
                         width: 200,
                         marginRight: 1,
-                        backgroundColor: this.props.mailsent ? '#F7E771' : 'black',
-                        color: this.props.mailsent ? 'black' : '',
+                        backgroundColor: this.props.mailsent ? '#F7E771' : '#E8F8F9',
+                        color:'#009B9B', 
+                        "&:hover":{
+                            backgroundColor:'#009B9B',
+                            color:'#E8F8F9'
+                        },
+                        color: this.props.mailsent ? 'black' : '#009B9B',
                         borderRadius: 50
                     }}>
                     {this.props.mailsent ? 'Already Sent  ' : 'Send Instructions'}

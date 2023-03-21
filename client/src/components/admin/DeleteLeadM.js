@@ -3,7 +3,7 @@ import {
     Typography, Box, Modal, Button,
     TextField, Divider
 } from '@mui/material';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { deleteLeadM } from '../../actions/leadActions';
 
@@ -50,11 +50,15 @@ class DeleteLeadM extends Component {
         return (
             <>
                 <Button variant="contained"
-                    sx={{ fontSize:20, width: 200, height:56 , marginBottom:1, marginRight:1, backgroundColor: 'black', 
-                    borderRadius: 50,
-                    "&:hover": {
-                        backgroundColor:'red'
-                          } }}
+                    sx={{
+                        fontSize: 20, width: 200, height: 56, marginBottom: 1, marginRight: 1,
+                        borderRadius: 50,
+                        backgroundColor: '#E8F8F9',color:'#009B9B', 
+                        "&:hover":{
+                            backgroundColor:'#009B9B',
+                            color:'#E8F8F9'
+                        }
+                    }}
                     onClick={this.handleClose}
                 >Delete Leads
                 </Button>
@@ -75,13 +79,13 @@ class DeleteLeadM extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            <Typography variant="h5" component="h2" sx={{  color: 'red', fontWeight:'bolder' }} >
+                            <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
                                 DELETE Leads
                             </Typography>
 
                             <hr />
-                            <Button variant='contained' 
-                                sx={{ marginBottom: 5 , backgroundColor:'red', color:'white' }}
+                            <Button variant='contained'
+                                sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
                                 onClick={this.onSubmit}
                             >
                                 Delete
@@ -103,7 +107,7 @@ class DeleteLeadM extends Component {
 
 
 const mapStateToProps = (state) => ({
-    lead:state.lead
+    lead: state.lead
 })
 
-export default connect(mapStateToProps, {deleteLeadM})(DeleteLeadM);
+export default connect(mapStateToProps, { deleteLeadM })(DeleteLeadM);

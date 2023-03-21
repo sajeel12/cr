@@ -15,10 +15,10 @@ body{
 
 
 .log_nav{
-    border-top: 5px solid rgb(255, 235, 122);
-    background-color: black;
+    border-top: 5px solid #009B9B;
+    background-color: #D2ECEF;
     height: 60px;
-    color: white;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,10 +37,10 @@ body{
 
 .log_box{
     margin-left: 185px;
-    border-top: 60px solid black;
-    border-bottom: 5px solid black;
+    border-top: 60px solid #009B9B;
+    border-bottom: 5px solid #009B9B;
     margin-top: 100px;
-    background-color:rgb(252, 234, 134);
+    background-color:#E8F8F9;
     width: 400px;
     height: 350px;
     border-radius: 40px 0;
@@ -530,5 +530,8 @@ height: 28px;
     font-size: 13px;
   }
 
+.searchLead::placeholder{
+    color:#009B9B;
+}
   /* #admin side css */
   

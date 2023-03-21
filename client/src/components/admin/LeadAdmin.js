@@ -41,7 +41,8 @@ import SendMailWrapper from '../client/SendMailWrapper';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        // backgroundColor: theme.palette.common.black,
+        backgroundColor: "#009b9b",
         color: theme.palette.common.white,
 
     },
@@ -77,8 +78,8 @@ class LeadAdmin extends Component {
         borderRadius: 50,
         width: 200,
         paddingLeft: 42,
-        backgroundColor: 'black',
-        color: 'white',
+        backgroundColor: '#E8F8F9',
+        color: '#009B9B',
         fontSize: 20
 
     }
@@ -270,9 +271,9 @@ class LeadAdmin extends Component {
 
 
                                         user.isadmin ?
-                                            row.isassigned ? { backgroundColor: '#8EE2B8' } : { backgroundColor: '' }
+                                            row.isassigned ? { backgroundColor: '#84ffc1' } : { backgroundColor: '' }
                                             :
-                                            row.mailsent ? { backgroundColor: '#F7E771' } : ''}
+                                            row.mailsent ? { backgroundColor: '#ffee93' } : ''}
 
                                     // row.isassigned ?
                                     //     user.isadmin ?
@@ -341,7 +342,7 @@ class LeadAdmin extends Component {
 
                                                                 <SendMail toemail={row.email} many={false} mailcount={row.mailcount} leadid={row._id} fromemail={user.email} />
                                                                 <SendMsg  {...row} />
-                                                                <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
+                                                                {/* <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button> */}
                                                                 <UpdateStatus leadid={row._id} />
                                                                 <UpdateLead {...row} />
                                                             </>
@@ -415,7 +416,7 @@ class LeadAdmin extends Component {
 
                                                                     <SendMsg   {...row} />
 
-                                                                    <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button>
+                                                                    {/* <Button variant="contained" sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }} >Orange</Button> */}
                                                                     <UpdateStatus leadid={row._id} />
                                                                     <UpdateLead {...row} />
                                                                 </>

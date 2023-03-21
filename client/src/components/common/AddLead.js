@@ -199,7 +199,15 @@ class AddLead extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ fontSize: 20, width: 200, height: 56, marginBottom: 0, marginLeft: 5, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        fontSize: 20, width: 200, height: 56, marginBottom: 0, marginLeft: 5,
+                        borderRadius: 50,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        }
+                    }}
                 >
                     Add Lead
                 </Button>
@@ -393,7 +401,7 @@ class AddLead extends Component {
 
 
                                 <Button onClick={this.vehiclemodel} variant='contained'
-                                    sx={{ fontSize: 12, width: 10, marginTop: 3, marginLeft: 0, backgroundColor: 'black', borderRadius: 100 }}
+                                    sx={{ fontSize: 12, width: 10, marginTop: 3, marginLeft: 0, backgroundColor: 'green', borderRadius: 100 }}
                                 >
                                     +
                                 </Button>
@@ -429,14 +437,14 @@ class AddLead extends Component {
                                                 type="required"
                                                 variant="standard"
                                             />
-                                                <TextField
-                                                    onChange={this.onChange}
-                                                    id="standard-required"
-                                                    name='make'
-                                                    label="Make "
-                                                    type="required"
-                                                    variant="standard"
-                                                />
+                                            <TextField
+                                                onChange={this.onChange}
+                                                id="standard-required"
+                                                name='make'
+                                                label="Make "
+                                                type="required"
+                                                variant="standard"
+                                            />
                                             <TextField
                                                 onChange={this.onChange}
                                                 id="standard-required"
@@ -504,7 +512,13 @@ class AddLead extends Component {
                                 <div>
                                     <Button variant='contained'
                                         sx={{
-                                            marginTop: 5, backgroundColor: 'black', width: 500,
+                                            marginTop: 5,
+                                            backgroundColor: '#009B9B', color: '#E8F8F9',
+                                            "&:hover": {
+                                                backgroundColor: '#E8F8F9',
+                                                color: '#009B9B'
+                                            },
+                                            width: 500,
                                             borderRadius: 50, marginLeft: 3
                                         }}
                                         onClick={this.onSubmit}

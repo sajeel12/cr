@@ -125,7 +125,7 @@ class UpdateLead extends Component {
 
             };
             const id = this.props._id;
-            this.props.updateLead(id,newLead);
+            this.props.updateLead(id, newLead);
             this.handleClose();
             // this.setState({ vehicle: [] })
         }
@@ -204,7 +204,15 @@ class UpdateLead extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 150,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+                        borderRadius: 50
+                    }}
                 >
                     Update Lead
                 </Button>
@@ -555,7 +563,13 @@ class UpdateLead extends Component {
                                 <div>
                                     <Button variant='contained'
                                         sx={{
-                                            marginTop: 5, backgroundColor: 'black', width: 500,
+                                            marginTop: 5,
+                                            backgroundColor: '#009B9B', color: '#E8F8F9',
+                                            "&:hover": {
+                                                backgroundColor: '#E8F8F9',
+                                                color: '#009B9B'
+                                            },
+                                            width: 500,
                                             borderRadius: 50, marginLeft: 3
                                         }}
                                         onClick={this.onSubmit}

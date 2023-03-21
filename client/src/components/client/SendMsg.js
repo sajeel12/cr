@@ -255,7 +255,15 @@ Your order ${this.props._id} has been dispatched in ${props.price} out of which 
 
             <div key={this.props.name} >
                 <Button onClick={this.toggle} variant='contained'
-                    sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 150,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+                        borderRadius: 50
+                    }}
                 >
                     Send MSG
 
@@ -331,11 +339,18 @@ Your order ${this.props._id} has been dispatched in ${props.price} out of which 
 
                                 <Button variant='contained'
                                     sx={{
-                                        marginBottom: 1, marginLeft: 40, marginTop: 5, width: 200, borderRadius: 50, backgroundColor:
-                                            this.state.copy ? 'green' : 'black',
-                                        "&:hover": {
-                                            backgroundColor: this.state.copy ? 'green' : 'black'
-                                        }
+                                        marginBottom: 1, marginLeft: 40, marginTop: 5, width: 200, borderRadius: 50,
+                                        backgroundColor: this.state.copy ?  'green' :'#E8F8F9',color:this.state.copy ? 'white':'#009B9B', 
+                                        "&:hover":{
+                                            backgroundColor: this.state.copy ?  'green' :'#009B9B',
+                                            color:'#E8F8F9'
+                                        }, 
+// sssssssssssssssssssssssssssssssssssssssssssssssssss
+                                        //  backgroundColor:
+                                        //     this.state.copy ? 'green' : 'black',
+                                        // "&:hover": {
+                                        //     backgroundColor: this.state.copy ? 'green' : 'black'
+                                        // }
                                     }
 
                                     }

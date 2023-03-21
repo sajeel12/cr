@@ -52,7 +52,7 @@ class UpdateStatusM extends Component {
 
 
         const id = this.props.leadid;
-        this.props.updateStatusM( updatedLead);
+        this.props.updateStatusM(updatedLead);
         this.handleClose();
     }
 
@@ -76,7 +76,16 @@ class UpdateStatusM extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{fontSize:18, width: 200, height: 56, backgroundColor: 'black',marginRight:5 , borderRadius: 50 }}
+                    sx={{
+                        fontSize: 18, width: 200, height: 56,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+
+                        marginRight: 5, borderRadius: 50
+                    }}
                 >
                     Update Status
                 </Button>

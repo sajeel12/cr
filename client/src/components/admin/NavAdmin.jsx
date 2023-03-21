@@ -41,10 +41,12 @@ import BodyAgent from './BodyAgent'
 
 const drawerWidth = 240;
 
+const myfont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+
 const openedMixin = (theme) => ({
   width: drawerWidth,
   // backgroundColor: '#33333',
-  backgroundColor: 'black',
+  backgroundColor: '#e8f8f9',
 
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -59,7 +61,7 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  backgroundColor: 'black',
+  backgroundColor: '#e8f8f9',
 
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
@@ -70,7 +72,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: 'black',
+  backgroundColor: '#e8f8f9',
 
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
@@ -138,7 +140,7 @@ function NavAdmin({ username, isadmin }) {
   return (
     <>
       <CssBaseline />
-      <AppBar position="fixed" style={{ color: 'white', backgroundColor: 'black' }} open={open}>
+      <AppBar position="fixed" style={{ color: 'white', backgroundColor: '#d2ecef' }} open={open}>
         <Toolbar    >
           <IconButton
 
@@ -146,19 +148,19 @@ function NavAdmin({ username, isadmin }) {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              color: '#43bc68',
+              color: '#009B9B',
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
           >
 
-            <MenuIcon sx={{ color: '#43bc68' }} />
+            <MenuIcon sx={{ color: '#009B9B' }} />
           </IconButton>
           <div style={{ display: 'flex', justifyContent: 'space-between' }} >
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h6" sx={{color:'black', fontFamily: myfont}} noWrap component="div">
               Digital Solution Hub      {isadmin ? '--------- Admin' : ''}
             </Typography>
-            <Typography variant="h6" sx={{ marginLeft: 50, color: 'white', }} >
+            <Typography variant="h6" sx={{ marginLeft: 50, color: 'black', }} >
               {username}
             </Typography>
           </div>
@@ -166,7 +168,7 @@ function NavAdmin({ username, isadmin }) {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton sx={{ color: '#43bc68' }} onClick={handleDrawerClose}>
+          <IconButton sx={{ color: '#009B9B' }} onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -196,7 +198,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LeaderboardIcon sx={{ color: '#43bc68' }} />
+                      <LeaderboardIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -221,7 +223,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <SupportAgentIcon sx={{ color: '#43bc68' }} />
+                      <SupportAgentIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Agents"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -245,7 +247,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       
-                      <SportsKabaddiIcon sx={{ color: '#43bc68' }}/>
+                      <SportsKabaddiIcon sx={{ color: '#009B9B' }}/>
                     </ListItemIcon>
                     <ListItemText primary={"Vendors"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -300,7 +302,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LeaderboardIcon sx={{ color: '#43bc68' }} />
+                      <LeaderboardIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Lead"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -324,7 +326,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <FollowTheSignsIcon sx={{ color: '#43bc68' }} />
+                      <FollowTheSignsIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Follow Up"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -348,7 +350,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <FormatQuoteIcon sx={{ color: '#43bc68' }} />
+                      <FormatQuoteIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Quotes"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -372,7 +374,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <BookOnlineIcon sx={{ color: '#43bc68' }} />
+                      <BookOnlineIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Orders"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -396,7 +398,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <LocalShippingIcon sx={{ color: '#43bc68' }} />
+                      <LocalShippingIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Dispatched"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -420,7 +422,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <ArchiveIcon sx={{ color: '#43bc68' }} />
+                      <ArchiveIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Archived"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -444,7 +446,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <CloudIcon sx={{ color: '#43bc68' }} />
+                      <CloudIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Potential"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
@@ -468,7 +470,7 @@ function NavAdmin({ username, isadmin }) {
                       }}
                     >
                       {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      <NoteAltIcon sx={{ color: '#43bc68' }} />
+                      <NoteAltIcon sx={{ color: '#009B9B' }} />
                     </ListItemIcon>
                     <ListItemText primary={"Customer's Agreement"} sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>

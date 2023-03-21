@@ -33,7 +33,8 @@ import UpdateUser from '../auth/UpdateUser';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        // backgroundColor: theme.palette.common.black,
+        backgroundColor: '#009b9b',
         color: theme.palette.common.white,
 
     },

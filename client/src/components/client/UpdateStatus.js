@@ -75,7 +75,15 @@ class UpdateStatus extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 150,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+                        borderRadius: 50
+                    }}
                 >
                     Update Status
                 </Button>

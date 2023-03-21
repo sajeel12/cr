@@ -38,7 +38,7 @@ import { Link } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: "#009b9b",
         color: theme.palette.common.white,
 
     },
@@ -150,7 +150,7 @@ class AgreementPanel extends Component {
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Phone NO&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Lead Id&nbsp;</StyledTableCell>
-                                <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell>
+                                {/* <StyledTableCell align="center">Vehicle Type&nbsp;</StyledTableCell> */}
                                 <StyledTableCell align="center">Customer IP&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Digital Sign&nbsp;</StyledTableCell>
                                 <StyledTableCell align="center">Agreement URL&nbsp;</StyledTableCell>
@@ -176,8 +176,8 @@ class AgreementPanel extends Component {
                                             <StyledTableCell align="center">{row.email}</StyledTableCell>
                                             <StyledTableCell align="center">{row.phoneno}</StyledTableCell>
 
-                                            <StyledTableCell align="center">{row._id}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.vehicletype}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.leadid}</StyledTableCell>
+                                            {/* <StyledTableCell align="center">{row.vehicletype}</StyledTableCell> */}
                                             <StyledTableCell align="center">{row.ip}</StyledTableCell>
                                             <StyledTableCell align="center">{row.signature}</StyledTableCell>
                                            <Link to='/'> <StyledTableCell align="center">{row.agreementurl}</StyledTableCell></Link>

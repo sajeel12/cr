@@ -52,7 +52,13 @@ class DeleteAgent extends Component {
                 {! user && this.props.id ? 'Loading...' :
                     <div>
                         <Button variant="contained" disabled={this.state.id == this.state.userid ? true : false}
-                            sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
+                            sx={{ width: 80, 
+                                backgroundColor: '#E8F8F9',color:'#009B9B', 
+                                "&:hover":{
+                                    backgroundColor:'#009B9B',
+                                    color:'#E8F8F9'
+                                }, 
+                                borderRadius: 50 }}
                             onClick={this.handleClose}
                         >Delete
                         </Button>

@@ -32,7 +32,15 @@ export class AgentAdmin2 extends Component {
             <div>
 
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width: 170, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 170,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+                        borderRadius: 50
+                    }}
                 >
                     Agent Activity
                 </Button>
@@ -53,10 +61,10 @@ export class AgentAdmin2 extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            
 
 
-                            <AgentAdmin  idt={this.props.idt}  />
+
+                            <AgentAdmin idt={this.props.idt} />
                         </Box>
                     </Box>
                 </Modal>

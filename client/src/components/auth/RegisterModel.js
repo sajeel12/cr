@@ -131,7 +131,7 @@ class RegisterModel extends Component {
 
         // attemp to register
         this.props.register(newUser);
-        
+
         if (this.state.msg !== null)
             this.toggle();
     }
@@ -142,7 +142,15 @@ class RegisterModel extends Component {
             <div>
 
                 <Button onClick={this.toggle} variant='contained'
-                    sx={{ width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3,
+                        borderRadius: 50,
+                        backgroundColor: '#E8F8F9',color:'#009B9B', 
+                        "&:hover":{
+                            backgroundColor:'#009B9B',
+                            color:'#E8F8F9'
+                        }
+                    }}
                 >
                     Add Agent
 
@@ -164,7 +172,7 @@ class RegisterModel extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            {this.state.msg ? (<Alert  color="danger" >{this.state.msg}</Alert>)
+                            {this.state.msg ? (<Alert color="danger" >{this.state.msg}</Alert>)
                                 : null}
                             <Typography variant="h5" component="h2">
                                 Add Agent

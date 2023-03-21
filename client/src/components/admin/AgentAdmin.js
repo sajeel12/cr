@@ -47,7 +47,7 @@ import moment from 'moment';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#009b9b',
         color: theme.palette.common.white,
 
     },
@@ -135,7 +135,16 @@ class AgentAdmin extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width: 170, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 170,
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+
+                        borderRadius: 50
+                    }}
                 >
                     Agent Activity
                 </Button>
@@ -161,7 +170,7 @@ class AgentAdmin extends Component {
                             </Typography>
                             <hr />
 
-                            Total Leads =  (<span style={{color:'#26a500', fontWeight:'bold'}} > {leads.length} </span>) 
+                            Total Leads =  (<span style={{ color: '#26a500', fontWeight: 'bold' }} > {leads.length} </span>)
 
                             <hr />
 
@@ -170,36 +179,49 @@ class AgentAdmin extends Component {
                                     label="Leads"
                                     value="lead"
                                     icon={<LeaderboardIcon />}
+                                    sx={{color:'#009b9b'}}
                                 />
                                 <BottomNavigationAction
                                     label="Followup"
                                     value="followup"
                                     icon={<FormatQuoteIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                                 <BottomNavigationAction
                                     label="Quotes"
                                     value="quote"
                                     icon={<BookOnlineIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                                 <BottomNavigationAction
                                     label="Orders"
                                     value="order"
                                     icon={<LocalShippingIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                                 <BottomNavigationAction
                                     label="Dispatched"
                                     value="dispatched"
                                     icon={<ArchiveIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                                 <BottomNavigationAction
                                     label="Archived"
                                     value="archived"
                                     icon={<CloudIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                                 <BottomNavigationAction
                                     label="Potential"
                                     value="potential"
                                     icon={<NoteAltIcon />}
+                                    sx={{color:'#009b9b'}}
+
                                 />
                             </BottomNavigation>
                             <hr />

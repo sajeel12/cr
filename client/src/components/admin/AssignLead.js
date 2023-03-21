@@ -23,7 +23,7 @@ class AssignLead extends Component {
     componentDidMount = () => {
         this.props.getAgents();
     }
- 
+
 
 
     style = {
@@ -53,7 +53,7 @@ class AssignLead extends Component {
         }
 
         const id = this.props.leadid;
-        this.props.assignLead( id ,updatedLead);
+        this.props.assignLead(id, updatedLead);
         this.handleClose();
     }
 
@@ -77,9 +77,19 @@ class AssignLead extends Component {
         return (
             <div>
                 <Button onClick={this.handleClose} variant='contained'
-                    sx={{ width:150, backgroundColor: this.props.isassigned?  '#04d82b': 'black'  , borderRadius: 50 }}
+                    sx={{
+                        width: 150,
+                        backgroundColor: this.props.isassigned ? '#04d82b' : '#E8F8F9',
+                        color: this.props.isassigned ? 'black' : '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+
+                        borderRadius: 50
+                    }}
                 >
-                    {this.props.isassigned ? "Lead Assigned"  :  "Assign Lead"}
+                    {this.props.isassigned ? "Lead Assigned" : "Assign Lead"}
                 </Button>
                 <Modal
                     open={this.state.open}
@@ -114,10 +124,10 @@ class AssignLead extends Component {
                                         label="Assign To"
                                     >
                                         {agents.map((agent => (
-                                                
-                                                
-                                                <MenuItem  key={agent._id} value={agent._id} >{agent.username}</MenuItem>
-                                                
+
+
+                                            <MenuItem key={agent._id} value={agent._id} >{agent.username}</MenuItem>
+
                                         )))}
                                     </Select>
 
@@ -126,7 +136,15 @@ class AssignLead extends Component {
 
                                 <div>
                                     <Button variant='contained'
-                                        sx={{ marginBottom: 5, color: 'black', borderRadius: 50 }}
+                                        sx={{
+                                            marginBottom: 5,
+                                            backgroundColor: '#E8F8F9', color: '#009B9B',
+                                            "&:hover": {
+                                                backgroundColor: '#009B9B',
+                                                color: '#E8F8F9'
+                                            },
+                                            borderRadius: 50
+                                        }}
                                         onClick={this.onSubmit}
                                     >
                                         Assign

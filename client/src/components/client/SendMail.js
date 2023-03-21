@@ -104,7 +104,7 @@ class SendMail extends Component {
     }
 
     followuphtml = (props) => {
-        const {user} = this.props.auth;
+        const { user } = this.props.auth;
         const followuphtml = `
 <div style="margin: 0 0;">
 <div style=" background-color: rgba(0, 0, 0, 0.048);padding: 20px;">
@@ -723,17 +723,33 @@ class SendMail extends Component {
             <div>
                 {this.props.many ?
                     <Button onClick={this.toggle} variant='contained'
-                        sx={{ fontSize: 20, width: 200, height: 56, marginRight: 1, backgroundColor: 'black', borderRadius: 50 }}>
+                        sx={{
+                            fontSize: 20, width: 200, height: 56, marginRight: 1,
+                            backgroundColor: '#E8F8F9', color: '#009B9B',
+                            "&:hover": {
+                                backgroundColor: '#009B9B',
+                                color: '#E8F8F9'
+                            },
+                            borderRadius: 50
+                        }}>
                         Send Email
 
                     </Button>
                     :
                     <Button onClick={this.toggle} variant='contained'
-                        sx={{ width: 168, backgroundColor: 'black', borderRadius: 50 }}
+                        sx={{
+                            width: 168,
+                            backgroundColor: '#E8F8F9', color: '#009B9B',
+                            "&:hover": {
+                                backgroundColor: '#009B9B',
+                                color: '#E8F8F9'
+                            },
+                            borderRadius: 50
+                        }}
                     >
                         <b style={{
-                            color: 'black'
-                            , backgroundColor: '#6bff9c',
+                            color: 'white'
+                            , backgroundColor: '#009B9B',
                             borderRadius: 60,
                             width: 30,
                             marginRight: 15,
@@ -833,7 +849,15 @@ class SendMail extends Component {
                             </form>
 
                             <Button variant='contained'
-                                sx={{ marginBottom: 5 }}
+                                sx={{
+                                    marginBottom: 5 ,
+                                    marginTop: 1 ,
+                                    backgroundColor: '#009B9B', color: '#E8F8F9',
+                                    "&:hover": {
+                                        backgroundColor: '#E8F8F9',
+                                        color: '#009B9B'
+                                    }
+                                }}
                                 onClick={this.onSubmit}
                             >
                                 Send

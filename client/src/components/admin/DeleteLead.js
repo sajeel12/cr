@@ -3,7 +3,7 @@ import {
     Typography, Box, Modal, Button,
     TextField, Divider
 } from '@mui/material';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { deleteLead } from '../../actions/leadActions';
 
@@ -45,7 +45,15 @@ class DeleteLead extends Component {
         return (
             <>
                 <Button variant="contained"
-                    sx={{ width: 80, backgroundColor: 'black', borderRadius: 50 }}
+                    sx={{
+                        width: 80,
+                        backgroundColor: '#E8F8F9', color: 'red',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
+                        },
+                        borderRadius: 50
+                    }}
                     onClick={this.handleClose}
                 >Delete
                 </Button>
@@ -66,13 +74,13 @@ class DeleteLead extends Component {
                             noValidate
                             autoComplete="off"
                         >
-                            <Typography variant="h5" component="h2" sx={{  color: 'red', fontWeight:'bolder' }} >
+                            <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
                                 DELETE Lead  for Name ----  {this.props.name}
                             </Typography>
 
                             <hr />
-                            <Button variant='contained' 
-                                sx={{ marginBottom: 5 , backgroundColor:'red', color:'white' }}
+                            <Button variant='contained'
+                                sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
                                 onClick={this.onSubmit}
                             >
                                 Delete
@@ -94,7 +102,7 @@ class DeleteLead extends Component {
 
 
 const mapStateToProps = (state) => ({
-    lead:state.lead
+    lead: state.lead
 })
 
-export default connect(mapStateToProps, {deleteLead})(DeleteLead);
+export default connect(mapStateToProps, { deleteLead })(DeleteLead);
