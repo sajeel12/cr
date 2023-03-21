@@ -13,7 +13,7 @@ class DeleteLead extends Component {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 640,
+        width: 400,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -75,12 +75,12 @@ class DeleteLead extends Component {
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2" sx={{ color: 'red', fontWeight: 'bolder' }} >
-                                DELETE Lead  for Name ----  {this.props.name}
+                                DELETE Lead  for Name ----  "{this.props.name} "
                             </Typography>
 
                             <hr />
                             <Button variant='contained'
-                                sx={{ marginBottom: 5, backgroundColor: 'red', color: 'white' }}
+                                sx={{ marginLeft:30, marginBottom: 5, backgroundColor: 'red', color: 'white' }}
                                 onClick={this.onSubmit}
                             >
                                 Delete

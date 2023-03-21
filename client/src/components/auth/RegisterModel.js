@@ -145,10 +145,10 @@ class RegisterModel extends Component {
                     sx={{
                         width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3,
                         borderRadius: 50,
-                        backgroundColor: '#E8F8F9',color:'#009B9B', 
-                        "&:hover":{
-                            backgroundColor:'#009B9B',
-                            color:'#E8F8F9'
+                        backgroundColor: '#E8F8F9', color: '#009B9B',
+                        "&:hover": {
+                            backgroundColor: '#009B9B',
+                            color: '#E8F8F9'
                         }
                     }}
                 >
@@ -258,7 +258,15 @@ class RegisterModel extends Component {
                             </form>
 
                             <Button variant='contained'
-                                sx={{ marginBottom: 5, backgroundColor: 'black', borderRadius: 50 }}
+                                sx={{
+                                    marginBottom: 5,
+                                    backgroundColor: '#009B9B', color: '#E8F8F9',
+                                    "&:hover": {
+                                        backgroundColor: '#E8F8F9',
+                                        color: '#009B9B'
+                                    },
+                                    borderRadius: 50
+                                }}
                                 onClick={this.onSubmit}
                             >
                                 Add Agent

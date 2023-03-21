@@ -146,7 +146,7 @@ class UpdateUser extends Component {
                             backgroundColor: '#009B9B',
                             color: '#E8F8F9'
                         },
-                     borderRadius: 50
+                        borderRadius: 50
                     }}
                 >
                     Edit
@@ -262,7 +262,15 @@ class UpdateUser extends Component {
                             </form>
 
                             <Button variant='contained'
-                                sx={{ marginBottom: 5, backgroundColor: 'black', borderRadius: 50 }}
+                                sx={{
+                                    marginBottom: 5,
+                                    backgroundColor: '#009B9B', color: '#E8F8F9',
+                                    "&:hover": {
+                                        backgroundColor: '#E8F8F9',
+                                        color: '#009B9B'
+                                    },
+                                    borderRadius: 50
+                                }}
                                 onClick={this.onSubmit}
                             >
                                 Add Agent
