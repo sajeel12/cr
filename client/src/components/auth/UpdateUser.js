@@ -170,7 +170,7 @@ class UpdateUser extends Component {
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2">
-                                Add Lead
+                                Update User
                             </Typography>
 
                             <hr />
