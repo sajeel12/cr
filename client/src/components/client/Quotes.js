@@ -33,7 +33,7 @@ import Switch from '@mui/material/Switch';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: "#009b9b",
         color: theme.palette.common.white,
 
     },

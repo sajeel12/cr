@@ -132,7 +132,7 @@ class RegisterModel extends Component {
         // attemp to register
         this.props.register(newUser);
 
-        if (this.state.msg !== null)
+        if (this.state.msg == null)
             this.toggle();
     }
 
