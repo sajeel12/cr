@@ -273,7 +273,7 @@ class UpdateUser extends Component {
                                 }}
                                 onClick={this.onSubmit}
                             >
-                                Add Agent
+                                Update Agent
                             </Button>
 
 
