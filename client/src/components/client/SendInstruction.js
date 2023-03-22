@@ -40,37 +40,37 @@ class SendInstruction extends Component {
       <p>
       
       { <br>
-        "token": "$2a$10$johm9JGr1jl9Geuitmq7ZOgi.0fqQNKMdYJfUxaPlgWifBiyTyRdC",<br><br>
-        "fullname": "final format check",<br>
-        "email": "lahore@bes.com",<br>
-        "phoneno": "(051) 548712",<br>
-        "origincity": "Greenville",<br>
-        "originstate": "CA",<br>
-        "originzipcode": "95947",<br>
-        "origincountry": "USA",<br>
-        "destinationcity": "Dallas",<br>
-        "destinationstate": "TX",<br>
-        "destinationzipcode": "75214",<br>
-        "destinationcountry": "USA",<br>
-        "shipdate": "11/10/2017"",<br> "mm/dd/yyyy"
-        "internalnotes": "i am happy",<br>
-        "transporttype": 2,<br>
-        "vehicles": [<br>
-            {   <br>
-                "isoperable":0,<br>
-                "model": "43sa",<br>
-                "make": "suzuki",<br>
-                "modelyear": "2012",<br>
-                "vehicletype": "suv"<br>
-            },
-            {<br>
-                "isoperable":1,<br>
-                "model": "76g6",<br>
-                "make": "chengan",<br>
-                "modelyear": "2012",<br>
-                "vehicletype": "suv"<br>
-            }<br>
-        ]<br>
+        &emsp;  "token": "$2a$10$johm9JGr1jl9Geuitmq7ZOgi.0fqQNKMdYJfUxaPlgWifBiyTyRdC",<br><br>
+        &emsp; "fullname": "final format check",<br>
+        &emsp; "email": "lahore@bes.com",<br>
+        &emsp; "phoneno": "(051) 548712",<br>
+        &emsp;  "origincity": "Greenville",<br>
+        &emsp;  "originstate": "CA",<br>
+        &emsp; "originzipcode": "95947",<br>
+        &emsp; "origincountry": "USA",<br>
+        &emsp; "destinationcity": "Dallas",<br>
+        &emsp;"destinationstate": "TX",<br>
+        &emsp;  "destinationzipcode": "75214",<br>
+        &emsp; "destinationcountry": "USA",<br>
+        &emsp; "shipdate": "11/10/2017"",<br> "mm/dd/yyyy"
+        &emsp; "internalnotes": "i am happy",<br>
+        &emsp; "transporttype": 2,<br>
+        &emsp;"vehicles": [<br>
+            &emsp;&emsp; {   <br>
+                &emsp;&emsp;&emsp; "isoperable":0,<br>
+                &emsp;&emsp;&emsp;   "model": "43sa",<br>
+                &emsp;&emsp;&emsp; "make": "suzuki",<br>
+                &emsp;&emsp;&emsp; "modelyear": "2012",<br>
+                &emsp;&emsp;&emsp; "vehicletype": "suv"<br>
+                &emsp;&emsp; },<br>
+                &emsp;&emsp; {<br>
+                    &emsp;&emsp;&emsp; "isoperable":1,<br>
+                    &emsp;&emsp;&emsp; "model": "76g6",<br>
+                    &emsp;&emsp;&emsp; "make": "chengan",<br>
+                    &emsp;&emsp;&emsp; "modelyear": "2012",<br>
+                    &emsp;&emsp;&emsp;"vehicletype": "suv"<br>
+                &emsp;&emsp; }<br>
+                &emsp;  ]<br>
     }<br><br>
       </p><br>
 
