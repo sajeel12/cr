@@ -122,9 +122,10 @@ class Agents extends Component {
 
 
                                                     {/* <Button variant="contained" sx={{ width: 150, backgroundColor: 'black', borderRadius: 50 }}>edit Profile</Button> */}
-                                                    {row._id == user._id || row.isvendor ? "": <UpdateUser {...row} />}
 
                                                     <DeleteAgent userid={user._id} id={row._id} username={row.username} />
+                                                 
+                                                    {row._id == user._id || row.isvendor ? "": <UpdateUser {...row} />}
 
                                                     {row.isadmin || row.isvendor ? "" :
                                                         <AgentAdmin2 idt={row._id} />

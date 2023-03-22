@@ -53,7 +53,7 @@ class DeleteAgent extends Component {
                     <div>
                         <Button variant="contained" disabled={this.state.id == this.state.userid ? true : false}
                             sx={{ width: 80, 
-                                backgroundColor: '#E8F8F9',color:'#009B9B', 
+                                backgroundColor: '#E8F8F9',color:'red', 
                                 "&:hover":{
                                     backgroundColor:'#009B9B',
                                     color:'#E8F8F9'
