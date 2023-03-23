@@ -145,7 +145,15 @@ class UpdateStatus extends Component {
 
                                 <div>
                                     <Button variant='contained'
-                                        sx={{ width: 150, marginBottom: 5, marginLeft: 25, backgroundColor: 'black', borderRadius: 50 }}
+                                        sx={{
+                                            width: 150, marginBottom: 5, marginLeft: 25,
+                                            backgroundColor: '#009B9B', color: '#E8F8F9',
+                                            "&:hover": {
+                                                backgroundColor: '#E8F8F9',
+                                                color: '#009B9B'
+                                            },
+                                            borderRadius: 50
+                                        }}
                                         onClick={this.onSubmit}
                                     >
                                         Update Status
