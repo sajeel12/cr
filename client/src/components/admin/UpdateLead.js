@@ -20,7 +20,7 @@ import { updateLead } from '../../actions/leadActions'
 import PropTypes from 'prop-types';
 import ShortUniqueId from 'short-unique-id';
 import { Alert } from '@mui/material';
-
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 class UpdateLead extends Component {
 
@@ -128,6 +128,7 @@ class UpdateLead extends Component {
             this.props.updateLead(id, newLead);
             this.handleClose();
             // this.setState({ vehicle: [] })
+            NotificationManager.success('Updated Successfully', 'Lead')
         }
         else {
             this.setState({ error: true })
@@ -203,6 +204,7 @@ class UpdateLead extends Component {
 
         return (
             <div>
+                <NotificationContainer />
                 <Button onClick={this.handleClose} variant='contained'
                     sx={{
                         width: 150,

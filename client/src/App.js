@@ -1,4 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import 'react-notifications/lib/notifications.css';
+
 import AppNavbar from './components/AppNavbar';
 import ShoppingList from './components/ShoppingList';
 import './App.css';
@@ -17,9 +20,9 @@ import { BrowserRouter, Router, Route } from 'react-router-dom';
 
 class App extends Component {
 
-  componentDidMount =async () => {
+  componentDidMount = async () => {
 
-    await  store.dispatch(loadUser());
+    await store.dispatch(loadUser());
   }
 
   render() {
@@ -34,7 +37,7 @@ class App extends Component {
 
           {/* <ShoppingList /> */}
           {/* </Container> */}
-    
+
 
         </BrowserRouter>
       </Provider>

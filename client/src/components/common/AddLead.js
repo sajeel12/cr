@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import {
     Typography, Box, Modal, Button,
     TextField, Divider, MenuItem,
@@ -20,6 +19,11 @@ import { addLead } from '../../actions/leadActions'
 import PropTypes from 'prop-types';
 import ShortUniqueId from 'short-unique-id';
 import { Alert } from '@mui/material';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
+
+
 class AddLead extends Component {
 
     static propTypes = {
@@ -123,10 +127,16 @@ class AddLead extends Component {
             this.props.addLead(newLead);
             this.handleClose();
             this.setState({ vehicle: [] })
+
+            NotificationManager.success('Lead Added', 'Lead')
         }
         else {
             this.setState({ error: true })
+            NotificationManager.error('Fill All Fields', 'Error')
         }
+
+
+        
     }
 
     handletransporttype = (e) => {
@@ -198,6 +208,8 @@ class AddLead extends Component {
 
         return (
             <div>
+                <NotificationContainer  />
+
                 <Button onClick={this.handleClose} variant='contained'
                     sx={{
                         fontSize: 20, width: 200, height: 56, marginBottom: 0, marginLeft: 5,
@@ -537,6 +549,8 @@ class AddLead extends Component {
 
                     </Box>
                 </Modal>
+                
+
             </div>
         )
     }

@@ -26,6 +26,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 
 class RegisterModel extends Component {
@@ -118,28 +119,33 @@ class RegisterModel extends Component {
         const { isadmin, username, fullname, email, emailpass, phoneno, password } = this.state;
 
         // create user object 
+        if (isadmin !== '' && username !== '' && fullname !== '' && email !== '' && emailpass !== '' && phoneno !== '' && password) {
+            const newUser = {
+                isadmin,
+                username,
+                fullname,
+                email,
+                emailpass,
+                phoneno,
+                password
+            };
 
-        const newUser = {
-            isadmin,
-            username,
-            fullname,
-            email,
-            emailpass,
-            phoneno,
-            password
-        };
+            // attemp to register
+            this.props.register(newUser);
 
-        // attemp to register
-        this.props.register(newUser);
-
-        if (this.state.msg == null)
-            this.toggle();
+            if (this.state.msg == null)
+                this.toggle();
+            NotificationManager.success('User Added', 'User')
+        }else{
+            NotificationManager.warning('Please Fill All Fields', 'User')
+        }
     }
 
 
     render() {
         return (
             <div>
+                <NotificationContainer />
 
                 <Button onClick={this.toggle} variant='contained'
                     sx={{

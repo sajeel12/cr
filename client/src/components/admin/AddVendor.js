@@ -26,6 +26,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 
 class AddVendor extends Component {
@@ -115,29 +116,36 @@ class AddVendor extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { isadmin, username, fullname, email, emailpass, phoneno, password } = this.state;
+        const { fullname, email, password } = this.state;
 
         // create user object 
+        if (fullname !== '' && email !== '' && password !== '') {
+            const newUser = {
+                isvendor: true,
+                fullname,
+                email,
 
-        const newUser = {
-            isvendor: true,
-            fullname,
-            email,
+                password
+            };
 
-            password
-        };
+            // attemp to register
+            this.props.register(newUser);
 
-        // attemp to register
-        this.props.register(newUser);
+            if (this.state.msg == null) {
+                this.toggle();
+                NotificationManager.success('Successfuly Added', 'Vendor')
+            }
 
-        if (this.state.msg == null)
-            this.toggle();
+        }else{
+            NotificationManager.warning('Please Fill All Fields', 'Vendor')
+        }
     }
 
 
     render() {
         return (
             <div>
+                <NotificationContainer />
                 <Button onClick={this.toggle} variant='contained'
                     sx={{
                         width: 200, height: 56, fontSize: 20, marginBottom: 3, marginLeft: 3,
