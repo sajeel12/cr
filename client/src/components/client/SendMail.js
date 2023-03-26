@@ -67,11 +67,11 @@ class SendMail extends Component {
          ID: ${props.leadid} <br>
          <table>
             ${props.vehicle.map((vehicle) => (
-               `  
+               `  <tr>
                     <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                     <td style="padding-left: 0;" > ${vehicle.make} - </td>
                     <td style="padding-left: 0;"> ${vehicle.model}  </td>
-                \n
+                 </tr>
                 `
             ))}
         </table> <br>
@@ -228,11 +228,11 @@ class SendMail extends Component {
             Order ID: ${props.leadid} <br>
             <table>
             ${props.vehicle.map((vehicle) => (
-               `  
+               `  <tr>
                     <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                     <td style="padding-left: 0;" > ${vehicle.make} - </td>
                     <td style="padding-left: 0;"> ${vehicle.model}  </td>
-                \n
+                 </tr>
                 `
             ))}
         </table> <br>
@@ -317,11 +317,11 @@ class SendMail extends Component {
         Quote ID: ${props.leadid} <br>
         <table>
             ${props.vehicle.map((vehicle) => (
-               `  
+               `  <tr>
                     <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                     <td style="padding-left: 0;" > ${vehicle.make} - </td>
                     <td style="padding-left: 0;"> ${vehicle.model}  </td>
-                \n
+                 </tr>
                 `
             ))}
         </table> <br>
@@ -477,11 +477,11 @@ class SendMail extends Component {
         ID: ${lead.leadid} <br>
         <table>
         ${lead.vehicle.map((vehicle) => (
-           `  
+           `  <tr>
                 <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                 <td style="padding-left: 0;" > ${vehicle.make} - </td>
                 <td style="padding-left: 0;"> ${vehicle.model}  </td>
-            \n
+            </tr>
             `
         ))}
     </table> <br>
@@ -627,15 +627,15 @@ class SendMail extends Component {
        <p style="color: rgba(0, 0, 0, 0.692);">
            Order ID: ${lead.leadid} <br>
            <table>
-           ${lead.vehicle.map((vehicle) => (
-              `  
-                   <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
-                   <td style="padding-left: 0;" > ${vehicle.make} - </td>
-                   <td style="padding-left: 0;"> ${vehicle.model}  </td>
-               \n
-               `
-           ))}
-       </table> <br>
+            ${props.vehicle.map((vehicle) => (
+               `  <tr>
+                    <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                    <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                    <td style="padding-left: 0;"> ${vehicle.model}  </td>
+                 </tr>
+                `
+            ))}
+        </table> <br>
            Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
            Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
            Available Date: ${lead.shipdate}<br>
@@ -708,15 +708,15 @@ class SendMail extends Component {
        <p style="color: rgba(0, 0, 0, 0.692);">
        Quote ID: ${lead.leadid} <br>
        <table>
-        ${lead.vehicle.map((vehicle) => (
-           `  
-                <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
-                <td style="padding-left: 0;" > ${vehicle.make} - </td>
-                <td style="padding-left: 0;"> ${vehicle.model}  </td>
-            \n
-            `
-        ))}
-    </table> <br>
+       ${props.vehicle.map((vehicle) => (
+          `  <tr>
+               <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+               <td style="padding-left: 0;" > ${vehicle.make} - </td>
+               <td style="padding-left: 0;"> ${vehicle.model}  </td>
+            </tr>
+           `
+       ))}
+   </table> <br>
        Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
        Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
        Available Date: ${lead.shipdate}<br>
