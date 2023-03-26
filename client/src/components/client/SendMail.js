@@ -40,6 +40,8 @@ class SendMail extends Component {
         return agreement;
     }
     newquotehtml = (props) => {
+        const { user } = this.props.auth;
+
         const newquotehtml = `   <div style="margin: 0 0;">
     <div style="  align-items: center;">
         <h1 style="color: rgba(0, 0, 0, 0.692);">Hi ${props.fullname}</h1>
@@ -63,7 +65,18 @@ class SendMail extends Component {
     <br>
     <p style="color: rgba(0, 0, 0, 0.692);">
          ID: ${props.leadid} <br>
-         ${props.model} ${props.modelyear} ${props.make} <br>
+         <table>
+            ${props.vehicle.map((vehicle) => (
+               `  
+                    <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                    <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                    <td style="padding-left: 0;"> ${vehicle.model}  </td>
+                \n
+                `
+            ))}
+        </table> <br>
+
+
         Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode} <br>
         Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
         Available Date: ${props.shipdate} <br>
@@ -71,7 +84,7 @@ class SendMail extends Component {
         Total : $ ${props.price}<br>
         If you have any questions or would like us to match a competitor's  fee  kindly contact us 5166561474.
         Regards,<br>
-        ${props.fromemail}<br>
+        ${user.email}<br>
         ${this.state.company}<br>
         Direct:  5166561474 <br>
     </p>
@@ -119,23 +132,35 @@ class SendMail extends Component {
 
     <div style="flex-basis: 50%; display: flex;">
         <p style="color: white;">
-            Quote ID: <br>
-            Origin:  <br>
-            Destination:  <br>
-            Vehicle:<br>
-            Price: 
-        </p>
-        <p style="color: white;margin-left: 20px;">
+            Quote ID:  ${props.leadid} <br>
+            Origin:  ${props.origincity}<br>
+            Destination:  ${props.destinationcity}<br>
+            Price: ${props.price} $<br>
 
-        ${props.leadid}  <br>
-        ${props.origincity}<br>
-        ${props.destinationcity}<br>
-        ${props.model} ${props.modelyear} ${props.make}  <br>
-        ${props.price} $
         </p>
-
+       
+        <div  style="margin-left:15px;margin-right:15px;" > 
+        
+            <table>
+            <p>Vehicle:</p>
+            ${props.vehicle.map((vehicle) => (
+                `  
+                    <tr>
+                        <td  > ${vehicle.modelyear}  </td>
+                        <td  > ${vehicle.make} </td>
+                        <td > ${vehicle.model}  </td>
+                    
+                    </tr>
+                    `
+                ))}
+            </table>
+        </div>
     </div>
-    <div style="flex-basis: 50%;">
+
+    
+    
+
+    <div style="flex-basis: 30%;">
         <h2 style="color: white;">
             Your Custom Quote</h2>
             <br>
@@ -168,6 +193,8 @@ class SendMail extends Component {
         return followuphtml;
     }
     orderconfirmationhtml = (props) => {
+        const { user } = this.props.auth;
+        
         const orderconfirmationhtml = `
 <div style="margin: 0 0;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
@@ -199,7 +226,16 @@ class SendMail extends Component {
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
             Order ID: ${props.leadid} <br>
-            ${props.model} ${props.modelyear} ${props.make} <br>
+            <table>
+            ${props.vehicle.map((vehicle) => (
+               `  
+                    <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                    <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                    <td style="padding-left: 0;"> ${vehicle.model}  </td>
+                \n
+                `
+            ))}
+        </table> <br>
             Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode}<br>
             Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
             Available Date: ${props.shipdate}<br>
@@ -209,7 +245,7 @@ class SendMail extends Component {
             If you have any questions please feel free to call us!
             <br><br>
             Sincerely,<br><br>
-            ${props.fromemail}<br>
+            ${user.email}<br>
             ${this.state.company}
             <br>
             Direct: 5166561474<br>
@@ -244,6 +280,8 @@ class SendMail extends Component {
     }
 
     secondfollowuphtml = (props) => {
+        const { user } = this.props.auth;
+        
         const secondfollowuphtml = `
 <div style="margin: 0 0;">
         <div style=" display: flex; flex-direction: column; align-items: center;">
@@ -277,7 +315,16 @@ class SendMail extends Component {
         <br>
         <p style="color: rgba(0, 0, 0, 0.692);">
         Quote ID: ${props.leadid} <br>
-        ${props.model} ${props.modelyear} ${props.make} <br>
+        <table>
+            ${props.vehicle.map((vehicle) => (
+               `  
+                    <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                    <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                    <td style="padding-left: 0;"> ${vehicle.model}  </td>
+                \n
+                `
+            ))}
+        </table> <br>
         Origin: ${props.origincity}, ${props.originstate} ${props.originzipcode}<br>
         Destination: ${props.destinationcity}, ${props.destinationstate} ${props.destinationzipcode}<br>
         Available Date: ${props.shipdate}<br>
@@ -287,7 +334,7 @@ class SendMail extends Component {
             If you have any questions please feel free to call us!
             <br><br>
             Sincerely,<br><br>
-            ${props.fromemail}<br>
+            ${user.email}<br>
         ${this.state.company}
         <br>
             Direct: 5166561474<br>
@@ -428,7 +475,16 @@ class SendMail extends Component {
    <br>
    <p style="color: rgba(0, 0, 0, 0.692);">
         ID: ${lead.leadid} <br>
-        ${lead.model} ${lead.modelyear} ${lead.make} <br>
+        <table>
+        ${lead.vehicle.map((vehicle) => (
+           `  
+                <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                <td style="padding-left: 0;"> ${vehicle.model}  </td>
+            \n
+            `
+        ))}
+    </table> <br>
        Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode} <br>
        Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
        Available Date: ${lead.shipdate} <br>
@@ -436,7 +492,7 @@ class SendMail extends Component {
        Total : $ ${lead.price}<br>
        If you have any questions or would like us to match a competitor's  fee  kindly contact us 5166561474.
        Regards,<br>
-       ${lead.fromemail}<br>
+       ${user.email}<br>
        ${this.state.company}<br>
        Direct:  5166561474 <br>
    </p>
@@ -480,17 +536,32 @@ class SendMail extends Component {
            Quote ID: <br>
            Origin:  <br>
            Destination:  <br>
-           Vehicle:<br>
-           Price: 
+           Price: <br>
+           
        </p>
        <p style="color: white;margin-left: 20px;">
 
        ${lead.leadid}  <br>
        ${lead.originaddress}<br>
        ${lead.destinationaddress}<br>
-       ${lead.model} ${lead.modelyear} ${lead.make} <br>
        ${lead.price} $
        </p>
+       <div  style="margin-left:15px;margin-right:15px;" > 
+        
+            <table>
+            <p>Vehicle:</p>
+            ${lead.vehicle.map((vehicle) => (
+                `  
+                    <tr>
+                        <td  > ${vehicle.modelyear}  </td>
+                        <td  > ${vehicle.make} </td>
+                        <td > ${vehicle.model}  </td>
+                    
+                    </tr>
+                    `
+                ))}
+            </table>
+        </div>
 
    </div>
    <div style="flex-basis: 50%;">
@@ -513,7 +584,7 @@ class SendMail extends Component {
            ${this.state.company}
 
            <br><br>
-           ${lead.fromemail}
+           ${user.email}
            <br><br>
            5166561474
        </p>
@@ -555,7 +626,16 @@ class SendMail extends Component {
        <br>
        <p style="color: rgba(0, 0, 0, 0.692);">
            Order ID: ${lead.leadid} <br>
-           ${lead.model} ${lead.modelyear} ${lead.make} <br>
+           <table>
+           ${lead.vehicle.map((vehicle) => (
+              `  
+                   <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                   <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                   <td style="padding-left: 0;"> ${vehicle.model}  </td>
+               \n
+               `
+           ))}
+       </table> <br>
            Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
            Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
            Available Date: ${lead.shipdate}<br>
@@ -565,7 +645,7 @@ class SendMail extends Component {
            If you have any questions please feel free to call us!
            <br><br>
            Sincerely,<br><br>
-           ${lead.fromemail}<br>
+           ${user.email}<br>
            ${this.state.company}
            <br>
            Direct: 5166561474<br>
@@ -627,7 +707,16 @@ class SendMail extends Component {
        <br>
        <p style="color: rgba(0, 0, 0, 0.692);">
        Quote ID: ${lead.leadid} <br>
-       ${lead.model} ${lead.modelyear} ${lead.make} <br>
+       <table>
+        ${lead.vehicle.map((vehicle) => (
+           `  
+                <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
+                <td style="padding-left: 0;" > ${vehicle.make} - </td>
+                <td style="padding-left: 0;"> ${vehicle.model}  </td>
+            \n
+            `
+        ))}
+    </table> <br>
        Origin: ${lead.origincity}, ${lead.originstate} ${lead.originzipcode}<br>
        Destination: ${lead.destinationcity}, ${lead.destinationstate} ${lead.destinationzipcode}<br>
        Available Date: ${lead.shipdate}<br>
@@ -637,7 +726,7 @@ class SendMail extends Component {
            If you have any questions please feel free to call us!
            <br><br>
            Sincerely,<br><br>
-           ${lead.fromemail}<br>
+           ${user.email}<br>
        ${this.state.company}
        <br>
            Direct: 5166561474<br>
@@ -850,8 +939,8 @@ class SendMail extends Component {
 
                             <Button variant='contained'
                                 sx={{
-                                    marginBottom: 5 ,
-                                    marginTop: 1 ,
+                                    marginBottom: 5,
+                                    marginTop: 1,
                                     backgroundColor: '#009B9B', color: '#E8F8F9',
                                     "&:hover": {
                                         backgroundColor: '#E8F8F9',
