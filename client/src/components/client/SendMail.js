@@ -627,7 +627,7 @@ class SendMail extends Component {
        <p style="color: rgba(0, 0, 0, 0.692);">
            Order ID: ${lead.leadid} <br>
            <table>
-            ${props.vehicle.map((vehicle) => (
+            ${lead.vehicle.map((vehicle) => (
                `  <tr>
                     <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                     <td style="padding-left: 0;" > ${vehicle.make} - </td>
@@ -708,7 +708,7 @@ class SendMail extends Component {
        <p style="color: rgba(0, 0, 0, 0.692);">
        Quote ID: ${lead.leadid} <br>
        <table>
-       ${props.vehicle.map((vehicle) => (
+       ${lead.vehicle.map((vehicle) => (
           `  <tr>
                <td style="padding-left: 0;" > ${vehicle.modelyear} - </td>
                <td style="padding-left: 0;" > ${vehicle.make} - </td>
