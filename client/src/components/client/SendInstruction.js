@@ -31,7 +31,7 @@ class SendInstruction extends Component {
 
 
     apiinstruction = `
-     <h3>   this is the instruction for API
+     <h3>   this is the instruction for API , make a post request to "http://www.crmsmtransports.site/api/vendor"
       <br>
       your token is <br><br> "  <span style="color:aqua;" > ${this.props.password} </span> "
       </h3> 
