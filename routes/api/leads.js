@@ -119,11 +119,14 @@ router.delete('/:id', auth, (req, res) => {
 
     if (req.body.ids) {
         User.findById(req.user.id).then(user => {
-            if (user.isadmin) {
+            if (user) {
+                if(user.isadmin){ 
+
                 Lead.deleteMany({ _id: { $in: req.body } })
                     .then(() => res.json({ success: true }))
                     .catch(err => res.status(404).json({ success: false }));
-            } else {
+            }}
+             else {
                 res.status(404).json({ success: false });
             }
 
