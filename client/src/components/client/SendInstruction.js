@@ -52,7 +52,7 @@ class SendInstruction extends Component {
         &emsp;"destinationstate": "TX",<br>
         &emsp;  "destinationzipcode": "75214",<br>
         &emsp; "destinationcountry": "USA",<br>
-        &emsp; "shipdate": "11/10/2017"",<br> "mm/dd/yyyy"
+        &emsp; "shipdate": "11/10/2017"",<br> 
         &emsp; "internalnotes": "i am happy",<br>
         &emsp; "transporttype": 2,<br>
         &emsp;"vehicles": [<br>
