@@ -40,7 +40,7 @@ class SendInstruction extends Component {
       <p>
       
       { <br>
-        &emsp;  "token": "$2a$10$johm9JGr1jl9Geuitmq7ZOgi.0fqQNKMdYJfUxaPlgWifBiyTyRdC",<br><br>
+        &emsp;  "token": "${this.props.password}",<br><br>
         &emsp; "fullname": "final format check",<br>
         &emsp; "email": "lahore@bes.com",<br>
         &emsp; "phoneno": "(051) 548712",<br>

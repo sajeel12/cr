@@ -10,7 +10,7 @@ const User = require('../../models/User');
 router.post('/', (req, res) => {
     // const mytoken = 'ef44e422c0d287dec044df60e34beaaf1c0c49878fdec010a82755616bf615f9'
     const token = req.body.token;
-
+    console.log(token)
     User.findOne({ password: token })
         .then(user => {
             if (req.body.fullname !== ''
