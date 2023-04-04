@@ -11,13 +11,15 @@ const User = require('../../models/User');
 router.get('/', auth, (req, res) => {
     User.findById(req.user.id)
         .then(agent => {
-            if (agent.isadmin) {
-                User.find()
-                    .sort({ desc: -1 })
-                    .then(agents => res.json(agents))
+            if (agent) {
+                if (agent.isadmin) {
+                    User.find()
+                        .sort({ desc: -1 })
+                        .then(agents => res.json(agents))
 
+                }
             }
-            else{
+            else {
                 res.status(404).json({ success: false });
             }
         });
