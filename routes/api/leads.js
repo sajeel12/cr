@@ -14,15 +14,17 @@ router.get('/', auth, (req, res) => {
     User.findById(req.user.id).then(user => {
         // .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
 
-        if (user.isadmin) {
-            Lead.find({})
-                .populate('owner').sort({ recieveddate: -1 })
-                .exec((err, lead) => {
-                    if (err) throw (err);
-                    // console.log(lead)
-                    res.json(lead);
-                });
+        if (user) {
+            if (user.isadmin) {
+                Lead.find({})
+                    .populate('owner').sort({ recieveddate: -1 })
+                    .exec((err, lead) => {
+                        if (err) throw (err);
+                        // console.log(lead)
+                        res.json(lead);
+                    });
 
+            }
         } else {
 
             Lead.find({ owner: user._id })
@@ -69,7 +71,7 @@ router.post('/', auth, (req, res) => {
                 lead.update({ $push: { vehicle: { $each: req.body.vehicle } } })
                     .then(res.status(200).json({ msg: "success" }))
             )
-            // .then(lead => res.json(lead));
+        // .then(lead => res.json(lead));
 
         // Lead.up
     }
@@ -88,14 +90,16 @@ router.put('/:id', auth, (req, res) => {
                 res.status(404).json({ success: false });
             else
                 User.findById(req.user.id).then(user => {
-                    if (user.isadmin) {
-                        Lead.find({})
-                            .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
-                            .exec((err, lead) => {
-                                if (err) throw (err);
+                    if (user) {
+                        if (user.isadmin) {
+                            Lead.find({})
+                                .populate({ path: 'owner', options: { sort: { recieveddate: -1 } } })
+                                .exec((err, lead) => {
+                                    if (err) throw (err);
 
-                                res.json(lead);
-                            });
+                                    res.json(lead);
+                                });
+                        }
                     } else {
                         Lead.find({ owner: user._id })
                             .sort({ recieveddate: -1 })
@@ -120,13 +124,14 @@ router.delete('/:id', auth, (req, res) => {
     if (req.body.ids) {
         User.findById(req.user.id).then(user => {
             if (user) {
-                if(user.isadmin){ 
+                if (user.isadmin) {
 
-                Lead.deleteMany({ _id: { $in: req.body } })
-                    .then(() => res.json({ success: true }))
-                    .catch(err => res.status(404).json({ success: false }));
-            }}
-             else {
+                    Lead.deleteMany({ _id: { $in: req.body } })
+                        .then(() => res.json({ success: true }))
+                        .catch(err => res.status(404).json({ success: false }));
+                }
+            }
+            else {
                 res.status(404).json({ success: false });
             }
 
@@ -135,11 +140,14 @@ router.delete('/:id', auth, (req, res) => {
 
 
     User.findById(req.user.id).then(user => {
-        if (user.isadmin) {
-            Lead.findById(req.params.id)
-                .then(lead => lead.remove().then(() => res.json({ success: true })))
-                .catch(err => res.status(404).json({ success: false }));
-        } else {
+        if (user) {
+            if (user.isadmin) {
+                Lead.findById(req.params.id)
+                    .then(lead => lead.remove().then(() => res.json({ success: true })))
+                    .catch(err => res.status(404).json({ success: false }));
+            }
+        }
+        else {
             res.status(404).json({ success: false });
         }
 
