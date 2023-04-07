@@ -39,42 +39,42 @@ class SendInstruction extends Component {
     <hr>
       <p>
       
-{ <br>
-&nbsp;&nbsp;"token": "${this.props.password}",<br><br>
-&nbsp;&nbsp;"fullname": "final format check",<br>
-&nbsp;&nbsp;"email": "lahore@bes.com",<br>
-&nbsp;&nbsp;"phoneno": "(051) 548712",<br>
-&nbsp;&nbsp;"origincity": "Greenville",<br>
-&nbsp;&nbsp;"originstate": "CA",<br>
-&nbsp;&nbsp;"originzipcode": "95947",<br>
-&nbsp;&nbsp;"origincountry": "USA",<br>
-&nbsp;&nbsp;"destinationcity": "Dallas",<br>
-&nbsp;&nbsp;"destinationstate": "TX",<br>
-&nbsp;&nbsp;"destinationzipcode": "75214",<br>
-&nbsp;&nbsp;"destinationcountry": "USA",<br>
-&nbsp;&nbsp;"shipdate": "11/10/2017",<br> 
-&nbsp;&nbsp;"internalnotes": "i am happy",<br>
-&nbsp;&nbsp;"transporttype": 2,<br>
-&nbsp;&nbsp;"vehicles": [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{   <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isoperable":0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"model": "43sa",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"make": "suzuki",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"modelyear": "2012",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vehicletype": "suv"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isoperable":1,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"model": "76g6",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"make": "chengan",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"modelyear": "2012",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vehicletype": "suv"<br>
-&nbsp;&nbsp;&nbsp;&nbsp}<br>
-&nbsp;&nbsp;]<br>
-}
-    </p>
+      { <br>
+        &emsp;  "token": "${this.props.password}",<br><br>
+        &emsp; "fullname": "final format check",<br>
+        &emsp; "email": "lahore@bes.com",<br>
+        &emsp; "phoneno": "(051) 548712",<br>
+        &emsp;  "origincity": "Greenville",<br>
+        &emsp;  "originstate": "CA",<br>
+        &emsp; "originzipcode": "95947",<br>
+        &emsp; "origincountry": "USA",<br>
+        &emsp; "destinationcity": "Dallas",<br>
+        &emsp;"destinationstate": "TX",<br>
+        &emsp;  "destinationzipcode": "75214",<br>
+        &emsp; "destinationcountry": "USA",<br>
+        &emsp; "shipdate": "11/10/2017",<br> 
+        &emsp; "internalnotes": "i am happy",<br>
+        &emsp; "transporttype": 2,<br>
+        &emsp;"vehicles": [<br>
+            &emsp;&emsp; {   <br>
+                &emsp;&emsp;&emsp; "isoperable":0,<br>
+                &emsp;&emsp;&emsp;   "model": "43sa",<br>
+                &emsp;&emsp;&emsp; "make": "suzuki",<br>
+                &emsp;&emsp;&emsp; "modelyear": "2012",<br>
+                &emsp;&emsp;&emsp; "vehicletype": "suv"<br>
+                &emsp;&emsp; },<br>
+                &emsp;&emsp; {<br>
+                    &emsp;&emsp;&emsp; "isoperable":1,<br>
+                    &emsp;&emsp;&emsp; "model": "76g6",<br>
+                    &emsp;&emsp;&emsp; "make": "chengan",<br>
+                    &emsp;&emsp;&emsp; "modelyear": "2012",<br>
+                    &emsp;&emsp;&emsp;"vehicletype": "suv"<br>
+                &emsp;&emsp; }<br>
+                &emsp;  ]<br>
+    }<br><br>
+      </p><br>
 
-`;
+    `;
 
 
 

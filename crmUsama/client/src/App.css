@@ -1,0 +1,537 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    overflow: hidden;
+    background-image: url("./images/truckLogin.png");
+    background-size: 1500px;
+    background-position-x: -70px;
+    background-position-y: -63px;
+    
+}
+
+
+.log_nav{
+    border-top: 5px solid #009B9B;
+    background-color: #D2ECEF;
+    height: 60px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.log_nav h3{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.log_container{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.log_box{
+    margin-left: 185px;
+    border-top: 60px solid #009B9B;
+    border-bottom: 5px solid #009B9B;
+    margin-top: 100px;
+    background-color:#E8F8F9;
+    width: 400px;
+    height: 350px;
+    border-radius: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.textfield{
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.603);
+}
+
+
+.searchLead::placeholder{
+    font-size: 20px;
+    color: white;
+}
+
+.searchLead::-ms-value{
+    color:'white'
+}
+
+
+
+
+
+
+
+
+/*googl font cdn link */
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    overflow: hidden;
+    
+    
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width:7%;
+    background: #11101d;
+    padding: 6px 14px;
+    /* overflow: hidden; */
+    transition: 0.3s all ease;
+    z-index: 1;
+
+}
+
+.sidebar.active {
+    width: 21%;
+}
+
+.sidebar .logo-content .logo {
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.active .logo-content .logo {
+    opacity: 1;
+    pointer-events: none;
+}
+
+.logo-content .logo i {
+    font-size: 28px;
+    margin-right: 5px;
+
+}
+
+.logo-content .logo .logo-name {
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+.sidebar #btn {
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar.active #btn {
+    left: 90%;
+}
+
+.sidebar .link-name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.active .link-name {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar ul {
+    margin-top: 10px;
+    margin-left: -40px;
+}
+
+.sidebar ul li {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    border-radius: 12px;
+}
+.sidebar ul li a img{
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.sidebar.active li img{
+width: 28px;
+height: 28px;
+}
+
+
+.sidebar ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover {
+    color: #11101d;
+    background: #fff;
+    border-radius: 20px;
+   
+}
+
+.sidebar ul li i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 23px;
+}
+
+.sidebar .profile-content {
+    position: absolute;
+    color: #fff;
+    /* bottom:0px; */
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile-content .profile {
+    position: relative;
+    padding: 10px 6px;
+    height: 60px;
+    background: #1d1b31;
+}
+
+.sidebar .profile-content .profile .profile-details {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .profile .profile-details {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.active .profile .profile-details {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.profile .profile-details img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+
+}
+
+.profile .profile-details .name-job {
+    margin-left: 10px;
+}
+
+.profile .profile-details .name {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile .profile-details .job {
+    font-size: 12px;
+
+}
+
+.profile #log-out {
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translateX(-50%);
+    min-width: 5px;
+    min-height: 44px;
+    font-size: 30px;
+    border-radius: 12px;
+    color: #fff;
+
+}
+
+.sidebar.active .profile #log-out {
+    left: 88%;
+}
+
+.home-content {
+    position: absolute;
+    height: 100vh;
+    width:93%;
+    overflow-x: scroll;
+    left: 94px;
+    transition: all 0.3s ease;
+    padding-top: 15px;
+    padding-left: 2px;
+}
+.home-content table thead tr th{
+    text-align: center;
+    
+}
+.sidebar.active~.home-content {
+    width:79%;
+    left: 286px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.headerdiv{
+    width:93.4%;
+    position: relative;
+    background-color: #1d1b31;
+    height: 70px;
+    color: white;
+    left: 88px;
+    transition: all 0.3s ease;
+    padding-top: 15px;
+    padding-left: 2px;
+}
+
+.headerid {
+    width:79%;
+    left: 279px;
+}
+
+
+.home-content table thead{
+    background-color:#1d1b31;
+    color: white;
+    height: 40px;
+}
+.dataTables_filter{
+    width: 65%;
+    display: flex;
+    justify-content: start;
+    align-items:flex-start;
+    margin-bottom: 10px;
+}
+.dataTables_filter input{
+    width: 300px;
+    border: 2px solid black;
+}
+.dataTables_wrapper{
+    white-space: nowrap;
+    text-align: center;
+}
+
+.dataTables_wrapper .buttonn button{
+    padding: 7px 10px;
+    min-width: 100px;
+    border-radius: 20px;
+    background-color:#1d1b31;
+    color: white;
+    cursor: pointer;
+
+}
+.modal-body select, input, textarea{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+    outline: none;
+}
+.modal-body textarea{
+    font-size: 14px;
+}
+.modal-body label{
+    font-size: 13px;
+    margin-bottom: -10px;
+
+}
+.modal-body .inputt{
+    margin-top: 10px;
+}
+.modal-footer .buttonn{
+    padding: 5px 10px;
+    border-radius: 4px;
+    min-width: 100px;
+    background-color:#1d1b31;
+    color: white;
+    cursor: pointer;
+
+}
+
+.modal-body .updatemodel{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.modal-body .updatemodel input{
+    width: 85%;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+    outline: none;
+}
+.modal-body .updatemodel label{
+    width: 90%;
+}
+.cherbtn button{
+    padding: 5px 0px;
+    background-color: #1d1b31;
+    color: white;
+    margin: 5px;
+    font-size: 15px;
+    width: 150px;
+}
+.shipmentbtninvoice{
+    padding: 5px 0px;
+    background-color: #1d1b31;
+    color: white;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 6px;
+}
+.invpoiceheading{
+    width: 100%;
+    height: 40px;
+    letter-spacing: 10px;
+    font-size: 20px;
+    background-color: #1d1b31;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.numberr{
+    width: 150px;
+    height: 40px;
+    background-color: #1d1b31;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+.logoandnumber{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.ordernumbr{
+    width: 100%;
+    height: 40px;
+    background-color: #1d1b31;
+    color: white;
+    display: flex;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.ordernumbr h6{
+    font-size: 14px;
+}
+.customeralex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-top: 10px;
+    padding: 0px 12px;
+    background-color: #1d1b31;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+}
+.customerinfo{
+    width: 45%;
+    border: 1px solid #c4c2c2;
+    min-height: 120px;
+    line-height: 30px;
+    padding: 10px;
+}
+
+.orderpayment{
+    width: 55%;
+    min-height: 120px;
+    border: 1px solid #c4c2c2;
+    padding: 10px;
+
+}
+.dialogbox1{
+    width: 45%;
+    min-height: 180px;
+    border: 1px solid #c4c2c2;
+    padding: 10px;
+    
+}
+    .dialogbox2 {
+    width: 55%;
+    min-height: 180px;
+    border: 1px solid #c4c2c2;
+}
+.box2heading{
+    width: 100%;
+    height: 30px;
+    background-color: #1d1b31;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shippmentdetails table{
+    width: 100%;
+    font-size: 14px;
+}
+.shippmentdetails td{
+    border: 1px solid #c4c2c2;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .shippmentdetails table thead{
+    background-color: #1d1b31;
+    color: white;
+ 
+  }
+  .shippmentdetails table thead th{
+    padding: 8px;
+  }
+  .details{
+    width: 100%;
+    height: auto;
+    border: 1px solid #c4c2c2;
+  }
+  .detailbox{
+    width: 50%;
+    padding: 10px;
+  }
+  .detailbox p{
+    font-size: 13px;
+  }
+
+.searchLead::placeholder{
+    color:#009B9B;
+}
+  /* #admin side css */
+  
