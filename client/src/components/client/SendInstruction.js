@@ -69,7 +69,7 @@ class SendInstruction extends Component {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"make": "chengan",<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"modelyear": "2012",<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vehicletype": "suv"<br>
-&nbsp;&nbsp;&nbsp;&nbsp}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;]<br>
 }
     </p>
