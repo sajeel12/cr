@@ -25,12 +25,13 @@ router.get('/', auth, (req, res) => {
                     });
 
             }
-        } else {
+            else {
 
-            Lead.find({ owner: user._id })
-                .sort({ recieveddate: -1 })
-                .then(leads => res.json(leads))
+                Lead.find({ owner: user._id })
+                    .sort({ recieveddate: -1 })
+                    .then(leads => res.json(leads))
 
+            }
         }
 
     }
