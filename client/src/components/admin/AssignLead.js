@@ -109,7 +109,7 @@ class AssignLead extends Component {
                             autoComplete="off"
                         >
                             <Typography variant="h5" component="h2">
-                                Assign Lead
+                                Assign Lead 
                             </Typography>
 
                             <hr />
@@ -124,9 +124,11 @@ class AssignLead extends Component {
                                         label="Assign To"
                                     >
                                         {agents.map((agent => (
-
-
-                                            <MenuItem key={agent._id} value={agent._id} >{agent.username}</MenuItem>
+                                            <>
+                                                {agent.isvendor ||  !agent.isadmin &&    
+                                                <MenuItem key={agent._id} value={agent._id} >{agent.username}</MenuItem>
+                                                }
+                                            </>
 
                                         )))}
                                     </Select>
