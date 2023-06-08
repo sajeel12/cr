@@ -132,16 +132,20 @@ export const login = ({ username, password }) => dispatch => {
 
 
 
-export const logout = () => dispatch => {
+// export const logout = () => dispatch => {
 
-    axios.get('/api/logout')
-        .then(() => dispatch({type:LOGOUT_SUCCESS}));
+//     axios.get('/api/logout')
+//         .then(() => dispatch({type:LOGOUT_SUCCESS}));
         
 
 
+// };
+
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    };
 };
-
-
 
 // setup config 
 
