@@ -34,9 +34,9 @@ router.post('/', (req, res) => {
                         // { expiresIn: 3600 },              // 3600 seconds ( optional )
                         (err, token) => {
                             if (err) throw err;
-                            res.cookie('auth_token', token)
+                            // res.cookie('auth_token', token)
                             res.json({
-                                // token,
+                                token,
                                 user: {
                                     id: user.id,
                                     isadmin:user.isadmin,

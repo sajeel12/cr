@@ -3,10 +3,10 @@ import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
-export const getItems = () => dispatch => {
+export const getItems = () => (dispatch, getState) => {
     dispatch(setItemLoading());
 
-    axios.get('/api/items').then(res =>
+    axios.get('/api/items', tokenConfig(getState)).then(res =>
         dispatch({
             type: GET_ITEMS,
             payload: res.data
