@@ -114,7 +114,7 @@ class UpdateStatus extends Component {
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 500 }}>
 
                                     <InputLabel id="demo-simple-select-standard-label">Assign to</InputLabel>
-                                    <h1> {this.state.selected} </h1>
+                                    {/* <h1> {this.state.selected} </h1> */}
                                     <Select
                                         labelId="demo-simple-select-standard-label"
                                         id="demo-simple-select-standard"
